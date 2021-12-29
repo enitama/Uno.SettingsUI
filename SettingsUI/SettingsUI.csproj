@@ -15,8 +15,8 @@
 	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageIcon>icon.png</PackageIcon>
-	<Version>1.1.0</Version>
-	<Copyright>Copyright (c) 2021 Mahdi Hosseini</Copyright>
+	<Version>1.2.0</Version>
+	<Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
