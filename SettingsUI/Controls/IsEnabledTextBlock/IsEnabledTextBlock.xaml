@@ -9,16 +9,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:IsEnabledTextBlock">
                     <Grid>
-                        <TextBlock x:Name="Label"
-                                   FontFamily="{TemplateBinding FontFamily}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   FontWeight="{TemplateBinding FontWeight}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding Text}"
-                                   TextWrapping="WrapWholeWords" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
                                         <Setter Target="Label.Foreground" Value="{ThemeResource TextFillColorDisabledBrush}" />
@@ -26,9 +19,20 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <TextBlock x:Name="Label"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   TextWrapping="WrapWholeWords"
+                                   Text="{TemplateBinding Text}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style TargetType="local:IsEnabledTextBlock" x:Key="SecondaryIsEnabledTextBlockStyle">
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}"/>
     </Style>
 </ResourceDictionary>

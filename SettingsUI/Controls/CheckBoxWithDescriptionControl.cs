@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml;
 using System.ComponentModel;
 
@@ -34,7 +33,7 @@ namespace SettingsUI.Controls
         {
             StackPanel panel = new StackPanel() { Orientation = Orientation.Vertical };
             panel.Children.Add(new TextBlock() { Margin = new Thickness(0, 10, 0, 0), Text = Header });
-            panel.Children.Add(new IsEnabledTextBlock() { FontSize = (double)Application.Current.Resources["SecondaryTextFontSize"], Foreground = (SolidColorBrush)Application.Current.Resources["TextFillColorSecondaryBrush"], Text = Description });
+            panel.Children.Add(new IsEnabledTextBlock() { Style = (Style)Application.Current.Resources["SecondaryIsEnabledTextBlockStyle"], Text = Description });
             _checkBoxSubTextControl.Content = panel;
         }
 
