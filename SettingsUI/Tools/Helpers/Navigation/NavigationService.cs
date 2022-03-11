@@ -56,7 +56,7 @@ namespace SettingsUI.Helpers
         public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
             // Don't open the same page multiple times
-            if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(lastParamUsed)))
+            if (pageType !=null && Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(lastParamUsed)))
             {
                 var navigationResult = Frame.Navigate(pageType, parameter, infoOverride);
                 if (navigationResult)

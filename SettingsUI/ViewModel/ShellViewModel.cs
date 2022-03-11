@@ -18,7 +18,9 @@ namespace SettingsUI.ViewModel
         private readonly KeyboardAccelerator backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
         private bool isBackEnabled;
+        private bool enumerateMenuItemsOnItemInvoke;
         private IList<KeyboardAccelerator> keyboardAccelerators;
+        private IEnumerable<NavigationViewItem> menuItems;
         private NavigationView navigationView;
         private Type settingsPage;
         private Type defaultPage;
@@ -102,6 +104,12 @@ namespace SettingsUI.ViewModel
             return this;
         }
 
+        public ShellViewModel WithEnumerateMenuItemsOnItemInvoke(bool enumerateMenuItemsOnItemInvoke = true)
+        {
+            this.enumerateMenuItemsOnItemInvoke = enumerateMenuItemsOnItemInvoke;
+            return this;
+        }
+
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
         {
             var keyboardAccelerator = new KeyboardAccelerator() { Key = key };
@@ -135,6 +143,8 @@ namespace SettingsUI.ViewModel
             {
                 NavigationService.Navigate(defaultPage);
             }
+
+            menuItems = EnumerateNavigationViewItem(navigationView.MenuItems);
         }
 
         public void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
@@ -145,18 +155,35 @@ namespace SettingsUI.ViewModel
             }
             else if (args.InvokedItemContainer != null)
             {
-                var item = navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .FirstOrDefault(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
+                if (enumerateMenuItemsOnItemInvoke)
+                {
+                    menuItems = EnumerateNavigationViewItem(navigationView.MenuItems);
+                }
 
-                if (item!= null)
+                var item = menuItems.FirstOrDefault(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
+
+                if (item != null)
                 {
                     var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
                     NavigationService.Navigate(pageType);
                 }
             }
         }
+        private IEnumerable<NavigationViewItem> EnumerateNavigationViewItem(IList<object> parent)
+        {
+            if (parent != null)
+            {
+                foreach (var g in parent)
+                {
+                    yield return (NavigationViewItem)g;
 
+                    foreach (var sub in EnumerateNavigationViewItem(((NavigationViewItem)g).MenuItems))
+                    {
+                        yield return sub;
+                    }
+                }
+            }
+        }
         private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             NavigationService.GoBack();
