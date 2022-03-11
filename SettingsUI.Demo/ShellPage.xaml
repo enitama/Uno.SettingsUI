@@ -34,100 +34,135 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem
                     Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:GeneralPage"
-                    Content="General">
+                    helpers:NavHelper.NavigateTo="views:ContentDialogPage"
+                    Content="ContentDialog">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
                 <NavigationViewItem
                     Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:OobePage"
-                    Content="FileExplorer Preview">
+                    helpers:NavHelper.NavigateTo="views:CommandObservablePage"
+                    Content="RelayCommand and Observable">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFileExplorerPreview.png"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:AwakePage"
-                    Content="Awake">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsAwake.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
                     Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:ColorPickerPage"
-                    Content="Color Picker">
+                    helpers:NavHelper.NavigateTo="views:CheckUpdatePage"
+                    Content="Check Update">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsColorPicker.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
                 <NavigationViewItem
                     Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:FancyZonesPage"
-                    Content="FancyZones">
+                    Content="Settings">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFancyZones.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
                     </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:GeneralPage"
+                            Content="General">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                        
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:OobePage"
+                            Content="FileExplorer Preview">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFileExplorerPreview.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                        
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:AwakePage"
+                            Content="Awake">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsAwake.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                        
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:ColorPickerPage"
+                            Content="Color Picker">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsColorPicker.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
 
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:PowerPreviewPage"
-                    Content="File Explorer add-ons">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFileExplorerPreview.png"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:FancyZonesPage"
+                            Content="FancyZones">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFancyZones.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
 
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:ImageResizerPage"
-                    Content="Image Resizer">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsImageResizer.png"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:PowerPreviewPage"
+                            Content="File Explorer add-ons">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFileExplorerPreview.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
 
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:KeyboardManagerPage"
-                    Content="Keyboard Manager">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsKeyboardManager.png"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:ImageResizerPage"
+                            Content="Image Resizer">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsImageResizer.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
 
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:PowerRenamePage"
-                    Content="PowerRename">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsPowerRename.png"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:KeyboardManagerPage"
+                            Content="Keyboard Manager">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsKeyboardManager.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
 
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:PowerLauncherPage"
-                    Content="PowerToys Run">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsPowerToysRun.png"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:PowerRenamePage"
+                            Content="PowerRename">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsPowerRename.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
 
-                <NavigationViewItem
-                    Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:ShortcutGuidePage"
-                    Content="Shortcut Guide">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsShortcutGuide.png"/>
-                    </NavigationViewItem.Icon>
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:PowerLauncherPage"
+                            Content="PowerToys Run">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsPowerToysRun.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+
+                        <NavigationViewItem
+                            Margin="0,0,12,0"
+                            helpers:NavHelper.NavigateTo="views:ShortcutGuidePage"
+                            Content="Shortcut Guide">
+                            <NavigationViewItem.Icon>
+                                <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsShortcutGuide.png"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                        
+                    </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
             <!--<i:Interaction.Behaviors>

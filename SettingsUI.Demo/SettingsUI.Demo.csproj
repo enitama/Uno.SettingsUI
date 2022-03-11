@@ -12,6 +12,9 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\Features\CheckUpdatePage.xaml" />
+    <None Remove="Pages\Features\CommandObservablePage.xaml" />
+    <None Remove="Pages\Features\ContentDialogPage.xaml" />
     <None Remove="ShellPage.xaml" />
   </ItemGroup>
 
@@ -41,42 +44,57 @@
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\Features\CheckUpdatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Features\CommandObservablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\AwakePage.xaml">
+    <Page Update="Pages\Settings\AwakePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\ColorPickerPage.xaml">
+    <Page Update="Pages\Settings\ColorPickerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\FancyZonesPage.xaml">
+    <Page Update="Pages\Settings\FancyZonesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\GeneralPage.xaml">
+    <Page Update="Pages\Settings\GeneralPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\ImageResizerPage.xaml">
+    <Page Update="Pages\Settings\ImageResizerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\KeyboardManagerPage.xaml">
+    <Page Update="Pages\Settings\KeyboardManagerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\OobePage.xaml">
+    <Page Update="Pages\Settings\OobePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\PowerLauncherPage.xaml">
+    <Page Update="Pages\Settings\PowerLauncherPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\PowerPreviewPage.xaml">
+    <Page Update="Pages\Settings\PowerPreviewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\PowerRenamePage.xaml">
+    <Page Update="Pages\Settings\PowerRenamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\ShortcutGuidePage.xaml">
+    <Page Update="Pages\Settings\ShortcutGuidePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Features\ContentDialogPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
