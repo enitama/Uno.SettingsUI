@@ -1,4 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using SettingsUI.Helpers;
+using System;
 
 namespace SettingsUI.Demo.Pages
 {
@@ -7,6 +9,33 @@ namespace SettingsUI.Demo.Pages
         public CheckUpdatePage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtRepo.Text))
+            {
+                txtUser.Text = "ghost1372";
+                txtRepo.Text = "SettingsUI";
+            }
+            var ver = await UpdateHelper.CheckUpdateAsync(txtUser.Text, txtRepo.Text);
+            if (ver.IsExistNewVersion)
+            {
+                txtReleaseUrl.Text = $"Release Url: {ver.ReleaseUrl}";
+                txtCreatedAt.Text = $"Created At: {ver.CreatedAt}";
+                txtPublishedAt.Text = $"Published At {ver.PublishedAt}";
+                txtIsPreRelease.Text = $"Is PreRelease: {ver.IsPreRelease}";
+                txtTagName.Text = $"Tag Name: {ver.TagName}";
+                txtChangelog.Text = $"Changelog: {ver.Changelog}";
+                foreach (var item in ver.Assets)
+                {
+                    var button = new Button
+                    {
+                        Content = $"{item.Url}{Environment.NewLine}Size: {item.Size}"
+                    };
+                    panel.Children.Add(button);
+                }
+            }
         }
     }
 }

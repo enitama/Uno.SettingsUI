@@ -5,11 +5,25 @@
     xmlns:controls="using:SettingsUI.Controls"
     xmlns:data="using:SettingsUI.Helpers"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <controls:SettingsPageControl
         IsTabStop="False"
         ModuleDescription="you can use UpdateHelper for checking application updates from github release page."
         ModuleImageSource="ms-appx:///Assets/Modules/PT.png"
         ModuleTitle="UpdateHelper">
+        <controls:SettingsPageControl.ModuleContent>
+            <StackPanel Spacing="10">
+                <InfoBar IsOpen="True" IsClosable="False" Severity="Warning" Title="First you must create a new release tag in github repository, tag version must be in this format : 1.0.0.0 now we can check for update with github username and github repository"/>
+                <Button Click="Button_Click" Content="Check for Update" HorizontalAlignment="Center"/>
+                <TextBox Name="txtUser" PlaceholderText="Github Username: ghost1372"/>
+                <TextBox Name="txtRepo" PlaceholderText="Github Repository: SettingsUI"/>
+                <TextBlock Name="txtReleaseUrl"/>
+                <TextBlock Name="txtCreatedAt"/>
+                <TextBlock Name="txtPublishedAt"/>
+                <TextBlock Name="txtIsPreRelease"/>
+                <TextBlock Name="txtTagName"/>
+                <TextBlock Name="txtChangelog"/>
+                <StackPanel Name="panel" Spacing="10"/>
+            </StackPanel>
+        </controls:SettingsPageControl.ModuleContent>
     </controls:SettingsPageControl>
 </Page>
