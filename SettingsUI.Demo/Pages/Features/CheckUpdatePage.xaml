@@ -22,7 +22,7 @@
                 <TextBlock Name="txtIsPreRelease"/>
                 <TextBlock Name="txtTagName"/>
                 <TextBlock Name="txtChangelog"/>
-                <StackPanel Name="panel" Spacing="10"/>
+                <ListView Name="listView"/>
             </StackPanel>
         </controls:SettingsPageControl.ModuleContent>
     </controls:SettingsPageControl>

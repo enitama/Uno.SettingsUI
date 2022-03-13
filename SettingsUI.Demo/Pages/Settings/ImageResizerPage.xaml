@@ -8,6 +8,9 @@
     xmlns:models="using:SettingsUI.Demo.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}"/>
+    </Page.Resources>
     <controls:SettingsPageControl
         ModuleDescription="Lets you resize images by right-clicking."
         ModuleImageSource="ms-appx:///Assets/Modules/ImageResizer.png"

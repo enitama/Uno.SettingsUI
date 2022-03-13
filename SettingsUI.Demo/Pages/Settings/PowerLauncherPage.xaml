@@ -7,6 +7,9 @@ xmlns:controls="using:SettingsUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}"/>
+    </Page.Resources>
     <controls:SettingsPageControl
         ModuleDescription="A quick launcher that has additional capabilities without sacrificing performance."
         ModuleImageSource="ms-appx:///Assets/Modules/PowerLauncher.png"

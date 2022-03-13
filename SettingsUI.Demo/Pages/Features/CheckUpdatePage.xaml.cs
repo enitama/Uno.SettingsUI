@@ -29,11 +29,7 @@ namespace SettingsUI.Demo.Pages
                 txtChangelog.Text = $"Changelog: {ver.Changelog}";
                 foreach (var item in ver.Assets)
                 {
-                    var button = new Button
-                    {
-                        Content = $"{item.Url}{Environment.NewLine}Size: {item.Size}"
-                    };
-                    panel.Children.Add(button);
+                    listView.Items.Add($"{item.Url}{Environment.NewLine}Size: {item.Size}");
                 }
             }
         }

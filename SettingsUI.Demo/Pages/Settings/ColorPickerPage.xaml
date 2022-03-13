@@ -8,7 +8,9 @@
     xmlns:models="using:SettingsUI.Demo.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.Resources>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}"/>
+    </Page.Resources>
     <controls:SettingsPageControl
         ModuleDescription="Quick and simple system-wide color picker."
         ModuleImageSource="ms-appx:///Assets/Modules/ColorPicker.png"
