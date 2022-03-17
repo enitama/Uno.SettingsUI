@@ -48,12 +48,19 @@ namespace SettingsUI.Helpers
                 {
                     Changelog = result?.Changelog,
                     CreatedAt = Convert.ToDateTime(result?.CreatedAt),
-                    Assets = result.Assets,
+                    Assets = result?.Assets,
                     IsPreRelease = result.IsPreRelease,
                     PublishedAt = Convert.ToDateTime(result?.PublishedAt),
-                    TagName = result.TagName,
-                    ApiUrl = result?.ApiUrl,
-                    ReleaseUrl = result?.ReleaseUrl,
+                    TagName = result?.TagName,
+                    AssetsUrl = result?.AssetsUrl,
+                    Author = result?.Author,
+                    HtmlUrl = result?.HtmlUrl,
+                    Name = result?.Name,
+                    TarballUrl = result?.TarballUrl,
+                    TargetCommitish = result?.TargetCommitish,
+                    UploadUrl = result?.UploadUrl,
+                    Url = result?.Url,
+                    ZipballUrl = result?.ZipballUrl,
                     IsExistNewVersion = newVersionInfo > currentVersionInfo
                 };
             }
