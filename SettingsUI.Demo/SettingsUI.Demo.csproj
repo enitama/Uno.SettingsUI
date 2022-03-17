@@ -15,6 +15,7 @@
     <None Remove="Pages\Features\CheckUpdatePage.xaml" />
     <None Remove="Pages\Features\CommandObservablePage.xaml" />
     <None Remove="Pages\Features\ContentDialogPage.xaml" />
+    <None Remove="Pages\Features\ThemePage.xaml" />
     <None Remove="ShellPage.xaml" />
   </ItemGroup>
 
@@ -30,7 +31,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.197" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -42,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Features\ThemePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Features\CheckUpdatePage.xaml">

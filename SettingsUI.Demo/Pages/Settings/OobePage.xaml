@@ -5,8 +5,7 @@
     xmlns:controls="using:SettingsUI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
     <controls:OOBEPageControl ModuleTitle="FileExplorer Preview"
         ModuleImageSource="ms-appx:///Assets/Modules/OOBE/FileExplorer.png"
         ModuleDescription="These settings allow you to manage your Windows File Explorer custom preview handlers.">

@@ -20,7 +20,7 @@
 
 # SettingsUI
  
-SettingsUI Helps you create your own application settings page, like Windows 11 Settings
+SettingsUI Helps you create your own application settings page (like Windows 11 Settings) With many useful helper classes
 
 > **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.0
 
@@ -37,25 +37,125 @@ After installing, add the following resource to app.xaml
 
 See the Demo app to see how to use it
 
-![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/0.png)
-
 ![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/1.png)
 
 ![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/2.png)
 
 ![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/3.png)
 
+## Documentation
+
+### Title bar customization
+We've made it easy to use the  [customized Windows title bar](https://docs.microsoft.com/en-us/windows/apps/develop/title-bar?tabs=wasdk)
+
 ![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/4.png)
 
-![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/5.png)
+first add following xaml in your MainWindow:
 
-![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/6.png)
+```xml
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid x:Name="AppTitleBar" Height="48">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+            <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
+            <ColumnDefinition x:Name="TitleColumn" Width="Auto"/>
+            <ColumnDefinition x:Name="LeftDragColumn" Width="*"/>
+            <ColumnDefinition x:Name="SearchColumn" Width="Auto"/>
+            <ColumnDefinition x:Name="RightDragColumn" Width="*"/>
+            <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="TitleBarIcon" Source="/Assets/logo.png"
+        Grid.Column="1"
+        Width="16" Height="16"
+        Margin="8,0,0,0"/>
+        <TextBlock x:Name="TitleTextBlock" 
+            Text="SettingsUI Demo" 
+            Style="{StaticResource CaptionTextBlockStyle}"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Margin="4,0,0,0"/>
+        <AutoSuggestBox Grid.Column="4" QueryIcon="Find"
+                PlaceholderText="Search"
+                VerticalAlignment="Center"
+                Width="260" Margin="4,0"/>
+    </Grid>
 
-![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/7.png)
+    <local:ShellPage Grid.Row="1"/>
 
-## Helpers
-There are also a number of helpers and extensions
+</Grid>
+```
 
+now you can Initialize title bar:
+```cs
+public MainWindow()
+{
+    this.InitializeComponent();
+    TitleBarHelper.Initialize(this, TitleTextBlock, AppTitleBar, LeftPaddingColumn, IconColumn, TitleColumn, LeftDragColumn, SearchColumn, RightDragColumn, RightPaddingColumn);
+}
+```
+
+### ThemeHelper
+You can simplify the operation of saving, retrieving and selecting the Application theme, All operations are performed automatically.
+
+first of all, Initialize ThemeHelper (Theme retrieving is done automatically by the Initialize method):
+
+```cs
+protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+{
+    m_window = new MainWindow();
+    ThemeHelper.Initialize(m_window);
+    m_window.Activate();
+}
+```
+
+copy this xaml in your page:
+```xml
+ <StackPanel x:Name="ThemePanel" Margin="10">
+    <RadioButton Tag="Light" Checked="OnThemeRadioButtonChecked" Content="Light"/>
+    <RadioButton Tag="Dark" Checked="OnThemeRadioButtonChecked" Content="Dark" />
+    <RadioButton Tag="Default" Checked="OnThemeRadioButtonChecked" Content="Use system setting" />
+</StackPanel>
+```
+now call `OnThemeRadioButtonChecked` method for change and save application theme:
+```cs
+private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
+{
+    ThemeHelper.OnThemeRadioButtonChecked(sender);
+}
+```
+now call `SetThemeRadioButtonChecked` method for selecting currect radiobutton item when page is loading:
+```cs
+ThemeHelper.SetThemeRadioButtonChecked(ThemePanel);
+```
+
+### WindowHelper
+
+#### SetWindowSize
+you can set your MainWindow Size:
+```cs
+IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+WindowHelper.SetWindowSize(, 200, 300);
+```
+#### GetAppWindowForCurrentWindow
+you can get AppWindow for Current Window:
+```cs
+var appWindow = WindowHelper.GetAppWindowForCurrentWindow(this);
+```
+
+### VisualHelper
+
+### TaskbarHelper
+you can handle Taskbar for your application:
+
+```cs
+TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.Error);
+
+TaskbarHelper.SetProgressValue(windowHandle, 56, 100);
+```
 
 ### ContentDialogExtension
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using SettingsUI.Helpers;
 
 namespace SettingsUI.Demo
 {
@@ -12,6 +13,7 @@ namespace SettingsUI.Demo
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
+            ThemeHelper.Initialize(m_window);
             m_window.Activate();
         }
 

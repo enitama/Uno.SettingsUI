@@ -2,9 +2,7 @@
     x:Class="SettingsUI.Demo.Pages.CheckUpdatePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:SettingsUI.Controls"
-    xmlns:data="using:SettingsUI.Helpers"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:controls="using:SettingsUI.Controls">
     <controls:SettingsPageControl
         IsTabStop="False"
         ModuleDescription="you can use UpdateHelper for checking application updates from github release page."

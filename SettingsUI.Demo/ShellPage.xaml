@@ -7,14 +7,13 @@
     mc:Ignorable="d"
     xmlns:helpers="using:SettingsUI.Helpers"
     xmlns:views="using:SettingsUI.Demo.Pages"
-    Loaded="UserControl_Loaded"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Loaded="UserControl_Loaded">
     <!--<i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="Loaded">
             <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}"/>
         </ic:EventTriggerBehavior>
     </i:Interaction.Behaviors>-->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <NavigationView
             x:Name="navigationView"
             IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
@@ -23,10 +22,10 @@
             ItemInvoked="navigationView_ItemInvoked"
             OpenPaneLength="288"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
-            <NavigationView.Resources>
+            <!--<NavigationView.Resources>
                 <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent"/>
                 <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent"/>
-            </NavigationView.Resources>
+            </NavigationView.Resources>-->
 
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox Name="autoSuggestBox" QueryIcon="Find" PlaceholderText="Search" TextChanged="OnControlsSearchBoxTextChanged" QuerySubmitted="OnControlsSearchBoxQuerySubmitted"/>
@@ -45,7 +44,7 @@
                     helpers:NavHelper.NavigateTo="views:CommandObservablePage"
                     Content="RelayCommand and Observable">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFancyZones.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -53,7 +52,15 @@
                     helpers:NavHelper.NavigateTo="views:CheckUpdatePage"
                     Content="Check Update">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsPowerToys.png"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem
+                    Margin="0,0,12,0"
+                    helpers:NavHelper.NavigateTo="views:ThemePage"
+                    Content="Theme">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsColorPicker.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem

@@ -2,8 +2,7 @@
     x:Class="SettingsUI.Demo.Pages.CommandObservablePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:SettingsUI.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:controls="using:SettingsUI.Controls">
     
     <controls:SettingsPageControl
         IsTabStop="False"
