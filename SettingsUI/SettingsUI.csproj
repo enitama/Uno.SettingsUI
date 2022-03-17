@@ -7,7 +7,7 @@
     <UseWinUI>true</UseWinUI>
 
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-	<Description>Windows 11 settings page in WinUI 3 apps</Description>
+	<Description>Windows 11 settings page in WinUI 3 apps With many useful helper classes</Description>
 	<PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
@@ -15,7 +15,7 @@
 	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageIcon>icon.png</PackageIcon>
-	<Version>1.4.0</Version>
+	<Version>1.5.0</Version>
 	<Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
   </PropertyGroup>
 
