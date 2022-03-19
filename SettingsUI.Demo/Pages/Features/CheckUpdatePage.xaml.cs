@@ -21,7 +21,7 @@ namespace SettingsUI.Demo.Pages
             var ver = await UpdateHelper.CheckUpdateAsync(txtUser.Text, txtRepo.Text);
             if (ver.IsExistNewVersion)
             {
-                txtReleaseUrl.Text = $"Release Url: {ver.ReleaseUrl}";
+                txtReleaseUrl.Text = $"Release Url: {ver.HtmlUrl}";
                 txtCreatedAt.Text = $"Created At: {ver.CreatedAt}";
                 txtPublishedAt.Text = $"Published At {ver.PublishedAt}";
                 txtIsPreRelease.Text = $"Is PreRelease: {ver.IsPreRelease}";

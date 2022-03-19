@@ -92,7 +92,7 @@ namespace SettingsUI.Helpers
             uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
             return scaleFactorPercent / 100.0;
         }
-        private static void SetDragRegionForCustomTitleBar(AppWindow appWindow)
+        public static void SetDragRegionForCustomTitleBar(AppWindow appWindow)
         {
             if (AppWindowTitleBar.IsCustomizationSupported()
                 && appWindow.TitleBar.ExtendsContentIntoTitleBar)

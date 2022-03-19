@@ -85,13 +85,16 @@ namespace SettingsUI.Helpers
             AppWindow m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(_CurrentWindow);
             var titleBar = m_AppWindow.TitleBar;
             titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             if (IsDarkTheme())
             {
                 titleBar.ButtonForegroundColor = Colors.White;
+                titleBar.ButtonInactiveForegroundColor = Colors.White;
             }
             else
             {
                 titleBar.ButtonForegroundColor = Colors.Black;
+                titleBar.ButtonInactiveForegroundColor = Colors.Black;
             }
         }
 
