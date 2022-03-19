@@ -75,7 +75,7 @@ namespace SettingsUI.Helpers
             }
         }
 
-        private static double GetScaleAdjustment()
+        public static double GetScaleAdjustment()
         {
             IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(_MainWindowObject);
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
