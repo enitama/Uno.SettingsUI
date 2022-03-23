@@ -1,46 +1,45 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
 using System.ComponentModel;
-namespace SettingsUI.Controls
+namespace SettingsUI.Controls;
+
+[TemplateVisualState(Name = "Normal", GroupName = "CommonStates")]
+[TemplateVisualState(Name = "Disabled", GroupName = "CommonStates")]
+public class IsEnabledTextBlock : Control
 {
-    [TemplateVisualState(Name = "Normal", GroupName = "CommonStates")]
-    [TemplateVisualState(Name = "Disabled", GroupName = "CommonStates")]
-    public class IsEnabledTextBlock : Control
+    public IsEnabledTextBlock()
     {
-        public IsEnabledTextBlock()
-        {
-            this.DefaultStyleKey = typeof(IsEnabledTextBlock);
-        }
+        this.DefaultStyleKey = typeof(IsEnabledTextBlock);
+    }
 
-        protected override void OnApplyTemplate()
-        {
-            IsEnabledChanged -= IsEnabledTextBlock_IsEnabledChanged;
-            SetEnabledState();
-            IsEnabledChanged += IsEnabledTextBlock_IsEnabledChanged;
-            base.OnApplyTemplate();
-        }
+    protected override void OnApplyTemplate()
+    {
+        IsEnabledChanged -= IsEnabledTextBlock_IsEnabledChanged;
+        SetEnabledState();
+        IsEnabledChanged += IsEnabledTextBlock_IsEnabledChanged;
+        base.OnApplyTemplate();
+    }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-           "Text",
-           typeof(string),
-           typeof(IsEnabledTextBlock),
-           null);
+    public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
+       "Text",
+       typeof(string),
+       typeof(IsEnabledTextBlock),
+       null);
 
-        [Localizable(true)]
-        public string Text
-        {
-            get => (string)GetValue(TextProperty);
-            set => SetValue(TextProperty, value);
-        }
+    [Localizable(true)]
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
 
-        private void IsEnabledTextBlock_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            SetEnabledState();
-        }
+    private void IsEnabledTextBlock_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        SetEnabledState();
+    }
 
-        private void SetEnabledState()
-        {
-            VisualStateManager.GoToState(this, IsEnabled ? "Normal" : "Disabled", true);
-        }
+    private void SetEnabledState()
+    {
+        VisualStateManager.GoToState(this, IsEnabled ? "Normal" : "Disabled", true);
     }
 }

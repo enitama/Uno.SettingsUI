@@ -6,86 +6,85 @@ using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace SettingsUI.Helpers
+namespace SettingsUI.Helpers;
+
+public static class UpdateHelper
 {
-    public static class UpdateHelper
+    private const string GITHUB_API = "https://api.github.com/repos/{0}/{1}/releases/latest";
+
+    public static async Task<UpdateInfo> CheckUpdateAsync(string username, string repository, Version currentVersion = null)
     {
-        private const string GITHUB_API = "https://api.github.com/repos/{0}/{1}/releases/latest";
+        if (string.IsNullOrEmpty(username))
+            throw new ArgumentNullException(nameof(username));
 
-        public static async Task<UpdateInfo> CheckUpdateAsync(string username, string repository, Version currentVersion = null)
+        if (string.IsNullOrEmpty(repository))
+            throw new ArgumentNullException(nameof(repository));
+
+        ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+        HttpClient client = new HttpClient();
+        client.DefaultRequestHeaders.Add("User-Agent", username);
+        string url = string.Format(GITHUB_API, username, repository);
+        HttpResponseMessage response = await client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        string responseBody = await response.Content.ReadAsStringAsync();
+        var result = JsonSerializer.Deserialize<UpdateInfo>(responseBody);
+
+        if (result != null)
         {
-            if (string.IsNullOrEmpty(username))
-                throw new ArgumentNullException(nameof(username));
-
-            if (string.IsNullOrEmpty(repository))
-                throw new ArgumentNullException(nameof(repository));
-
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", username);
-            string url = string.Format(GITHUB_API, username, repository);
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<UpdateInfo>(responseBody);
-
-            if (result != null)
+            if (currentVersion == null)
             {
-                if (currentVersion == null)
-                {
-                    currentVersion = Assembly.GetEntryAssembly().GetName().Version;
-                }
-
-                var newVersionInfo = GetAsVersionInfo(result.TagName);
-                int major = currentVersion.Major == -1 ? 0 : currentVersion.Major;
-                int minor = currentVersion.Minor == -1 ? 0 : currentVersion.Minor;
-                int build = currentVersion.Build == -1 ? 0 : currentVersion.Build;
-                int revision = currentVersion.Revision == -1 ? 0 : currentVersion.Revision;
-
-                var currentVersionInfo = new SystemVersionInfo(major, minor, build, revision);
-
-                return new UpdateInfo
-                {
-                    Changelog = result?.Changelog,
-                    CreatedAt = Convert.ToDateTime(result?.CreatedAt),
-                    Assets = result?.Assets,
-                    IsPreRelease = result.IsPreRelease,
-                    PublishedAt = Convert.ToDateTime(result?.PublishedAt),
-                    TagName = result?.TagName,
-                    AssetsUrl = result?.AssetsUrl,
-                    Author = result?.Author,
-                    HtmlUrl = result?.HtmlUrl,
-                    Name = result?.Name,
-                    TarballUrl = result?.TarballUrl,
-                    TargetCommitish = result?.TargetCommitish,
-                    UploadUrl = result?.UploadUrl,
-                    Url = result?.Url,
-                    ZipballUrl = result?.ZipballUrl,
-                    IsExistNewVersion = newVersionInfo > currentVersionInfo
-                };
+                currentVersion = Assembly.GetEntryAssembly().GetName().Version;
             }
 
-            return null;
+            var newVersionInfo = GetAsVersionInfo(result.TagName);
+            int major = currentVersion.Major == -1 ? 0 : currentVersion.Major;
+            int minor = currentVersion.Minor == -1 ? 0 : currentVersion.Minor;
+            int build = currentVersion.Build == -1 ? 0 : currentVersion.Build;
+            int revision = currentVersion.Revision == -1 ? 0 : currentVersion.Revision;
+
+            var currentVersionInfo = new SystemVersionInfo(major, minor, build, revision);
+
+            return new UpdateInfo
+            {
+                Changelog = result?.Changelog,
+                CreatedAt = Convert.ToDateTime(result?.CreatedAt),
+                Assets = result?.Assets,
+                IsPreRelease = result.IsPreRelease,
+                PublishedAt = Convert.ToDateTime(result?.PublishedAt),
+                TagName = result?.TagName,
+                AssetsUrl = result?.AssetsUrl,
+                Author = result?.Author,
+                HtmlUrl = result?.HtmlUrl,
+                Name = result?.Name,
+                TarballUrl = result?.TarballUrl,
+                TargetCommitish = result?.TargetCommitish,
+                UploadUrl = result?.UploadUrl,
+                Url = result?.Url,
+                ZipballUrl = result?.ZipballUrl,
+                IsExistNewVersion = newVersionInfo > currentVersionInfo
+            };
         }
 
-        private static SystemVersionInfo GetAsVersionInfo(string version)
-        {
-            var nums = GetVersionNumbers(version).Split('.').Select(int.Parse).ToList();
+        return null;
+    }
 
-            if (nums.Count <= 1)
-                return new SystemVersionInfo(nums[0], 0, 0, 0);
-            else if (nums.Count <= 2)
-                return new SystemVersionInfo(nums[0], nums[1], 0, 0);
-            else if (nums.Count <= 3)
-                return new SystemVersionInfo(nums[0], nums[1], nums[2], 0);
-            else
-                return new SystemVersionInfo(nums[0], nums[1], nums[2], nums[3]);
-        }
+    private static SystemVersionInfo GetAsVersionInfo(string version)
+    {
+        var nums = GetVersionNumbers(version).Split('.').Select(int.Parse).ToList();
 
-        private static string GetVersionNumbers(string version)
-        {
-            var allowedChars = "01234567890.";
-            return new string(version.Where(c => allowedChars.Contains(c)).ToArray());
-        }
+        if (nums.Count <= 1)
+            return new SystemVersionInfo(nums[0], 0, 0, 0);
+        else if (nums.Count <= 2)
+            return new SystemVersionInfo(nums[0], nums[1], 0, 0);
+        else if (nums.Count <= 3)
+            return new SystemVersionInfo(nums[0], nums[1], nums[2], 0);
+        else
+            return new SystemVersionInfo(nums[0], nums[1], nums[2], nums[3]);
+    }
+
+    private static string GetVersionNumbers(string version)
+    {
+        var allowedChars = "01234567890.";
+        return new string(version.Where(c => allowedChars.Contains(c)).ToArray());
     }
 }

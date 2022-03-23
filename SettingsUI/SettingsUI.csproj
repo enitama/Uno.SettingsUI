@@ -5,6 +5,7 @@
     <RootNamespace>SettingsUI</RootNamespace>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
+	<LangVersion>latest</LangVersion> 
 
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	<Description>Windows 11 settings page in WinUI 3 apps With many useful helper classes</Description>
