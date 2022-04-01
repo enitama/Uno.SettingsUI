@@ -83,7 +83,7 @@ public static class TitleBarHelper
         IntPtr hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
         // Get DPI.
-        int result = NativeAPI.GetDpiForMonitor(hMonitor, NativeAPI.Monitor_DPI_Type.MDT_Default, out uint dpiX, out uint _);
+        int result = NativeMethods.GetDpiForMonitor(hMonitor, NativeMethods.Monitor_DPI_Type.MDT_Default, out uint dpiX, out uint _);
         if (result != 0)
         {
             throw new Exception("Could not get DPI for monitor.");

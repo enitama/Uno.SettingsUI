@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace SettingsUI.Helpers;
 
-internal static class NativeAPI
+internal static class NativeMethods
 {
     [DllImport("User32.dll")]
     internal static extern int GetDpiForWindow(IntPtr hwnd);
@@ -15,6 +16,9 @@ internal static class NativeAPI
 
     [DllImport("Shcore.dll", SetLastError = true)]
     internal static extern int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
+
+    [DllImport("kernel32.dll", SetLastError = false, ExactSpelling = true, CharSet = CharSet.Unicode)]
+    internal static extern int GetCurrentPackageFullName(ref uint packageFullNameLength, [Optional] StringBuilder packageFullName);
 
     internal enum Monitor_DPI_Type : int
     {
