@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
 using SettingsUI.Helpers;
 using SettingsUI.Services;
+using SettingsUI.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;

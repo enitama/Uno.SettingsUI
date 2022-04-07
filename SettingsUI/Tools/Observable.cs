@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SettingsUI.Helpers;
+namespace SettingsUI.Tools;
 
 public class Observable : INotifyPropertyChanged
 {
