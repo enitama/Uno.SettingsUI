@@ -1,4 +1,4 @@
-﻿using SettingsUI.Helpers;
+﻿using SettingsUI.Tools;
 
 namespace SettingsUI.Demo.Models
 {
