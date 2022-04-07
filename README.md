@@ -22,7 +22,7 @@
  
 SettingsUI Helps you create your own application settings page (like Windows 11 Settings) With many useful helper classes
 
-> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.1
+> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.2
 
 ## Install
 ```
