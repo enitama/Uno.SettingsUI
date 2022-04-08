@@ -45,6 +45,33 @@ See the Demo app to see how to use it
 
 ## Documentation
 
+### ApplicationDataContainerHelper
+
+you can use ApplicationDataContainerHelper for save and restore application settings 
+
+```
+ApplicationDataContainerHelper settings = ApplicationDataContainerHelper.GetCurrent();
+```
+
+Save:
+```
+settings.Save<string>("stringKey", txtString.Text);
+settings.Save<double>("doubleKey", txtNumber.Value);
+settings.Save<bool>("boolKey", chkBool.IsChecked.Value);
+```
+
+Load:
+```
+txtString2.Text = settings.Read<string>("stringKey");
+txtNumber2.Value = settings.Read<double>("doubleKey");
+chkBool2.IsChecked = settings.Read<bool>("boolKey");
+```
+
+Clear:
+```
+settings.Clear();
+```
+
 ### Title bar customization
 We've made it easy to use the  [customized Windows title bar](https://docs.microsoft.com/en-us/windows/apps/develop/title-bar?tabs=wasdk)
 

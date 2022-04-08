@@ -12,6 +12,7 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\Features\ApplicationDataContainerPage.xaml" />
     <None Remove="Pages\Features\CheckUpdatePage.xaml" />
     <None Remove="Pages\Features\CommandObservablePage.xaml" />
     <None Remove="Pages\Features\ContentDialogPage.xaml" />
@@ -44,6 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Features\ApplicationDataContainerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Features\PresenterPage.xaml">
