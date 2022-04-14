@@ -4,6 +4,8 @@ using Windows.Storage;
 
 namespace SettingsUI.Helpers;
 
+#nullable enable
+
 public class ApplicationDataContainerHelper
 {
     /// <summary>

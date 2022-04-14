@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+#if UNPACKAGED
+using System.Reflection;
+#endif
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
@@ -725,5 +729,23 @@ public static class StorageFileHelper
         }
 
         return workingFolder;
+    }
+
+    public static async Task<string> ReadTextFromRelativeFilePathAsync(string relativeFilePath)
+    {
+#if UNPACKAGED
+        var sourcePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), relativeFilePath));
+        var file = await StorageFile.GetFileFromPathAsync(sourcePath);
+#else
+        Uri sourceUri = new Uri("ms-appx:///" + relativeFilePath);
+        var file = await StorageFile.GetFileFromApplicationUriAsync(sourceUri);
+#endif
+        return await FileIO.ReadTextAsync(file);
+    }
+
+    public static async Task<IList<string>> ReadTextLinesFromRelativeFilePathAsync(string relativeFilePath)
+    {
+        string fileContents = await ReadTextFromRelativeFilePathAsync(relativeFilePath);
+        return fileContents.Split(Environment.NewLine).ToList();
     }
 }
