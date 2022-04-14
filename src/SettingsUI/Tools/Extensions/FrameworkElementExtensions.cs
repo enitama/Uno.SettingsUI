@@ -673,8 +673,12 @@ public static class FrameworkElementExtensions
             {
                 if (attribute.AttributeType == typeof(ContentPropertyAttribute))
                 {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     string propertyName = (string)attribute.NamedArguments[0].TypedValue.Value;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
                     PropertyInfo? propertyInfo = type.GetProperty(propertyName);
+#pragma warning restore CS8604 // Possible null reference argument.
 
                     return propertyInfo?.GetValue(element) as UIElement;
                 }

@@ -10,14 +10,14 @@
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	<Description>Windows 11 settings page in WinUI 3 apps With many useful helper classes</Description>
 	<PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
 	<PackageTags>winui winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion</PackageTags>
 	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
-	<PackageLicenseFile>LICENSE</PackageLicenseFile>
-	<PackageIcon>icon.png</PackageIcon>
-	<Version>1.8.0</Version>
+	<Version>1.9.0</Version>
 	<Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
+	<PackageIcon>icon.png</PackageIcon>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,10 +26,11 @@
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
   </ItemGroup>
+  
   <ItemGroup>
-	  <None Include="..\icon.png" Pack="true" PackagePath="" />
-	  <None Include="..\LICENSE" Pack="true" PackagePath="" />
-	  <None Include="..\README.md" Pack="true" PackagePath="" />
+    <None Include="Assets\icon.png" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml">
