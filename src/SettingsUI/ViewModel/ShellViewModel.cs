@@ -146,9 +146,14 @@ public class ShellViewModel : Observable
             NavigationService.Navigate(defaultPage);
         }
 
-        menuItems = EnumerateNavigationViewItem(navigationView.MenuItems);
+        menuItems = GetAllMenuItems();
     }
-
+    private IEnumerable<NavigationViewItem> GetAllMenuItems()
+    {
+        var _menuItems = EnumerateNavigationViewItem(navigationView.MenuItems);
+        var footer = EnumerateNavigationViewItem(navigationView.FooterMenuItems);
+        return _menuItems.Concat(footer);
+    }
     public void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
     {
         if (args.IsSettingsInvoked == true && settingsPage != null)
@@ -159,11 +164,10 @@ public class ShellViewModel : Observable
         {
             if (enumerateMenuItemsOnItemInvoke)
             {
-                menuItems = EnumerateNavigationViewItem(navigationView.MenuItems);
+                menuItems = GetAllMenuItems();
             }
 
             var item = menuItems.FirstOrDefault(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-
             if (item != null)
             {
                 var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
