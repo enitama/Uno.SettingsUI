@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace SettingsUI.Helpers;
 
@@ -25,16 +26,46 @@ public static class ResourceHelper
         return reslist;
     }
 
-    public static string GetString(string key, string language = "en-US")
+    public static void SetLanguage(string language, string filename = null)
     {
+        ResourceManager resourceManager;
+        ResourceContext m_resourceContext;
+
+        if (string.IsNullOrEmpty(filename))
+        {
+            resourceManager = new ResourceManager();
+        }
+        else
+        {
+            resourceManager = new ResourceManager(filename);
+        }
+
+        m_resourceContext = resourceManager.CreateResourceContext();
+
+        m_resourceContext = resourceManager.CreateResourceContext();
+        m_resourceContext.QualifierValues["Language"] = language;
         Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
-        var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
-        return resourceLoader.GetString(key);
     }
 
     public static string GetString(string key)
     {
-        var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
-        return resourceLoader.GetString(key);
+        return new ResourceLoader().GetString(key);
+    }
+
+    public static string GetString(string key, string filename)
+    {
+        return new ResourceLoader("resources.pri", filename).GetString(key);
+    }
+
+    public static string GetStringWithLanguage(string key, string language = "en-US")
+    {
+        Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
+        return new ResourceLoader().GetString(key);
+    }
+
+    public static string GetStringWithLanguage(string key, string filename, string language = "en-US")
+    {
+        Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
+        return new ResourceLoader("resources.pri", filename).GetString(key);
     }
 }
