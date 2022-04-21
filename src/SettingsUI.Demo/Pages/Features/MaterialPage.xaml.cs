@@ -13,24 +13,24 @@ public sealed partial class MaterialPage : Page
     private void btnMica_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var micaWindow = WindowHelper.CreateWindow();
-        micaWindow.Activate();
         MaterialHelper.MakeTransparent(micaWindow);
         MaterialHelper.SetMica(true, chkIsDark.IsChecked.Value);
+        micaWindow.Activate();
     }
 
     private void btnAcrylic_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var acrylicWindow = WindowHelper.CreateWindow();
-        acrylicWindow.Activate();
         MaterialHelper.MakeTransparent(acrylicWindow);
         MaterialHelper.SetAcrylic(true, chkIsDark.IsChecked.Value);
+        acrylicWindow.Activate();
     }
 
     private void btnBlur_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var blurWindow = WindowHelper.CreateWindow();
-        blurWindow.Activate();
         MaterialHelper.MakeTransparent(blurWindow);
         MaterialHelper.SetBlur(true, chkIsDark.IsChecked.Value);
+        blurWindow.Activate();
     }
 }
