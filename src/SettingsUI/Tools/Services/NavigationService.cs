@@ -1,8 +1,12 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿// Copyright (c) Microsoft Corporation
+// The Microsoft Corporation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml;
-using System;
 
 namespace SettingsUI.Services;
 
@@ -56,7 +60,7 @@ public static class NavigationService
     public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null)
     {
         // Don't open the same page multiple times
-        if (pageType !=null && Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(lastParamUsed)))
+        if (pageType != null && Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(lastParamUsed)))
         {
             var navigationResult = Frame.Navigate(pageType, parameter, infoOverride);
             if (navigationResult)

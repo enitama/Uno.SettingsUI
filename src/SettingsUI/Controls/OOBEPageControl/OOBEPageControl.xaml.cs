@@ -1,4 +1,8 @@
-﻿using Microsoft.UI.Xaml;
+﻿// Copyright (c) Microsoft Corporation
+// The Microsoft Corporation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 namespace SettingsUI.Controls;
@@ -16,25 +20,25 @@ public sealed partial class OOBEPageControl : UserControl
 
     public string Title
     {
-        get { return (string)GetValue(TitleProperty); }
+        get { return (string) GetValue(TitleProperty); }
         set { SetValue(TitleProperty, value); }
     }
 
     public string Description
     {
-        get => (string)GetValue(DescriptionProperty);
+        get => (string) GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
     }
 
     public string HeroImage
     {
-        get => (string)GetValue(HeroImageProperty);
+        get => (string) GetValue(HeroImageProperty);
         set => SetValue(HeroImageProperty, value);
     }
 
     public object PageContent
     {
-        get { return (object)GetValue(PageContentProperty); }
+        get { return (object) GetValue(PageContentProperty); }
         set { SetValue(PageContentProperty, value); }
     }
 

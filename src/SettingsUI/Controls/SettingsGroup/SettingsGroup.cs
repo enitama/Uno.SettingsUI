@@ -1,7 +1,11 @@
-﻿using Microsoft.UI.Xaml;
+﻿// Copyright (c) Microsoft Corporation
+// The Microsoft Corporation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System.ComponentModel;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
-using System.ComponentModel;
 
 namespace SettingsUI.Controls;
 
@@ -25,7 +29,7 @@ public partial class SettingsGroup : ItemsControl
     [Localizable(true)]
     public string Header
     {
-        get => (string)GetValue(HeaderProperty);
+        get => (string) GetValue(HeaderProperty);
         set => SetValue(HeaderProperty, value);
     }
 
@@ -38,7 +42,7 @@ public partial class SettingsGroup : ItemsControl
     [Localizable(true)]
     public object Description
     {
-        get => (object)GetValue(DescriptionProperty);
+        get => (object) GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
     }
 
@@ -51,8 +55,8 @@ public partial class SettingsGroup : ItemsControl
     protected override void OnApplyTemplate()
     {
         IsEnabledChanged -= SettingsGroup_IsEnabledChanged;
-        _settingsGroup = (SettingsGroup)this;
-        _descriptionPresenter = (ContentPresenter)_settingsGroup.GetTemplateChild(PartDescriptionPresenter);
+        _settingsGroup = (SettingsGroup) this;
+        _descriptionPresenter = (ContentPresenter) _settingsGroup.GetTemplateChild(PartDescriptionPresenter);
         SetEnabledState();
         IsEnabledChanged += SettingsGroup_IsEnabledChanged;
         base.OnApplyTemplate();
@@ -60,7 +64,7 @@ public partial class SettingsGroup : ItemsControl
 
     private static void OnDescriptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ((SettingsGroup)d).Update();
+        ((SettingsGroup) d).Update();
     }
 
     private void SettingsGroup_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
