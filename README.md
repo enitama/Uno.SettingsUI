@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
     <img alt="IDE-version" src="https://img.shields.io/badge/IDE-vs2022-blue.svg"></img>
     <a href="https://www.nuget.org/packages/SettingsUI">
         <img alt="nuget-version" src="https://img.shields.io/nuget/v/SettingsUI.svg"></img>
@@ -22,7 +22,7 @@
  
 SettingsUI Helps you create your own application settings page (like Windows 11 Settings) With many useful helper classes
 
-> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.2
+> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.3
 
 ## Install
 ```

@@ -13,7 +13,7 @@
 	<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
 	<PackageTags>winui winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion</PackageTags>
 	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
-	<Version>1.9.0</Version>
+	<Version>2.0.0</Version>
 	<Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
 	<PackageIcon>icon.png</PackageIcon>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.2" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
       <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.197" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
