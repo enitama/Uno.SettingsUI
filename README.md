@@ -45,6 +45,30 @@ See the Demo app to see how to use it
 
 ## Documentation
 
+### MaterialHelper
+you can use MaterialHelper for accessing Mica, Acrylic and Blur Effect for your Window.
+
+```
+var micaWindow = WindowHelper.CreateWindow();
+MaterialHelper.MakeTransparent(micaWindow);
+MaterialHelper.SetMica(true, chkIsDark.IsChecked.Value);
+micaWindow.Activate();
+```
+or
+```
+var acrylicWindow = WindowHelper.CreateWindow();
+MaterialHelper.MakeTransparent(acrylicWindow);
+MaterialHelper.SetAcrylic(true, chkIsDark.IsChecked.Value);
+acrylicWindow.Activate();
+```
+or
+```
+var blurWindow = WindowHelper.CreateWindow();
+MaterialHelper.MakeTransparent(blurWindow);
+MaterialHelper.SetBlur(true, chkIsDark.IsChecked.Value);
+blurWindow.Activate();
+```
+
 ### ApplicationDataContainerHelper
 
 you can use ApplicationDataContainerHelper for save and restore application settings 
