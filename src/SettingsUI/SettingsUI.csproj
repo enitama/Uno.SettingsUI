@@ -19,6 +19,9 @@
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Controls\InlineAutoCompleteTextBox\InlineAutoCompleteTextBox.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
@@ -31,6 +34,12 @@
     <None Include="Assets\icon.png" Pack="true" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="..\..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Controls\InlineAutoCompleteTextBox\InlineAutoCompleteTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml">
