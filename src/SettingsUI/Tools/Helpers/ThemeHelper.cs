@@ -83,7 +83,7 @@ public static class ThemeHelper
     }
     public static void Initialize(Window CurrentWindow, bool IsSystemBackdropsSupported, BackdropType CurrentType = BackdropType.Mica)
     {
-        backdropsHelper = SystemBackdropsHelper.CreateInstance();
+        backdropsHelper = SystemBackdropsHelper.GetCurrent();
         _isSystemBackdropsSupported = IsSystemBackdropsSupported;
         SystemBackdropsType = CurrentType;
         Initialize(CurrentWindow);
