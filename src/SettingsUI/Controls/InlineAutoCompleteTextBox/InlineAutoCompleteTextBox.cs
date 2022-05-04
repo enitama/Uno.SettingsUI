@@ -1,12 +1,13 @@
 ﻿// LICENSE https://github.com/AndrewKeepCoding/AK.Toolkit
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using System.Collections.Generic;
+using System.Linq;
 using Windows.System;
+using Windows.UI;
 
 namespace SettingsUI.Controls;
 /// <summary>
@@ -34,7 +35,13 @@ public sealed class InlineAutoCompleteTextBox : TextBox
             nameof(SuggestionForeground),
             typeof(Brush),
             typeof(InlineAutoCompleteTextBox),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, (d, e) =>
+            {
+                if (d is InlineAutoCompleteTextBox control && e.NewValue is Brush foreground)
+                {
+                    control.SuggestionControl.Foreground = foreground;
+                }
+            }));
 
     /// <summary>
     /// Identifies the <see cref="SuggestionsSource"/> dependency property.
@@ -130,11 +137,24 @@ public sealed class InlineAutoCompleteTextBox : TextBox
 
     private string LastAcceptedSuggestion { get; set; } = string.Empty;
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+    private Brush? SuggestionForegroundDefaultBrush { get; set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        if (Resources.TryGetValue("SystemColorGrayTextColor", out var value) is true)
+        {
+            if (value is Color defaultColor)
+            {
+                var defaultBrush = new SolidColorBrush(defaultColor);
+                SuggestionForegroundDefaultBrush = defaultBrush;
+            }
+        }
+
         CustomizeInnerControls();
-        //ShowSuggestion();
     }
 
     private void CustomizeInnerControls()
@@ -165,13 +185,14 @@ public sealed class InlineAutoCompleteTextBox : TextBox
         SuggestionControl.VerticalScrollBarVisibility = ScrollViewer.GetVerticalScrollBarVisibility(this);
         SuggestionControl.VerticalScrollMode = ScrollViewer.GetVerticalScrollMode(this);
         SuggestionControl.ZoomMode = ZoomMode.Disabled;
-        SuggestionControl.Margin = new Thickness(0, 0, 0, 0);
-        if (SuggestionForeground is null && this.Resources["TextControlPlaceholderForeground"] is Brush suggestionForeground)
+        SuggestionControl.Margin = new Thickness(0, -1, 0, 0);
+        SuggestionControl.Padding = new Thickness(0);
+
+        if (SuggestionForeground is null && SuggestionForegroundDefaultBrush is not null)
         {
-            SuggestionForeground = suggestionForeground;
+            SuggestionForeground = SuggestionForegroundDefaultBrush;
+            SuggestionControl.Foreground = SuggestionForeground;
         }
-        SuggestionControl.Foreground = SuggestionForeground;
-        return;
     }
 
     /// <summary>
@@ -254,6 +275,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
         DismissSuggestion();
 
         string suggestion = GetSuggestion();
+
         if (suggestion.Length > 0)
         {
             Text = suggestion;
@@ -272,6 +294,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
     private void ShowSuggestion()
     {
         string suggestion = string.Empty;
+
         if (LastAcceptedSuggestion.Equals(Text) is not true)
         {
             suggestion = GetSuggestion();
