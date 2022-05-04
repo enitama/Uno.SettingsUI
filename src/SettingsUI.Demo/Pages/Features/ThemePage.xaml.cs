@@ -2,23 +2,22 @@
 using Microsoft.UI.Xaml.Controls;
 using SettingsUI.Helpers;
 
-namespace SettingsUI.Demo.Pages
+namespace SettingsUI.Demo.Pages;
+
+public sealed partial class ThemePage : Page
 {
-    public sealed partial class ThemePage : Page
+    public ThemePage()
     {
-        public ThemePage()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
+    }
 
-        private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
-        {
-            ThemeHelper.OnThemeRadioButtonChecked(sender);
-        }
+    private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
+    {
+        ThemeHelper.OnThemeRadioButtonChecked(sender);
+    }
 
-        private void SettingsPageControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            ThemeHelper.SetThemeRadioButtonChecked(ThemePanel);
-        }
+    private void SettingsPageControl_Loaded(object sender, RoutedEventArgs e)
+    {
+        ThemeHelper.SetThemeRadioButtonChecked(ThemePanel);
     }
 }

@@ -81,8 +81,8 @@
                 </NavigationViewItem>
                 <NavigationViewItem
                     Margin="0,0,12,0"
-                    helpers:NavHelper.NavigateTo="views:MaterialPage"
-                    Content="Materials">
+                    helpers:NavHelper.NavigateTo="views:SystemBackdropsPage"
+                    Content="System Backdrops">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFancyZones.png"/>
                     </NavigationViewItem.Icon>

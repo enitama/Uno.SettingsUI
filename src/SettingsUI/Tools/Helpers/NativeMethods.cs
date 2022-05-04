@@ -4,9 +4,18 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace SettingsUI.Helpers;
-
-public static class NativeMethods
+internal static class NativeMethods
 {
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DispatcherQueueOptions
+    {
+        internal int dwSize;
+        internal int threadType;
+        internal int apartmentType;
+    }
+    [DllImport("CoreMessaging.dll")]
+    internal static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
+
     [DllImport("User32.dll")]
     internal static extern int GetDpiForWindow(IntPtr hwnd);
 

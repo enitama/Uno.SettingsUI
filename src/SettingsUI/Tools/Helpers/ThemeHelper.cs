@@ -9,8 +9,11 @@ namespace SettingsUI.Helpers;
 
 public static class ThemeHelper
 {
+    private static SystemBackdropsHelper backdropsHelper;
     private const string SelectedAppThemeKey = "SelectedAppTheme";
     private static Window _CurrentWindow;
+    private static bool _isSystemBackdropsSupported = false;
+    public static BackdropType SystemBackdropsType = BackdropType.Mica;
 
     /// <summary>
     /// Gets the current actual theme of the app based on the requested theme of the
@@ -55,9 +58,17 @@ public static class ThemeHelper
 
             ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
             UpdateSystemCaptionButtonColors();
+            if (_isSystemBackdropsSupported)
+            {
+                backdropsHelper.Initialize(_CurrentWindow, SystemBackdropsType);
+            }
         }
     }
 
+    public static bool IsInitialized()
+    {
+        return _CurrentWindow != null;
+    }
     public static void Initialize(Window CurrentWindow)
     {
         // Save reference as this might be null when the user is in another app
@@ -70,7 +81,13 @@ public static class ThemeHelper
             RootTheme = GeneralHelper.GetEnum<ElementTheme>(savedTheme);
         }
     }
-
+    public static void Initialize(Window CurrentWindow, bool IsSystemBackdropsSupported, BackdropType CurrentType = BackdropType.Mica)
+    {
+        backdropsHelper = SystemBackdropsHelper.CreateInstance();
+        _isSystemBackdropsSupported = IsSystemBackdropsSupported;
+        SystemBackdropsType = CurrentType;
+        Initialize(CurrentWindow);
+    }
     public static bool IsDarkTheme()
     {
         if (RootTheme == ElementTheme.Default)
@@ -104,16 +121,30 @@ public static class ThemeHelper
     /// <param name="sender"></param>
     public static void OnThemeRadioButtonChecked(object sender)
     {
-        var selectedTheme = ((RadioButton)sender)?.Tag?.ToString();
-        if (selectedTheme != null)
+        if (IsInitialized())
         {
-            RootTheme = GeneralHelper.GetEnum<ElementTheme>(selectedTheme);
+            var selectedTheme = ((RadioButton) sender)?.Tag?.ToString();
+            if (selectedTheme != null)
+            {
+                RootTheme = GeneralHelper.GetEnum<ElementTheme>(selectedTheme);
+            }
+        }
+        else
+        {
+            throw new System.Exception("ThemeHelper is not Initialized, please Initialize ThemeHelper.");
         }
     }
 
     public static void SetThemeRadioButtonChecked(Panel ThemePanel)
     {
-        var currentTheme = RootTheme.ToString();
-        (ThemePanel.Children.Cast<RadioButton>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme)).IsChecked = true;
+        if (IsInitialized())
+        {
+            var currentTheme = RootTheme.ToString();
+            (ThemePanel.Children.Cast<RadioButton>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme)).IsChecked = true;
+        }
+        else
+        {
+            throw new System.Exception("ThemeHelper is not Initialized, please Initialize ThemeHelper.");
+        }
     }
 }

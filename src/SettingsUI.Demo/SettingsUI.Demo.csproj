@@ -18,8 +18,8 @@
     <None Remove="Pages\Features\CommandObservablePage.xaml" />
     <None Remove="Pages\Features\ContentDialogPage.xaml" />
     <None Remove="Pages\Features\InlineAutoCompleteTextBoxPage.xaml" />
-    <None Remove="Pages\Features\MaterialPage.xaml" />
     <None Remove="Pages\Features\PresenterPage.xaml" />
+    <None Remove="Pages\Features\SystemBackdropsPage.xaml" />
     <None Remove="Pages\Features\ThemePage.xaml" />
     <None Remove="ShellPage.xaml" />
   </ItemGroup>
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0-preview3" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.197" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -55,7 +55,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\Features\MaterialPage.xaml">
+    <Page Update="Pages\Features\SystemBackdropsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
