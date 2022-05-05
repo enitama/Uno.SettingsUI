@@ -1,13 +1,4 @@
 ﻿// LICENSE https://github.com/AndrewKeepCoding/AK.Toolkit
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using System.Collections.Generic;
-using System.Linq;
-using Windows.System;
-using Windows.UI;
 
 namespace SettingsUI.Controls;
 /// <summary>
@@ -137,9 +128,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
 
     private string LastAcceptedSuggestion { get; set; } = string.Empty;
 
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     private Brush? SuggestionForegroundDefaultBrush { get; set; }
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
     protected override void OnApplyTemplate()
     {
@@ -253,13 +242,11 @@ public sealed class InlineAutoCompleteTextBox : TextBox
     {
         if (Text.Length > 0 && SuggestionsSource is not null)
         {
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
             string? result = SuggestionsSource.FirstOrDefault(
                 x => x.StartsWith(
                     Text,
                     IsSuggestionCaseSensitive is false,
                     culture: null));
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
             if (result is not null && result.Equals(Text) is not true)
             {

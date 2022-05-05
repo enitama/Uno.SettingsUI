@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Windows.ApplicationModel.Resources;
+﻿using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace SettingsUI.Helpers;
 

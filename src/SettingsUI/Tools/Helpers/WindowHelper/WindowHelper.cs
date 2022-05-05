@@ -1,10 +1,4 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using Microsoft.UI.Xaml;
-using System;
-using System.Collections.Generic;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 
 public static partial class WindowHelper
 {
@@ -16,7 +10,7 @@ public static partial class WindowHelper
     /// </summary>
     public static List<Window> ActiveWindows { get { return _activeWindows; } }
 
-    private static List<Window> _activeWindows = new List<Window>();
+    private static List<Window> _activeWindows = new();
 
     /// <summary>
     /// Get AppWindow For a Window

@@ -1,9 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml;
-using System.Collections.Generic;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 
 public static class VisualHelper
 {
@@ -16,7 +11,7 @@ public static class VisualHelper
     public static T GetAncestorOfType<T>(FrameworkElement child) where T : FrameworkElement
     {
         var parent = VisualTreeHelper.GetParent(child);
-        if (parent != null && !(parent is T))
+        if (parent != null && parent is not T)
             return (T)GetAncestorOfType<T>((FrameworkElement)parent);
         return (T)parent;
     }

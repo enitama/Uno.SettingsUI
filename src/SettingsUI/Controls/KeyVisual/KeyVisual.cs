@@ -2,11 +2,6 @@
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Markup;
-using Windows.System;
-
 namespace SettingsUI.Controls;
 
 [TemplatePart(Name = KeyPresenter, Type = typeof(ContentPresenter))]

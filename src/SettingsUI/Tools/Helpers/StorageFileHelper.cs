@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-#if UNPACKAGED
+﻿#if UNPACKAGED
 using System.Reflection;
 #endif
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
 
@@ -570,16 +564,12 @@ public static class StorageFileHelper
             return null;
         }
 
-        using (IRandomAccessStream stream = await file.OpenReadAsync())
-        {
-            using (var reader = new DataReader(stream.GetInputStreamAt(0)))
-            {
-                await reader.LoadAsync((uint)stream.Size);
-                var bytes = new byte[stream.Size];
-                reader.ReadBytes(bytes);
-                return bytes;
-            }
-        }
+        using IRandomAccessStream stream = await file.OpenReadAsync();
+        using var reader = new DataReader(stream.GetInputStreamAt(0));
+        await reader.LoadAsync((uint) stream.Size);
+        var bytes = new byte[stream.Size];
+        reader.ReadBytes(bytes);
+        return bytes;
     }
 
     /// <summary>

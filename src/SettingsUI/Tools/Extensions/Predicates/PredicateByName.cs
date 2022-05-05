@@ -1,8 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using System;
-using System.Runtime.CompilerServices;
-
-namespace SettingsUI.Extensions;
+﻿namespace SettingsUI.Extensions;
 
 /// <summary>
 /// An <see cref="IPredicate{T}"/> type matching <see cref="FrameworkElement"/> instances by name.

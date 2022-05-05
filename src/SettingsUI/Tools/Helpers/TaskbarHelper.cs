@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 
 public enum TaskbarStates
 {

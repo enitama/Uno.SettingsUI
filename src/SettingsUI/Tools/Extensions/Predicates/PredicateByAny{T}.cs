@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace SettingsUI.Extensions;
+﻿namespace SettingsUI.Extensions;
 
 /// <summary>
 /// An <see cref="IPredicate{T}"/> type matching all instances of a given type.

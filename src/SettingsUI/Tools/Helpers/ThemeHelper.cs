@@ -1,11 +1,4 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using System.Linq;
-using Windows.Storage;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 
 public static class ThemeHelper
 {

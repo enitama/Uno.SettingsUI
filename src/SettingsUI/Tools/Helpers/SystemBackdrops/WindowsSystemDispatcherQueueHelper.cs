@@ -1,9 +1,7 @@
-﻿using System.Runtime.InteropServices;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 public class WindowsSystemDispatcherQueueHelper
 {
-    object m_dispatcherQueueController = null;
+    private object m_dispatcherQueueController = null;
     public void EnsureWindowsSystemDispatcherQueueController()
     {
         if (Windows.System.DispatcherQueue.GetForCurrentThread() != null)

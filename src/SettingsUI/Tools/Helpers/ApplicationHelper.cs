@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 public static class ApplicationHelper
 {
     private const uint APPMODEL_ERROR_NO_PACKAGE = 15700;

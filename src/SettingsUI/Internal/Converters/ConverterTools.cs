@@ -1,48 +1,44 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-using System;
-using Microsoft.UI.Xaml.Markup;
+namespace SettingsUI.Internal.Converters;
 
-namespace SettingsUI.Internal.Converters
+/// <summary>
+/// Static class used to provide internal tools
+/// </summary>
+internal static class ConverterTools
 {
     /// <summary>
-    /// Static class used to provide internal tools
+    /// Helper method to safely cast an object to a boolean
     /// </summary>
-    internal static class ConverterTools
+    /// <param name="parameter">Parameter to cast to a boolean</param>
+    /// <returns>Bool value or false if cast failed</returns>
+    internal static bool TryParseBool(object parameter)
     {
-        /// <summary>
-        /// Helper method to safely cast an object to a boolean
-        /// </summary>
-        /// <param name="parameter">Parameter to cast to a boolean</param>
-        /// <returns>Bool value or false if cast failed</returns>
-        internal static bool TryParseBool(object parameter)
+        var parsed = false;
+        if (parameter != null)
         {
-            var parsed = false;
-            if (parameter != null)
-            {
-                bool.TryParse(parameter.ToString(), out parsed);
-            }
-
-            return parsed;
+            bool.TryParse(parameter.ToString(), out parsed);
         }
 
-        /// <summary>
-        /// Helper method to convert a value from a source type to a target type.
-        /// </summary>
-        /// <param name="value">The value to convert</param>
-        /// <param name="targetType">The target type</param>
-        /// <returns>The converted value</returns>
-        internal static object Convert(object value, Type targetType)
+        return parsed;
+    }
+
+    /// <summary>
+    /// Helper method to convert a value from a source type to a target type.
+    /// </summary>
+    /// <param name="value">The value to convert</param>
+    /// <param name="targetType">The target type</param>
+    /// <returns>The converted value</returns>
+    internal static object Convert(object value, Type targetType)
+    {
+        if (targetType.IsInstanceOfType(value))
         {
-            if (targetType.IsInstanceOfType(value))
-            {
-                return value;
-            }
-            else
-            {
-                return XamlBindingHelper.ConvertValue(targetType, value);
-            }
+            return value;
+        }
+        else
+        {
+            return XamlBindingHelper.ConvertValue(targetType, value);
         }
     }
 }

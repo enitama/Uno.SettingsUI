@@ -1,8 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using Microsoft.UI.Xaml;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 public static partial class WindowHelper
 {
     private static NativeMethods.WinProc newWndProc = null;

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 
 public readonly struct SystemVersionInfo
 {
@@ -57,7 +55,7 @@ public readonly struct SystemVersionInfo
 
     public int CompareTo(object obj)
     {
-        if (!(obj is SystemVersionInfo other))
+        if (obj is not SystemVersionInfo other)
         {
             throw new ArgumentException();
         }

@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using WinRT; // required to support Window.As<ICompositionSupportsSystemBackdrop>()
+﻿using WinRT; // required to support Window.As<ICompositionSupportsSystemBackdrop>()
 
 namespace SettingsUI.Helpers;
 public enum BackdropType

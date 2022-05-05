@@ -1,12 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Markup;
-using Microsoft.UI.Xaml.Media;
-using System;
-using System.Reflection;
-using Windows.Networking.Connectivity;
-using Windows.UI;
-
-namespace SettingsUI.Helpers;
+﻿namespace SettingsUI.Helpers;
 
 public static class GeneralHelper
 {

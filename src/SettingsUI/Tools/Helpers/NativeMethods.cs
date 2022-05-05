@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace SettingsUI.Helpers;
 internal static class NativeMethods
@@ -11,7 +8,7 @@ internal static class NativeMethods
     /// <summary>
     /// Places the window at the top of the Z order.
     /// </summary>
-    internal static readonly IntPtr HWND_TOP = new IntPtr(0);
+    internal static readonly IntPtr HWND_TOP = new(0);
 
     [DllImport("CoreMessaging.dll")]
     internal static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
@@ -49,7 +46,7 @@ internal static class NativeMethods
         /// <param name="flags">The flags that describe this parameter's semantics.</param>
         public FriendlyAttribute(FriendlyFlags flags)
         {
-            this.Flags = flags;
+            Flags = flags;
         }
 
         /// <summary>
@@ -141,9 +138,9 @@ internal static class NativeMethods
         public int y;
 
 #if !UAP10_0
-        public static implicit operator System.Drawing.Point(POINT point) => new System.Drawing.Point(point.x, point.y);
+        public static implicit operator System.Drawing.Point(POINT point) => new(point.x, point.y);
 
-        public static implicit operator POINT(System.Drawing.Point point) => new POINT { x = point.X, y = point.Y };
+        public static implicit operator POINT(System.Drawing.Point point) => new() { x = point.X, y = point.Y };
 #endif
     }
 }

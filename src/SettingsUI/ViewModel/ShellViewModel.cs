@@ -1,15 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Navigation;
-using SettingsUI.Helpers;
-using SettingsUI.Services;
+﻿using Microsoft.UI.Xaml.Input;
 using SettingsUI.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.System;
 
 namespace SettingsUI.ViewModel;
 

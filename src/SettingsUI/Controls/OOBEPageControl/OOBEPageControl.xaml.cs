@@ -2,16 +2,13 @@
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-
 namespace SettingsUI.Controls;
 
 public sealed partial class OOBEPageControl : UserControl
 {
     public OOBEPageControl()
     {
-        this.InitializeComponent();
+        InitializeComponent();
         if (string.IsNullOrEmpty(HeroImage))
         {
             HeroImage = "ms-appx:///nothing.png";

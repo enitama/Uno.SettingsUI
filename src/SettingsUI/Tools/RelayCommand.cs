@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-
-namespace SettingsUI.Tools;
+﻿namespace SettingsUI.Tools;
 
 public class RelayCommand : ICommand
 {

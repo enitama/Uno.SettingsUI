@@ -1,8 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Threading.Tasks;
-
-namespace SettingsUI.Extensions;
+﻿namespace SettingsUI.Extensions;
 
 public static class ContentDialogExtension
 {

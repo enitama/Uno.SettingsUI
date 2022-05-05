@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Markup;
-
-namespace SettingsUI.Extensions;
+﻿namespace SettingsUI.Extensions;
 
 #nullable enable
 
