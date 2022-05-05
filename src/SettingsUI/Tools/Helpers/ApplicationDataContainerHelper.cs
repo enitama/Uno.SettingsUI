@@ -121,7 +121,7 @@ public class ApplicationDataContainerHelper
     {
         if (TryRead(compositeKey, out ApplicationDataCompositeValue? composite) && composite != null)
         {
-            string compositeValue = (string)composite[key];
+            var compositeValue = (string)composite[key];
             if (compositeValue != null)
             {
                 value = (T)Convert.ChangeType(compositeValue, typeof(T));
@@ -145,7 +145,7 @@ public class ApplicationDataContainerHelper
     {
         if (TryRead(compositeKey, out ApplicationDataCompositeValue? composite) && composite != null)
         {
-            if (composite.TryGetValue(key, out object valueObj))
+            if (composite.TryGetValue(key, out var valueObj))
             {
                 return (T)Convert.ChangeType(valueObj, typeof(T));
             }
@@ -166,7 +166,7 @@ public class ApplicationDataContainerHelper
     {
         if (TryRead(compositeKey, out ApplicationDataCompositeValue? composite) && composite != null)
         {
-            foreach (KeyValuePair<string, T> setting in values)
+            foreach (var setting in values)
             {
                 if (composite.ContainsKey(setting.Key))
                 {
@@ -181,7 +181,7 @@ public class ApplicationDataContainerHelper
         else
         {
             composite = new ApplicationDataCompositeValue();
-            foreach (KeyValuePair<string, T> setting in values)
+            foreach (var setting in values)
             {
                 composite.Add(setting.Key, setting.Value);
             }

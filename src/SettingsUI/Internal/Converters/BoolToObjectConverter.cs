@@ -49,7 +49,7 @@ public partial class BoolToObjectConverter : DependencyObject, IValueConverter
     /// <returns>The value to be passed to the target dependency property.</returns>
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        bool boolValue = value is bool && (bool)value;
+        var boolValue = value is bool && (bool)value;
 
         // Negate if needed
         if (ConverterTools.TryParseBool(parameter))
@@ -71,7 +71,7 @@ public partial class BoolToObjectConverter : DependencyObject, IValueConverter
     /// <returns>The value to be passed to the source object.</returns>
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        bool result = Equals(value, ConverterTools.Convert(TrueValue, value.GetType()));
+        var result = Equals(value, ConverterTools.Convert(TrueValue, value.GetType()));
 
         if (ConverterTools.TryParseBool(parameter))
         {

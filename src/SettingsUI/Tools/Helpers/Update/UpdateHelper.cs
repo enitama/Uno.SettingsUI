@@ -15,12 +15,12 @@ public static class UpdateHelper
             throw new ArgumentNullException(nameof(repository));
 
         ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-        HttpClient client = new HttpClient();
+        var client = new HttpClient();
         client.DefaultRequestHeaders.Add("User-Agent", username);
-        string url = string.Format(GITHUB_API, username, repository);
-        HttpResponseMessage response = await client.GetAsync(url);
+        var url = string.Format(GITHUB_API, username, repository);
+        var response = await client.GetAsync(url);
         response.EnsureSuccessStatusCode();
-        string responseBody = await response.Content.ReadAsStringAsync();
+        var responseBody = await response.Content.ReadAsStringAsync();
         var result = JsonSerializer.Deserialize<UpdateInfo>(responseBody);
 
         if (result != null)
@@ -31,10 +31,10 @@ public static class UpdateHelper
             }
 
             var newVersionInfo = GetAsVersionInfo(result.TagName);
-            int major = currentVersion.Major == -1 ? 0 : currentVersion.Major;
-            int minor = currentVersion.Minor == -1 ? 0 : currentVersion.Minor;
-            int build = currentVersion.Build == -1 ? 0 : currentVersion.Build;
-            int revision = currentVersion.Revision == -1 ? 0 : currentVersion.Revision;
+            var major = currentVersion.Major == -1 ? 0 : currentVersion.Major;
+            var minor = currentVersion.Minor == -1 ? 0 : currentVersion.Minor;
+            var build = currentVersion.Build == -1 ? 0 : currentVersion.Build;
+            var revision = currentVersion.Revision == -1 ? 0 : currentVersion.Revision;
 
             var currentVersionInfo = new SystemVersionInfo(major, minor, build, revision);
 

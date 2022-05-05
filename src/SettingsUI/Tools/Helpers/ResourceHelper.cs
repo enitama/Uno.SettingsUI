@@ -11,10 +11,10 @@ public static class ResourceHelper
     /// <returns></returns>
     public static List<string> GetAllResourcesKeys(string identifier = null)
     {
-        List<string> reslist = new List<string>();
+        var reslist = new List<string>();
 
-        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap;
-        foreach (string str in rmap.Keys)
+        var rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap;
+        foreach (var str in rmap.Keys)
         {
             if (str.StartsWith(identifier ?? "Resources"))
             {

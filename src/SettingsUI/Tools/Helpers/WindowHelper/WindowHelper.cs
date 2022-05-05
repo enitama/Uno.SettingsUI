@@ -29,7 +29,7 @@ public static partial class WindowHelper
     /// <returns></returns>
     public static IntPtr GetWindowHandleForCurrentWindow(object target)
     {
-        IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(target);
+        var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(target);
         return hWnd;
     }
 
@@ -40,7 +40,7 @@ public static partial class WindowHelper
     /// <returns></returns>
     public static WindowId GetWindowIdFromCurrentWindow(object target)
     {
-        WindowId wndId = Win32Interop.GetWindowIdFromWindow(GetWindowHandleForCurrentWindow(target));
+        var wndId = Win32Interop.GetWindowIdFromWindow(GetWindowHandleForCurrentWindow(target));
         return wndId;
     }
 
@@ -56,7 +56,7 @@ public static partial class WindowHelper
     {
         if (element.XamlRoot != null)
         {
-            foreach (Window window in _activeWindows)
+            foreach (var window in _activeWindows)
             {
                 if (element.XamlRoot == window.Content.XamlRoot)
                 {
@@ -73,7 +73,7 @@ public static partial class WindowHelper
     /// <returns></returns>
     public static Window CreateWindow()
     {
-        Window newWindow = new Window();
+        var newWindow = new Window();
         TrackWindow(newWindow);
         return newWindow;
     }

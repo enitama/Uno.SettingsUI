@@ -35,10 +35,10 @@ public class ShellViewModel : Observable
         set { Set(ref selected, value); }
     }
 
-    public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new RelayCommand(OnLoaded));
-    public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
-    public ICommand AutoSuggestBoxTextChangedCommand => autoSuggestBoxTextChangedCommand ?? (autoSuggestBoxTextChangedCommand = new RelayCommand<AutoSuggestBoxTextChangedEventArgs>(OnAutoSuggestBoxTextChanged));
-    public ICommand AutoSuggestBoxQuerySubmittedCommand => autoSuggestBoxQuerySubmittedCommand ?? (autoSuggestBoxQuerySubmittedCommand = new RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs>(OnAutoSuggestBoxQuerySubmitted));
+    public ICommand LoadedCommand => loadedCommand ??= new RelayCommand(OnLoaded);
+    public ICommand ItemInvokedCommand => itemInvokedCommand ??= new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked);
+    public ICommand AutoSuggestBoxTextChangedCommand => autoSuggestBoxTextChangedCommand ??= new RelayCommand<AutoSuggestBoxTextChangedEventArgs>(OnAutoSuggestBoxTextChanged);
+    public ICommand AutoSuggestBoxQuerySubmittedCommand => autoSuggestBoxQuerySubmittedCommand ??= new RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs>(OnAutoSuggestBoxQuerySubmitted);
 
     private void InternalInitialize(Frame frame, NavigationView navigationView)
     {
@@ -225,8 +225,8 @@ public class ShellViewModel : Observable
             var matchingItems = history.Where(
                 item =>
                 {
-                    bool flag = true;
-                    foreach (string queryToken in querySplit)
+                    var flag = true;
+                    foreach (var queryToken in querySplit)
                     {
                         if (item.Content.ToString().IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
                         {

@@ -70,19 +70,19 @@ public static class TitleBarHelper
 
     public static double GetScaleAdjustment()
     {
-        IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(_MainWindowObject);
-        WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-        DisplayArea displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
-        IntPtr hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
+        var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(_MainWindowObject);
+        var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
+        var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
+        var hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
         // Get DPI.
-        int result = NativeMethods.GetDpiForMonitor(hMonitor, NativeMethods.Monitor_DPI_Type.MDT_Default, out uint dpiX, out uint _);
+        var result = NativeMethods.GetDpiForMonitor(hMonitor, NativeMethods.Monitor_DPI_Type.MDT_Default, out var dpiX, out var _);
         if (result != 0)
         {
             throw new Exception("Could not get DPI for monitor.");
         }
 
-        uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
+        var scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
         return scaleFactorPercent / 100.0;
     }
     public static void SetDragRegionForCustomTitleBar(AppWindow appWindow)
@@ -90,7 +90,7 @@ public static class TitleBarHelper
         if (AppWindowTitleBar.IsCustomizationSupported()
             && appWindow.TitleBar.ExtendsContentIntoTitleBar)
         {
-            double scaleAdjustment = GetScaleAdjustment();
+            var scaleAdjustment = GetScaleAdjustment();
 
             _RightPaddingColumn.Width = new GridLength(appWindow.TitleBar.RightInset / scaleAdjustment);
             _LeftPaddingColumn.Width = new GridLength(appWindow.TitleBar.LeftInset / scaleAdjustment);
@@ -117,7 +117,7 @@ public static class TitleBarHelper
             dragRectR.Width = (int)(_RightDragColumn.ActualWidth * scaleAdjustment);
             dragRectsList.Add(dragRectR);
 
-            Windows.Graphics.RectInt32[] dragRects = dragRectsList.ToArray();
+            var dragRects = dragRectsList.ToArray();
 
             appWindow.TitleBar.SetDragRectangles(dragRects);
         }

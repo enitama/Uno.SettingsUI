@@ -92,18 +92,18 @@ public static class DependencyObjectExtensions
         where T : notnull, DependencyObject
         where TPredicate : struct, IPredicate<T>
     {
-        int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+        var childrenCount = VisualTreeHelper.GetChildrenCount(element);
 
         for (var i = 0; i < childrenCount; i++)
         {
-            DependencyObject child = VisualTreeHelper.GetChild(element, i);
+            var child = VisualTreeHelper.GetChild(element, i);
 
             if (child is T result && predicate.Match(result))
             {
                 return result;
             }
 
-            T? descendant = FindDescendant<T, TPredicate>(child, ref predicate);
+            var descendant = FindDescendant<T, TPredicate>(child, ref predicate);
 
             if (descendant is not null)
             {
@@ -216,15 +216,15 @@ public static class DependencyObjectExtensions
     /// <returns>All the descendant <see cref="DependencyObject"/> instance from <paramref name="element"/>.</returns>
     public static IEnumerable<DependencyObject> FindDescendants(this DependencyObject element)
     {
-        int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+        var childrenCount = VisualTreeHelper.GetChildrenCount(element);
 
         for (var i = 0; i < childrenCount; i++)
         {
-            DependencyObject child = VisualTreeHelper.GetChild(element, i);
+            var child = VisualTreeHelper.GetChild(element, i);
 
             yield return child;
 
-            foreach (DependencyObject childOfChild in FindDescendants(child))
+            foreach (var childOfChild in FindDescendants(child))
             {
                 yield return childOfChild;
             }
@@ -318,7 +318,7 @@ public static class DependencyObjectExtensions
     {
         while (true)
         {
-            DependencyObject? parent = VisualTreeHelper.GetParent(element);
+            var parent = VisualTreeHelper.GetParent(element);
 
             if (parent is null)
             {
@@ -438,7 +438,7 @@ public static class DependencyObjectExtensions
     {
         while (true)
         {
-            DependencyObject? parent = VisualTreeHelper.GetParent(element);
+            var parent = VisualTreeHelper.GetParent(element);
 
             if (parent is null)
             {

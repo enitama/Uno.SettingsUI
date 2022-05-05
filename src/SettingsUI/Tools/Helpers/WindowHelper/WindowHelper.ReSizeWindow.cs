@@ -35,9 +35,9 @@ public static partial class WindowHelper
         {
             case NativeMethods.WindowMessage.WM_GETMINMAXINFO:
                 var dpi = NativeMethods.GetDpiForWindow(hWnd);
-                float scalingFactor = (float) dpi / 96;
+                var scalingFactor = (float) dpi / 96;
 
-                NativeMethods.MINMAXINFO minMaxInfo = Marshal.PtrToStructure<NativeMethods.MINMAXINFO>(lParam);
+                var minMaxInfo = Marshal.PtrToStructure<NativeMethods.MINMAXINFO>(lParam);
                 minMaxInfo.ptMinTrackSize.x = (int) (MinWindowWidth * scalingFactor);
                 minMaxInfo.ptMaxTrackSize.x = (int) (MaxWindowWidth * scalingFactor);
                 minMaxInfo.ptMinTrackSize.y = (int) (MinWindowHeight * scalingFactor);
@@ -61,7 +61,7 @@ public static partial class WindowHelper
         var hwnd = GetWindowHandleForCurrentWindow(window);
         // Win32 uses pixels and WinUI 3 uses effective pixels, so you should apply the DPI scale factor
         var dpi = NativeMethods.GetDpiForWindow(hwnd);
-        float scalingFactor = (float) dpi / 96;
+        var scalingFactor = (float) dpi / 96;
         width = (int) (width * scalingFactor);
         height = (int) (height * scalingFactor);
 

@@ -200,7 +200,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
         Grid.SetRow(SuggestionGrid, Grid.GetRow(inputControl));
         Grid.SetColumn(SuggestionGrid, Grid.GetColumn(inputControl));
 
-        int rowIndex = rootGrid.Children.IndexOf(inputControl);
+        var rowIndex = rootGrid.Children.IndexOf(inputControl);
         rootGrid.Children.Remove(inputControl);
         rootGrid.Children.Insert(rowIndex, SuggestionGrid);
 
@@ -242,7 +242,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
     {
         if (Text.Length > 0 && SuggestionsSource is not null)
         {
-            string? result = SuggestionsSource.FirstOrDefault(
+            var result = SuggestionsSource.FirstOrDefault(
                 x => x.StartsWith(
                     Text,
                     IsSuggestionCaseSensitive is false,
@@ -261,7 +261,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
     {
         DismissSuggestion();
 
-        string suggestion = GetSuggestion();
+        var suggestion = GetSuggestion();
 
         if (suggestion.Length > 0)
         {
@@ -280,7 +280,7 @@ public sealed class InlineAutoCompleteTextBox : TextBox
 
     private void ShowSuggestion()
     {
-        string suggestion = string.Empty;
+        var suggestion = string.Empty;
 
         if (LastAcceptedSuggestion.Equals(Text) is not true)
         {

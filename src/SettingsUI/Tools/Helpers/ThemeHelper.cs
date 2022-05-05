@@ -67,7 +67,7 @@ public static class ThemeHelper
         // Save reference as this might be null when the user is in another app
         _CurrentWindow = CurrentWindow;
 
-        string savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
+        var savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
 
         if (savedTheme != null)
         {
@@ -92,7 +92,7 @@ public static class ThemeHelper
 
     public static void UpdateSystemCaptionButtonColors()
     {
-        AppWindow m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(_CurrentWindow);
+        var m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(_CurrentWindow);
         var titleBar = m_AppWindow.TitleBar;
         titleBar.ButtonBackgroundColor = Colors.Transparent;
         titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;

@@ -97,7 +97,7 @@ public static class FrameworkElementExtensions
 
         if (element is Panel panel)
         {
-            foreach (UIElement child in panel.Children)
+            foreach (var child in panel.Children)
             {
                 if (child is not FrameworkElement current)
                 {
@@ -109,7 +109,7 @@ public static class FrameworkElementExtensions
                     return result;
                 }
 
-                T? descendant = FindChild<T, TPredicate>(current, ref predicate);
+                var descendant = FindChild<T, TPredicate>(current, ref predicate);
 
                 if (descendant is not null)
                 {
@@ -119,7 +119,7 @@ public static class FrameworkElementExtensions
         }
         else if (element is ItemsControl itemsControl)
         {
-            foreach (object item in itemsControl.Items)
+            foreach (var item in itemsControl.Items)
             {
                 if (item is not FrameworkElement current)
                 {
@@ -131,7 +131,7 @@ public static class FrameworkElementExtensions
                     return result;
                 }
 
-                T? descendant = FindChild<T, TPredicate>(current, ref predicate);
+                var descendant = FindChild<T, TPredicate>(current, ref predicate);
 
                 if (descendant is not null)
                 {
@@ -335,7 +335,7 @@ public static class FrameworkElementExtensions
 
         if (element is Panel panel)
         {
-            foreach (UIElement child in panel.Children)
+            foreach (var child in panel.Children)
             {
                 if (child is not FrameworkElement current)
                 {
@@ -344,7 +344,7 @@ public static class FrameworkElementExtensions
 
                 yield return current;
 
-                foreach (FrameworkElement childOfChild in FindChildren(current))
+                foreach (var childOfChild in FindChildren(current))
                 {
                     yield return childOfChild;
                 }
@@ -352,7 +352,7 @@ public static class FrameworkElementExtensions
         }
         else if (element is ItemsControl itemsControl)
         {
-            foreach (object item in itemsControl.Items)
+            foreach (var item in itemsControl.Items)
             {
                 if (item is not FrameworkElement current)
                 {
@@ -361,7 +361,7 @@ public static class FrameworkElementExtensions
 
                 yield return current;
 
-                foreach (FrameworkElement childOfChild in FindChildren(current))
+                foreach (var childOfChild in FindChildren(current))
                 {
                     yield return childOfChild;
                 }
@@ -655,22 +655,22 @@ public static class FrameworkElementExtensions
     /// <returns>The retrieved content control, or <see langword="null"/> if not available.</returns>
     public static UIElement? GetContentControl(this FrameworkElement element)
     {
-        Type type = element.GetType();
-        TypeInfo? typeInfo = type.GetTypeInfo();
+        var type = element.GetType();
+        var typeInfo = type.GetTypeInfo();
 
         while (typeInfo is not null)
         {
             // We need to manually explore the custom attributes this way as the target one
             // is not returned by any of the other available GetCustomAttribute<T> APIs.
-            foreach (CustomAttributeData attribute in typeInfo.CustomAttributes)
+            foreach (var attribute in typeInfo.CustomAttributes)
             {
                 if (attribute.AttributeType == typeof(ContentPropertyAttribute))
                 {
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                    string propertyName = (string)attribute.NamedArguments[0].TypedValue.Value;
+                    var propertyName = (string)attribute.NamedArguments[0].TypedValue.Value;
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 #pragma warning disable CS8604 // Possible null reference argument.
-                    PropertyInfo? propertyInfo = type.GetProperty(propertyName);
+                    var propertyInfo = type.GetProperty(propertyName);
 #pragma warning restore CS8604 // Possible null reference argument.
 
                     return propertyInfo?.GetValue(element) as UIElement;
@@ -697,7 +697,7 @@ public static class FrameworkElementExtensions
     /// <exception cref="Exception">Thrown when no resource is found with the specified key.</exception>
     public static object FindResource(this FrameworkElement element, object resourceKey)
     {
-        if (TryFindResource(element, resourceKey, out object? value))
+        if (TryFindResource(element, resourceKey, out var value))
         {
             return value!;
         }
@@ -722,7 +722,7 @@ public static class FrameworkElementExtensions
     {
         object? value = null;
 
-        FrameworkElement? current = element;
+        var current = element;
 
         // Look in our dictionary and then walk-up parents. We use a do-while loop here
         // so that an implicit NRE will be thrown at the first iteration in case the

@@ -109,13 +109,13 @@ public sealed class KeyVisual : Control
 
                     case 91: // The left Windows key
                     case 92: // The right Windows key
-                        PathIcon winIcon = XamlReader.Load(@"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""M9,17V9h8v8ZM0,17V9H8v8ZM9,8V0h8V8ZM0,8V0H8V8Z"" />") as PathIcon;
-                        Viewbox winIconContainer = new Viewbox();
+                        var winIcon = XamlReader.Load(@"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""M9,17V9h8v8ZM0,17V9H8v8ZM9,8V0h8V8ZM0,8V0H8V8Z"" />") as PathIcon;
+                        var winIconContainer = new Viewbox();
                         winIconContainer.Child = winIcon;
                         winIconContainer.HorizontalAlignment = HorizontalAlignment.Center;
                         winIconContainer.VerticalAlignment = VerticalAlignment.Center;
 
-                        double iconDimensions = GetIconSize();
+                        var iconDimensions = GetIconSize();
                         winIconContainer.Height = iconDimensions;
                         winIconContainer.Width = iconDimensions;
                         _keyVisual._keyPresenter.Content = winIconContainer;

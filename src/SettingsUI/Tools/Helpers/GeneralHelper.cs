@@ -23,31 +23,23 @@ public static class GeneralHelper
 
     public static int GetThemeIndex(ElementTheme elementTheme)
     {
-        switch (elementTheme)
+        return elementTheme switch
         {
-            case ElementTheme.Default:
-                return 0;
-            case ElementTheme.Light:
-                return 1;
-            case ElementTheme.Dark:
-                return 2;
-            default:
-                return 0;
-        }
+            ElementTheme.Default => 0,
+            ElementTheme.Light => 1,
+            ElementTheme.Dark => 2,
+            _ => 0,
+        };
     }
     public static ElementTheme GetElementThemeEnum(int themeIndex)
     {
-        switch (themeIndex)
+        return themeIndex switch
         {
-            case 0:
-                return ElementTheme.Default;
-            case 1:
-                return ElementTheme.Light;
-            case 2:
-                return ElementTheme.Dark;
-            default:
-                return ElementTheme.Default;
-        }
+            0 => ElementTheme.Default,
+            1 => ElementTheme.Light,
+            2 => ElementTheme.Dark,
+            _ => ElementTheme.Default,
+        };
     }
     public static bool IsNetworkAvailable()
     {

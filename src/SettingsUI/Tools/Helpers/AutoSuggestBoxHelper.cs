@@ -13,8 +13,8 @@ public static class AutoSuggestBoxHelper
             var matchingItems = suggestList.Where(
                 item =>
                 {
-                    bool flag = true;
-                    foreach (string queryToken in querySplit)
+                    var flag = true;
+                    foreach (var queryToken in querySplit)
                     {
                         if (item.IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
                         {
@@ -30,7 +30,7 @@ public static class AutoSuggestBoxHelper
             }
             if (suggestions.Count > 0)
             {
-                for (int i = 0; i < suggestions.Count; i++)
+                for (var i = 0; i < suggestions.Count; i++)
                 {
                     autoSuggestBox.ItemsSource = suggestions;
                 }

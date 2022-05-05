@@ -104,12 +104,12 @@ internal partial class DoubleToObjectConverter : DependencyObject, IValueConvert
             return NullValue;
         }
 
-        double vd = 0.0; // DEFAULT?
+        var vd = 0.0; // DEFAULT?
         if (value is double dbl)
         {
             vd = dbl;
         }
-        else if (double.TryParse(value.ToString(), out double result))
+        else if (double.TryParse(value.ToString(), out var result))
         {
             vd = result;
         }

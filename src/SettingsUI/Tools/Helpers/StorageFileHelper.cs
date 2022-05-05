@@ -671,53 +671,23 @@ public static class StorageFileHelper
     /// <returns>The <see cref="StorageFolder"/></returns>
     internal static StorageFolder GetFolderFromKnownFolderId(KnownFolderId knownFolderId)
     {
-        StorageFolder workingFolder;
-
-        switch (knownFolderId)
+        var workingFolder = knownFolderId switch
         {
-            case KnownFolderId.AppCaptures:
-                workingFolder = KnownFolders.AppCaptures;
-                break;
-            case KnownFolderId.CameraRoll:
-                workingFolder = KnownFolders.CameraRoll;
-                break;
-            case KnownFolderId.DocumentsLibrary:
-                workingFolder = KnownFolders.DocumentsLibrary;
-                break;
-            case KnownFolderId.HomeGroup:
-                workingFolder = KnownFolders.HomeGroup;
-                break;
-            case KnownFolderId.MediaServerDevices:
-                workingFolder = KnownFolders.MediaServerDevices;
-                break;
-            case KnownFolderId.MusicLibrary:
-                workingFolder = KnownFolders.MusicLibrary;
-                break;
-            case KnownFolderId.Objects3D:
-                workingFolder = KnownFolders.Objects3D;
-                break;
-            case KnownFolderId.PicturesLibrary:
-                workingFolder = KnownFolders.PicturesLibrary;
-                break;
-            case KnownFolderId.Playlists:
-                workingFolder = KnownFolders.Playlists;
-                break;
-            case KnownFolderId.RecordedCalls:
-                workingFolder = KnownFolders.RecordedCalls;
-                break;
-            case KnownFolderId.RemovableDevices:
-                workingFolder = KnownFolders.RemovableDevices;
-                break;
-            case KnownFolderId.SavedPictures:
-                workingFolder = KnownFolders.SavedPictures;
-                break;
-            case KnownFolderId.VideosLibrary:
-                workingFolder = KnownFolders.VideosLibrary;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(knownFolderId), knownFolderId, null);
-        }
-
+            KnownFolderId.AppCaptures => KnownFolders.AppCaptures,
+            KnownFolderId.CameraRoll => KnownFolders.CameraRoll,
+            KnownFolderId.DocumentsLibrary => KnownFolders.DocumentsLibrary,
+            KnownFolderId.HomeGroup => KnownFolders.HomeGroup,
+            KnownFolderId.MediaServerDevices => KnownFolders.MediaServerDevices,
+            KnownFolderId.MusicLibrary => KnownFolders.MusicLibrary,
+            KnownFolderId.Objects3D => KnownFolders.Objects3D,
+            KnownFolderId.PicturesLibrary => KnownFolders.PicturesLibrary,
+            KnownFolderId.Playlists => KnownFolders.Playlists,
+            KnownFolderId.RecordedCalls => KnownFolders.RecordedCalls,
+            KnownFolderId.RemovableDevices => KnownFolders.RemovableDevices,
+            KnownFolderId.SavedPictures => KnownFolders.SavedPictures,
+            KnownFolderId.VideosLibrary => KnownFolders.VideosLibrary,
+            _ => throw new ArgumentOutOfRangeException(nameof(knownFolderId), knownFolderId, null),
+        };
         return workingFolder;
     }
 
@@ -727,7 +697,7 @@ public static class StorageFileHelper
         var sourcePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), relativeFilePath));
         var file = await StorageFile.GetFileFromPathAsync(sourcePath);
 #else
-        Uri sourceUri = new Uri("ms-appx:///" + relativeFilePath);
+        var sourceUri = new Uri("ms-appx:///" + relativeFilePath);
         var file = await StorageFile.GetFileFromApplicationUriAsync(sourceUri);
 #endif
         return await FileIO.ReadTextAsync(file);
@@ -735,7 +705,7 @@ public static class StorageFileHelper
 
     public static async Task<IList<string>> ReadTextLinesFromRelativeFilePathAsync(string relativeFilePath)
     {
-        string fileContents = await ReadTextFromRelativeFilePathAsync(relativeFilePath);
+        var fileContents = await ReadTextFromRelativeFilePathAsync(relativeFilePath);
         return fileContents.Split(Environment.NewLine).ToList();
     }
 }

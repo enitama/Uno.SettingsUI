@@ -15,12 +15,12 @@ public partial class SettingExpander : Expander
 
     private static void OnHeaderChanged(DependencyObject d, DependencyProperty dp)
     {
-        SettingExpander self = (SettingExpander) d;
+        var self = (SettingExpander) d;
         if (self.Header != null)
         {
             if (self.Header.GetType() == typeof(Setting))
             {
-                Setting selfSetting = (Setting) self.Header;
+                var selfSetting = (Setting) self.Header;
                 selfSetting.Style = (Style) Application.Current.Resources["ExpanderHeaderSettingStyle"];
 
                 if (!string.IsNullOrEmpty(selfSetting.Header))
