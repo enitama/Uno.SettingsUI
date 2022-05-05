@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SettingsUI.Helpers;
 
-public static class WindowHelper
+public static partial class WindowHelper
 {
     /// <summary>
     /// allow the app to find the Window that contains an
@@ -48,23 +48,6 @@ public static class WindowHelper
     {
         WindowId wndId = Win32Interop.GetWindowIdFromWindow(GetWindowHandleForCurrentWindow(target));
         return wndId;
-    }
-
-    /// <summary>
-    /// Set Window Width and Height
-    /// </summary>
-    /// <param name="hwnd"></param>
-    /// <param name="width"></param>
-    /// <param name="height"></param>
-    public static void SetWindowSize(IntPtr hwnd, int width, int height)
-    {
-        // Win32 uses pixels and WinUI 3 uses effective pixels, so you should apply the DPI scale factor
-        var dpi = NativeMethods.GetDpiForWindow(hwnd);
-        float scalingFactor = (float)dpi / 96;
-        width = (int)(width * scalingFactor);
-        height = (int)(height * scalingFactor);
-
-        NativeMethods.SetWindowPos(hwnd, NativeMethods.HWND_TOP, 0, 0, width, height, NativeMethods.SetWindowPosFlags.SWP_NOMOVE);
     }
 
     /// <summary>

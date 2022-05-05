@@ -6,13 +6,13 @@ using System.Text;
 namespace SettingsUI.Helpers;
 internal static class NativeMethods
 {
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct DispatcherQueueOptions
-    {
-        internal int dwSize;
-        internal int threadType;
-        internal int apartmentType;
-    }
+    internal delegate IntPtr WinProc(IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
+
+    /// <summary>
+    /// Places the window at the top of the Z order.
+    /// </summary>
+    internal static readonly IntPtr HWND_TOP = new IntPtr(0);
+
     [DllImport("CoreMessaging.dll")]
     internal static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
 
@@ -29,18 +29,11 @@ internal static class NativeMethods
     [DllImport("kernel32.dll", SetLastError = false, ExactSpelling = true, CharSet = CharSet.Unicode)]
     internal static extern int GetCurrentPackageFullName(ref uint packageFullNameLength, [Optional] StringBuilder packageFullName);
 
-    internal enum Monitor_DPI_Type : int
-    {
-        MDT_Effective_DPI = 0,
-        MDT_Angular_DPI = 1,
-        MDT_Raw_DPI = 2,
-        MDT_Default = MDT_Effective_DPI
-    }
+    [DllImport("user32")]
+    internal static extern IntPtr SetWindowLong(IntPtr hWnd, WindowLongIndexFlags nIndex, WinProc newProc);
 
-    /// <summary>
-    /// Places the window at the top of the Z order.
-    /// </summary>
-    internal static readonly IntPtr HWND_TOP = new IntPtr(0);
+    [DllImport("user32.dll")]
+    internal static extern IntPtr CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
 
     /// <summary>
     /// An attribute applied to native pointer parameters to indicate its semantics
@@ -96,5 +89,61 @@ internal static class NativeMethods
         ///     Retains the current position (ignores X and Y parameters).
         /// </summary>
         SWP_NOMOVE = 0x0002
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DispatcherQueueOptions
+    {
+        internal int dwSize;
+        internal int threadType;
+        internal int apartmentType;
+    }
+
+    internal enum Monitor_DPI_Type : int
+    {
+        MDT_Effective_DPI = 0,
+        MDT_Angular_DPI = 1,
+        MDT_Raw_DPI = 2,
+        MDT_Default = MDT_Effective_DPI
+    }
+
+    [Flags]
+    internal enum WindowLongIndexFlags : int
+    {
+        GWL_WNDPROC = -4,
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct MINMAXINFO
+    {
+        public POINT ptReserved;
+        public POINT ptMaxSize;
+        public POINT ptMaxPosition;
+        public POINT ptMinTrackSize;
+        public POINT ptMaxTrackSize;
+    }
+
+    public enum WindowMessage : int
+    {
+        WM_GETMINMAXINFO = 0x0024,
+    }
+
+    public struct POINT
+    {
+        /// <summary>
+        ///  The x-coordinate of the point.
+        /// </summary>
+        public int x;
+
+        /// <summary>
+        /// The x-coordinate of the point.
+        /// </summary>
+        public int y;
+
+#if !UAP10_0
+        public static implicit operator System.Drawing.Point(POINT point) => new System.Drawing.Point(point.x, point.y);
+
+        public static implicit operator POINT(System.Drawing.Point point) => new POINT { x = point.X, y = point.Y };
+#endif
     }
 }
