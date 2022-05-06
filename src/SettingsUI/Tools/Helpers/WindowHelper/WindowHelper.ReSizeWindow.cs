@@ -27,7 +27,7 @@ public static partial class WindowHelper
         var hwnd = GetWindowHandleForCurrentWindow(window);
 
         newWndProc = new NativeMethods.WinProc(WndProc);
-        oldWndProc = NativeMethods.SetWindowLong(hwnd, NativeMethods.WindowLongIndexFlags.GWL_WNDPROC, newWndProc);
+        oldWndProc = NativeMethods.SetWindowLongPtr(hwnd, NativeMethods.WindowLongIndexFlags.GWL_WNDPROC, newWndProc);
     }
     private static IntPtr WndProc(IntPtr hWnd, NativeMethods.WindowMessage Msg, IntPtr wParam, IntPtr lParam)
     {
