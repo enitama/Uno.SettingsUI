@@ -49,7 +49,10 @@ public static class ThemeHelper
                 rootElement.RequestedTheme = value;
             }
 
-            ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
+            if (ApplicationHelper.IsPackaged)
+            {
+                ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
+            }
             UpdateSystemCaptionButtonColors();
             if (_isSystemBackdropsSupported)
             {
@@ -67,11 +70,14 @@ public static class ThemeHelper
         // Save reference as this might be null when the user is in another app
         _CurrentWindow = CurrentWindow;
 
-        var savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
-
-        if (savedTheme != null)
+        if (ApplicationHelper.IsPackaged)
         {
-            RootTheme = GeneralHelper.GetEnum<ElementTheme>(savedTheme);
+            var savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
+
+            if (savedTheme != null)
+            {
+                RootTheme = GeneralHelper.GetEnum<ElementTheme>(savedTheme);
+            }
         }
     }
     public static void Initialize(Window CurrentWindow, bool IsSystemBackdropsSupported, BackdropType CurrentType = BackdropType.Mica)
