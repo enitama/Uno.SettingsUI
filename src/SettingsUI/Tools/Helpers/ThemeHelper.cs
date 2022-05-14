@@ -76,6 +76,8 @@ public static class ThemeHelper
             backdropsHelper.Initialize(_CurrentWindow, SystemBackdropsType);
         }
 
+        UpdateSystemCaptionButtonColors();
+        
         if (ApplicationHelper.IsPackaged)
         {
             var savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
