@@ -16,7 +16,7 @@ public class SystemBackdropsHelper
     public Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
     public Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
     internal static SystemBackdropsHelper Instance;
-
+    public bool IsInitialized = false;
     public static SystemBackdropsHelper CreateInstance()
     {
         return new SystemBackdropsHelper();
@@ -42,6 +42,7 @@ public class SystemBackdropsHelper
 
         m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
         m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+        IsInitialized = true;
     }
 
     public void Initialize(Window CurrentWindow, BackdropType CurrentType)

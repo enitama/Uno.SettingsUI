@@ -54,9 +54,10 @@ public static class ThemeHelper
                 ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
             }
             UpdateSystemCaptionButtonColors();
+
             if (_isSystemBackdropsSupported)
             {
-                backdropsHelper.Initialize(_CurrentWindow, SystemBackdropsType);
+                backdropsHelper.SetBackdrop(SystemBackdropsType);
             }
         }
     }
@@ -69,6 +70,11 @@ public static class ThemeHelper
     {
         // Save reference as this might be null when the user is in another app
         _CurrentWindow = CurrentWindow;
+
+        if (_isSystemBackdropsSupported)
+        {
+            backdropsHelper.Initialize(_CurrentWindow, SystemBackdropsType);
+        }
 
         if (ApplicationHelper.IsPackaged)
         {
