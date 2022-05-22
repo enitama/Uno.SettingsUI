@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="using:SettingsUI.Controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <Style x:Key="ListViewItemSettingStyle" TargetType="ListViewItem">
         <Setter Property="Margin" Value="0,0,0,2" />
         <Setter Property="Padding" Value="0,0,0,0" />
@@ -8,5 +9,30 @@
     </Style>
 
     <Style TargetType="controls:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
+
+    <Style TargetType="Border" x:Key="BorderPanel">
+        <Setter Property="Margin" Value="{ThemeResource NavigationViewContentMargin}"/>
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}"/>
+        <Setter Property="Background" Value="{ThemeResource NavigationViewContentBackground}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource NavigationViewContentGridBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <ThemeShadow x:Name="ThemeShadow"/>
+
+    <Style TargetType="Grid" x:Key="GridPanel">
+        <Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource TeachingTipBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{ThemeResource TeachingTipContentBorderThicknessUntargeted}"/>
+        <Setter Property="Background" Value="{ThemeResource TeachingTipTransientBackground}"/>
+        <Setter Property="Shadow" Value="{ThemeResource ThemeShadow}"/>
+        <Setter Property="Transitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <ContentThemeTransition VerticalOffset="150" />
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
 </ResourceDictionary>
