@@ -27,7 +27,9 @@ public static class UpdateHelper
         {
             if (currentVersion == null)
             {
-                currentVersion = Assembly.GetEntryAssembly().GetName().Version;
+                var assembly = typeof(Application).GetTypeInfo().Assembly;
+                var assemblyVersion = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
+                currentVersion = new Version(assemblyVersion);
             }
 
             var newVersionInfo = GetAsVersionInfo(result.TagName);

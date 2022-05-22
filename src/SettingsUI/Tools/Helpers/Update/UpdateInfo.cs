@@ -91,7 +91,4 @@ public class Asset
     
     [JsonPropertyName("updated_at")]
     public DateTime UpdatedAt { get; set; }
-
-    [JsonPropertyName("browser_download_url")]
-    public string browser_download_url { get; set; }
 }
