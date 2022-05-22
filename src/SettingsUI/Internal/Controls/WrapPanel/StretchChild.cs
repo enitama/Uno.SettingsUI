@@ -6,7 +6,7 @@ namespace SettingsUI.Internal.Controls;
 /// <summary>
 /// Options for how to calculate the layout of <see cref="Microsoft.UI.Xaml.Controls.WrapGrid"/> items.
 /// </summary>
-internal enum StretchChild
+public enum StretchChild
 {
     /// <summary>
     /// Don't apply any additional stretching logic

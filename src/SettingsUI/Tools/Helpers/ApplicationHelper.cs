@@ -17,5 +17,14 @@ public static class ApplicationHelper
 
         return result.ToString();
     }
+
+    public static Windows.ApplicationModel.Package GetPackageDetails()
+    {
+        return Windows.ApplicationModel.Package.Current;
+    }
+    public static Windows.ApplicationModel.PackageVersion GetPackageVersion()
+    {
+        return GetPackageDetails().Id.Version;
+    }
 }
 

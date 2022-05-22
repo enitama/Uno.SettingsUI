@@ -7,7 +7,7 @@ namespace SettingsUI.Internal.Controls;
 /// <summary>
 /// WrapPanel is a panel that position child control vertically or horizontally based on the orientation and when max width/ max height is received a new row(in case of horizontal) or column (in case of vertical) is created to fit new controls.
 /// </summary>
-internal partial class WrapPanel
+public partial class WrapPanel
 {
     [global::System.Diagnostics.DebuggerDisplay("U = {U} V = {V}")]
     private struct UvMeasure

@@ -7,7 +7,7 @@ namespace SettingsUI.Internal.Controls;
 /// <summary>
 /// WrapPanel is a panel that position child control vertically or horizontally based on the orientation and when max width / max height is reached a new row (in case of horizontal) or column (in case of vertical) is created to fit new controls.
 /// </summary>
-internal partial class WrapPanel : Panel
+public partial class WrapPanel : Panel
 {
     /// <summary>
     /// Gets or sets a uniform Horizontal distance (in pixels) between items when <see cref="Orientation"/> is set to Horizontal,
