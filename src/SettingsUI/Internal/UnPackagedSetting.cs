@@ -12,6 +12,10 @@ internal static class UnPackagedSetting
     
     public static string ReadTheme()
     {
-        return File.ReadAllText(AppConfigPath);
+        if (File.Exists(AppConfigPath))
+        {
+            return File.ReadAllText(AppConfigPath);
+        }
+        return null;
     }
 }
