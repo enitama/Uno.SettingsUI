@@ -7,6 +7,11 @@ internal static class UnPackagedSetting
 
     public static void SaveTheme(string value)
     {
+        if (!Directory.Exists(RootPath))
+        {
+            Directory.CreateDirectory(RootPath);
+        }
+
         File.WriteAllText(AppConfigPath, value);
     }
     
