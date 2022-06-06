@@ -11,22 +11,22 @@ public static class OSVersionHelper
     /// <summary>
     /// Windows 10 Redstone5 Version 1809 Build 17763 (October 2018 Update)
     /// </summary>
-    public static bool IsWindows10_1809 { get; } = IsWindowsNT && OSVersion == new Version(10, 0, 17763);
+    public static bool IsWindows10_1809 { get; } = IsWindowsNT && OSVersion == new Version(10, 0, 17763, OSVersion.Revision);
 
     /// <summary>
     /// Windows 10 Redstone5 Version 1809 Build 17763 Or Greater (October 2018 Update)
     /// </summary>
-    public static bool IsWindows10_1809_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 17763);
+    public static bool IsWindows10_1809_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 17763, OSVersion.Revision);
 
     /// <summary>
     ///     Windows 11 Build 22000
     /// </summary>
-    public static bool IsWindows11 { get; } = IsWindowsNT && OSVersion == new Version(10, 0, 22000);
+    public static bool IsWindows11 { get; } = IsWindowsNT && OSVersion == new Version(10, 0, 22000, OSVersion.Revision);
 
     /// <summary>
     ///     Windows 11 Build 22000 Or Greater
     /// </summary>
-    public static bool IsWindows11_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 22000);
+    public static bool IsWindows11_OrGreater { get; } = IsWindowsNT && OSVersion >= new Version(10, 0, 22000, OSVersion.Revision);
 
     public static Version GetOSVersion()
     {
