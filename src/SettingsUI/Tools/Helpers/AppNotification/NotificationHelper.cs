@@ -1,4 +1,6 @@
-﻿namespace SettingsUI.Helpers;
+﻿using Microsoft.Windows.AppNotifications;
+
+namespace SettingsUI.Helpers;
 public static class NotificationHelper
 {
     private const string scenarioTag = "scenarioId";
@@ -40,5 +42,27 @@ public static class NotificationHelper
         }
 
         return int.Parse(scenarioId);
+    }
+
+    public static Notification GetNotificationForWithAvatar(string scenarioName, AppNotificationActivatedEventArgs notificationActivatedEventArgs)
+    {
+        var notification = new Notification();
+        notification.Originator = scenarioName;
+        var action = ExtractParamFromArgs(notificationActivatedEventArgs.Argument, "action");
+        notification.Action = action == null ? "" : action;
+        return notification;
+    }
+    public static Notification GetNotificationForWithTextBox(string scenarioName, string textBoxReplyId, AppNotificationActivatedEventArgs notificationActivatedEventArgs)
+    {
+        var input = notificationActivatedEventArgs.UserInput;
+        var text = input[textBoxReplyId];
+
+        var notification = new Notification();
+        notification.Originator = scenarioName;
+        var action = ExtractParamFromArgs(notificationActivatedEventArgs.Argument, "action");
+        notification.Action = action == null ? "" : action;
+        notification.HasInput = true;
+        notification.Input = text;
+        return notification;
     }
 }
