@@ -31,6 +31,6 @@ public class ToastWithTextBox : IScenario
 
     public bool SendToast()
     {
-        return ScenarioHelper.SendToastWithTextBox(1, textBoxReplyId, "Send Local Toast with TextBox", "Hi, This is a Local Toast", "Reply", "Pleaser Answer Here...", "Reply", "Icon.png");
+        return ScenarioHelper.SendToastWithTextBox(1, textBoxReplyId, "Send Local Toast with TextBox", "Hi, This is a Local Toast", "Reply", "Pleaser Answer Here...", "Reply", "logo.png");
     }
 }

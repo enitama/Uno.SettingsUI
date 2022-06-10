@@ -15,18 +15,24 @@ public sealed partial class AppNotificationPage : Page
 
     public void NotificationReceived(Notification notification)
     {
-        if (notification.HasInput)
+        DispatcherQueue.TryEnqueue(() =>
         {
-            txtReceived.Text = notification.Input;
-        }
-        else
-        {
-            txtReceived.Text = "Notification Received";
-        }
+            if (notification.HasInput)
+            {
+                txtReceived.Text = notification.Input;
+            }
+            else
+            {
+                txtReceived.Text = "Notification Received";
+            }
+        });
     }
     public void NotificationInvoked(string message)
     {
-        txtInvoked.Text = message;
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            txtInvoked.Text = message;
+        });
     }
     private void btnToast1_Click(object sender, RoutedEventArgs e)
     {
