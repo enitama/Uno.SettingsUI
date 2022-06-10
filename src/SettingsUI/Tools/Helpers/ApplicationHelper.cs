@@ -26,5 +26,17 @@ public static class ApplicationHelper
     {
         return GetPackageDetails().Id.Version;
     }
+
+    public static string GetFullPathToExe()
+    {
+        var path = AppDomain.CurrentDomain.BaseDirectory;
+        var pos = path.LastIndexOf("\\");
+        return path.Substring(0, pos);
+    }
+
+    public static string GetFullPathToAsset(string assetName)
+    {
+        return GetFullPathToExe() + "\\Assets\\" + assetName;
+    }
 }
 

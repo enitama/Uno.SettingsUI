@@ -3,6 +3,9 @@
 namespace SettingsUI.Helpers;
 internal static class NativeMethods
 {
+    [DllImport("user32.dll", SetLastError = true)]
+    internal static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
+
     internal delegate IntPtr WinProc(IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
 
     [DllImport("NTdll.dll")]

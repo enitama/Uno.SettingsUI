@@ -90,4 +90,12 @@ public static partial class WindowHelper
         };
         _activeWindows.Add(window);
     }
+
+    public static void SwitchToThisWindow(object target)
+    {
+        if (target != null)
+        {
+            NativeMethods.SwitchToThisWindow(GetWindowHandleForCurrentWindow(target), true);
+        }
+    }
 }
