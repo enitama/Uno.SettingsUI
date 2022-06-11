@@ -1,4 +1,4 @@
-﻿namespace SettingsUI.Tools.Helpers;
+﻿namespace SettingsUI.Helpers;
 public static class OSVersionHelper
 {
     public static readonly Version OSVersion = GetOSVersion();
