@@ -54,7 +54,7 @@ public class CheckBoxWithDescriptionControl : CheckBox
 
     public static readonly DependencyProperty DescriptionProperty = DependencyProperty.Register(
         "Description",
-        typeof(object),
+        typeof(string),
         typeof(CheckBoxWithDescriptionControl),
         new PropertyMetadata(default(string)));
 
