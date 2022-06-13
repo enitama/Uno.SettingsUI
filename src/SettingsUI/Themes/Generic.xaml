@@ -1,8 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///SettingsUI/Controls/Setting/Setting.xaml" />
-        <ResourceDictionary Source="ms-appx:///SettingsUI/Controls/SettingsGroup/SettingsGroup.xaml" />
-        <ResourceDictionary Source="ms-appx:///SettingsUI/Controls/IsEnabledTextBlock/IsEnabledTextBlock.xaml" />
-        <ResourceDictionary Source="ms-appx:///SettingsUI/Controls/InlineAutoCompleteTextBox/InlineAutoCompleteTextBox.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-</ResourceDictionary>

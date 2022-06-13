@@ -1,13 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:SettingsUI.Controls">
+                    xmlns:controls="using:SettingsUI.Controls">
 
-    <Style TargetType="local:IsEnabledTextBlock">
+    <Style TargetType="controls:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:IsEnabledTextBlock">
+                <ControlTemplate TargetType="controls:IsEnabledTextBlock">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -31,7 +31,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="local:IsEnabledTextBlock" x:Key="SecondaryIsEnabledTextBlockStyle">
+    <Style TargetType="controls:IsEnabledTextBlock" x:Key="SecondaryIsEnabledTextBlockStyle">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
         <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}"/>
     </Style>
