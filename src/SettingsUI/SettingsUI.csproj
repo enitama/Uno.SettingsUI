@@ -38,27 +38,27 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Page Update="Controls\InlineAutoCompleteTextBox\InlineAutoCompleteTextBox.xaml">
+    <Page Update="Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml">
+    <Page Update="Themes\Styles\Controls\IsEnabledTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Controls\KeyVisual\KeyVisual.xaml">
+    <Page Update="Themes\Styles\Controls\KeyVisual.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\OOBEPageControl\OOBEPageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Controls\SettingsGroup\SettingsGroup.xaml">
+    <Page Update="Themes\Styles\Controls\SettingsGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\SettingsPageControl\SettingsPageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Controls\Setting\Setting.xaml">
+    <Page Update="Themes\Styles\Controls\Setting.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\Shortcut\ShortcutDialogContentControl.xaml">
@@ -67,10 +67,10 @@
     <Page Update="Controls\Shortcut\ShortcutWithTextLabelControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Controls\SettingExpander\SettingExpander.xaml">
+    <Page Update="Themes\Styles\Controls\SettingExpander.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Themes\SettingsUI.xaml">
+    <Page Update="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Themes\Styles\Button.xaml">
@@ -92,6 +92,6 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="Themes\XamlCombine.exe Themes\SettingsUI.txt SettingsUI.xaml" />
+    <Exec Command="Themes\XamlCombine.exe Themes\Generic.txt Generic.xaml" />
   </Target>
 </Project>
