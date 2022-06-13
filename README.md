@@ -37,7 +37,7 @@ Install-Package SettingsUI
 After installing, add the following resource to app.xaml
 
 ```xml
-<ResourceDictionary Source="ms-appx:///SettingsUI/Themes/SettingsUI.xaml"/>
+<ResourceDictionary Source="ms-appx:///SettingsUI/Themes/Generic.xaml"/>
 ```
 See the Demo app to see how to use it
 
