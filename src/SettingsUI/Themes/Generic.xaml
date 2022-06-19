@@ -4,7 +4,7 @@
     Changes to this file may cause incorrect behavior and will be lost if
     the code is regenerated.
 -->
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="using:SettingsUI.Controls" xmlns:contract7NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,7)">
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:controls="using:SettingsUI.Controls" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:contract7NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,7)">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
             <StaticResource x:Key="CardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
@@ -33,7 +33,7 @@
             <Thickness x:Key="CardBorderThickness">2</Thickness>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-	<x:Double x:Key="SecondaryTextFontSize">12</x:Double>
+    <ThemeShadow x:Name="ThemeShadow"/>
 	<x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
 	<Style x:Key="ListViewItemSettingStyle" TargetType="ListViewItem">
 		<Setter Property="Margin" Value="0,0,0,2" />
@@ -61,6 +61,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	<x:Double x:Key="SecondaryTextFontSize">12</x:Double>
 	<Style x:Key="HyperlinkButtonStyle" TargetType="HyperlinkButton" />
 	<Style TargetType="controls:IsEnabledTextBlock">
 		<Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
@@ -159,6 +160,7 @@
 		<Setter Property="Height" Value="1" />
 		<Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}" />
 	</Style>
+	<Style TargetType="controls:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
 	<Style x:Key="OobeSubtitleStyle" TargetType="TextBlock">
 		<Setter Property="Margin" Value="0,16,0,0" />
 		<Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
@@ -175,7 +177,6 @@
 		<Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}" />
 		<Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
 	</Style>
-	<Style TargetType="controls:CheckBoxWithDescriptionControl" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
 	<Style x:Key="SettingButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
 		<Setter Property="BorderBrush" Value="{ThemeResource CardBorderBrush}" />
 		<Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />

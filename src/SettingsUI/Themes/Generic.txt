@@ -1,6 +1,6 @@
-﻿Styles\Colors.xaml
+﻿Styles\Common.xaml
+Styles\Colors.xaml
 Styles\TextBlock.xaml
-Styles\Common.xaml
 Styles\Button.xaml
 # --------------------------------------
 Styles\Controls\InlineAutoCompleteTextBox.xaml
