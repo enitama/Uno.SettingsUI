@@ -1,5 +1,5 @@
 ﻿#if WINDOWS10_0_19041_0_OR_GREATER
-namespace CommunityToolkit.WinUI.Helpers;
+namespace SettingsUI.Helpers;
 
 /// <summary>
 /// Internal class used to store values updated by <see cref="PrintHelper"/>.

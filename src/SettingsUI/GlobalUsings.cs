@@ -15,6 +15,7 @@ global using System.Windows.Input;
 global using Microsoft.UI.Xaml.Navigation;
 global using SettingsUI.Helpers;
 global using SettingsUI.Services;
+global using SettingsUI.Extensions;
 global using Microsoft.UI.Xaml.Automation;
 global using Microsoft.UI.Xaml.Automation.Peers;
 global using System.Collections.ObjectModel;

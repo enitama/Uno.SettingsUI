@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Printing;
 using Windows.Graphics.Printing;
 
-namespace CommunityToolkit.WinUI.Helpers;
+namespace SettingsUI.Helpers;
 /// <summary>
 /// Helper class used to simplify document printing.
 /// It allows you to render a framework element per page.

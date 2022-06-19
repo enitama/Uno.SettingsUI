@@ -4,8 +4,6 @@ using Windows.Graphics.Printing;
 using SettingsUI.Helpers;
 using SettingsUI.Extensions;
 using System.Collections.Generic;
-using CommunityToolkit.WinUI.Helpers;
-using System;
 
 namespace SettingsUI.Demo.Pages;
 public sealed partial class PrintPage : Page
