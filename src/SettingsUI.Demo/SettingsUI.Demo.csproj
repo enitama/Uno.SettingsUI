@@ -13,6 +13,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\AusterNY.jpg" />
     <None Remove="Pages\AboutPage.xaml" />
     <None Remove="Pages\Features\ApplicationDataContainerPage.xaml" />
     <None Remove="Pages\Features\AppNotificationPage.xaml" />
@@ -21,6 +22,7 @@
     <None Remove="Pages\Features\ContentDialogPage.xaml" />
     <None Remove="Pages\Features\InlineAutoCompleteTextBoxPage.xaml" />
     <None Remove="Pages\Features\PresenterPage.xaml" />
+    <None Remove="Pages\Features\PrintPage.xaml" />
     <None Remove="Pages\Features\SystemBackdropsPage.xaml" />
     <None Remove="Pages\Features\ThemePage.xaml" />
     <None Remove="ShellPage.xaml" />
@@ -37,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.197" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -52,6 +54,10 @@
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\Features\PrintPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Features\AppNotificationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

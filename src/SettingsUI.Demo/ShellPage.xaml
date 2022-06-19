@@ -33,6 +33,14 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem
                     Margin="0,0,12,0"
+                    helpers:NavHelper.NavigateTo="views:PrintPage"
+                    Content="PrintHelper">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem
+                    Margin="0,0,12,0"
                     helpers:NavHelper.NavigateTo="views:AppNotificationPage"
                     Content="AppNotification">
                     <NavigationViewItem.Icon>
