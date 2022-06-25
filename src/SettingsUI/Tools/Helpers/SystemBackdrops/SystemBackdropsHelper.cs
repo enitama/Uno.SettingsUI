@@ -114,7 +114,7 @@ public class SystemBackdropsHelper
 
             // Enable the system backdrop.
             // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-            m_acrylicController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+            m_acrylicController.AddSystemBackdropTarget(this.window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
             m_acrylicController.SetSystemBackdropConfiguration(m_configurationSource);
             return true; // succeeded
         }
