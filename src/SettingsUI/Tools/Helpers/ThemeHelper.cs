@@ -2,11 +2,8 @@
 
 public static class ThemeHelper
 {
-    private static SystemBackdropsHelper backdropsHelper;
     private const string SelectedAppThemeKey = "SelectedAppTheme";
-    private static Window _CurrentWindow;
-    private static bool _isSystemBackdropsSupported = false;
-    public static BackdropType SystemBackdropsType = BackdropType.Mica;
+    private static Window CurrentApplicationWindow;
 
     /// <summary>
     /// Gets the current actual theme of the app based on the requested theme of the
@@ -16,17 +13,28 @@ public static class ThemeHelper
     {
         get
         {
-            if (_CurrentWindow.Content is FrameworkElement rootElement)
+            foreach (Window window in WindowHelper.ActiveWindows)
             {
-                if (rootElement.RequestedTheme != ElementTheme.Default)
+                if (window.Content is FrameworkElement rootElement)
                 {
-                    return rootElement.RequestedTheme;
+                    if (rootElement.RequestedTheme != ElementTheme.Default)
+                    {
+                        return rootElement.RequestedTheme;
+                    }
                 }
             }
 
+            if (CurrentApplicationWindow != null && CurrentApplicationWindow.Content is FrameworkElement element)
+            {
+                if (element.RequestedTheme != ElementTheme.Default)
+                {
+                    return element.RequestedTheme;
+                }
+            }
             return GeneralHelper.GetEnum<ElementTheme>(Application.Current.RequestedTheme.ToString());
         }
     }
+
 
     /// <summary>
     /// Gets or sets (with LocalSettings persistence) the RequestedTheme of the root element.
@@ -35,18 +43,32 @@ public static class ThemeHelper
     {
         get
         {
-            if (_CurrentWindow.Content is FrameworkElement rootElement)
+            foreach (Window window in WindowHelper.ActiveWindows)
             {
-                return rootElement.RequestedTheme;
+                if (window.Content is FrameworkElement rootElement)
+                {
+                    return rootElement.RequestedTheme;
+                }
             }
-
+            if (CurrentApplicationWindow != null && CurrentApplicationWindow.Content is FrameworkElement element)
+            {
+                return element.RequestedTheme;
+            }
             return ElementTheme.Default;
         }
         set
         {
-            if (_CurrentWindow.Content is FrameworkElement rootElement)
+            foreach (Window window in WindowHelper.ActiveWindows)
             {
-                rootElement.RequestedTheme = value;
+                if (window.Content is FrameworkElement rootElement)
+                {
+                    rootElement.RequestedTheme = value;
+                }
+            }
+
+            if (CurrentApplicationWindow != null && CurrentApplicationWindow.Content is FrameworkElement element)
+            {
+                element.RequestedTheme = value;
             }
 
             if (ApplicationHelper.IsPackaged)
@@ -57,34 +79,47 @@ public static class ThemeHelper
             {
                 Internal.UnPackagedSetting.SaveTheme(value.ToString());
             }
-
             UpdateSystemCaptionButtonColors();
-
-            if (_isSystemBackdropsSupported)
-            {
-                backdropsHelper.SetBackdrop(SystemBackdropsType);
-            }
         }
     }
 
-    public static bool IsInitialized()
+    /// <summary>
+    /// If you are using WindowHelper.CreateWindow, you can set window = null
+    /// </summary>
+    /// <param name="window"></param>
+    public static void Initialize(Window window)
     {
-        return _CurrentWindow != null;
+        CurrentApplicationWindow = window;
+        Initialize();
     }
-    public static void Initialize(Window CurrentWindow)
-    {
-        // Save reference as this might be null when the user is in another app
-        _CurrentWindow = CurrentWindow;
 
-        if (_isSystemBackdropsSupported)
+    /// <summary>
+    /// If you are using WindowHelper.CreateWindow, you can set window = null
+    /// </summary>
+    /// <param name="window"></param>
+    /// <param name="backdropType"></param>
+    public static void Initialize(Window window, BackdropType backdropType)
+    {
+        CurrentApplicationWindow = window;
+        Initialize();
+
+        foreach (Window _window in WindowHelper.ActiveWindows)
         {
-            backdropsHelper.Initialize(_CurrentWindow, SystemBackdropsType);
+            var _backdropsHelper = new SystemBackdropsHelper(_window);
+            _backdropsHelper.ChangeBackdrop(backdropType);
         }
 
-        UpdateSystemCaptionButtonColors();
+        if (CurrentApplicationWindow != null)
+        {
+            var backdropsHelper = new SystemBackdropsHelper(CurrentApplicationWindow);
+            backdropsHelper.ChangeBackdrop(backdropType);
+        }
+    }
 
+    private static void Initialize()
+    {
         string savedTheme = string.Empty;
-
+        
         if (ApplicationHelper.IsPackaged)
         {
             savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
@@ -93,19 +128,13 @@ public static class ThemeHelper
         {
             savedTheme = Internal.UnPackagedSetting.ReadTheme();
         }
-
         if (savedTheme != null)
         {
             RootTheme = GeneralHelper.GetEnum<ElementTheme>(savedTheme);
         }
+        UpdateSystemCaptionButtonColors();
     }
-    public static void Initialize(Window CurrentWindow, bool IsSystemBackdropsSupported, BackdropType CurrentType = BackdropType.Mica)
-    {
-        backdropsHelper = SystemBackdropsHelper.GetCurrent();
-        _isSystemBackdropsSupported = IsSystemBackdropsSupported;
-        SystemBackdropsType = CurrentType;
-        Initialize(CurrentWindow);
-    }
+
     public static bool IsDarkTheme()
     {
         if (RootTheme == ElementTheme.Default)
@@ -115,10 +144,9 @@ public static class ThemeHelper
         return RootTheme == ElementTheme.Dark;
     }
 
-    public static void UpdateSystemCaptionButtonColors()
+    private static void UpdateSystemCaptionButton(AppWindow appWindow)
     {
-        var m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(_CurrentWindow);
-        var titleBar = m_AppWindow.TitleBar;
+        var titleBar = appWindow.TitleBar;
         titleBar.ButtonBackgroundColor = Colors.Transparent;
         titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         if (IsDarkTheme())
@@ -132,6 +160,20 @@ public static class ThemeHelper
             titleBar.ButtonInactiveForegroundColor = Colors.Black;
         }
     }
+    public static void UpdateSystemCaptionButtonColors()
+    {
+        foreach (Window window in WindowHelper.ActiveWindows)
+        {
+            var appWindow = WindowHelper.GetAppWindowForCurrentWindow(window);
+            UpdateSystemCaptionButton(appWindow);
+        }
+
+        if (CurrentApplicationWindow != null)
+        {
+            var appWindow = WindowHelper.GetAppWindowForCurrentWindow(CurrentApplicationWindow);
+            UpdateSystemCaptionButton(appWindow);
+        }
+    }
 
     /// <summary>
     /// Use This Method in RadioButtonChecked event
@@ -139,30 +181,17 @@ public static class ThemeHelper
     /// <param name="sender"></param>
     public static void OnThemeRadioButtonChecked(object sender)
     {
-        if (IsInitialized())
+        var selectedTheme = ((RadioButton) sender)?.Tag?.ToString();
+        if (selectedTheme != null)
         {
-            var selectedTheme = ((RadioButton) sender)?.Tag?.ToString();
-            if (selectedTheme != null)
-            {
-                RootTheme = GeneralHelper.GetEnum<ElementTheme>(selectedTheme);
-            }
+            RootTheme = GeneralHelper.GetEnum<ElementTheme>(selectedTheme);
         }
-        else
-        {
-            throw new System.Exception("ThemeHelper is not Initialized, please Initialize ThemeHelper.");
-        }
+        UpdateSystemCaptionButtonColors();
     }
 
     public static void SetThemeRadioButtonChecked(Panel ThemePanel)
     {
-        if (IsInitialized())
-        {
-            var currentTheme = RootTheme.ToString();
-            (ThemePanel.Children.Cast<RadioButton>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme)).IsChecked = true;
-        }
-        else
-        {
-            throw new System.Exception("ThemeHelper is not Initialized, please Initialize ThemeHelper.");
-        }
+        var currentTheme = RootTheme.ToString();
+        (ThemePanel.Children.Cast<RadioButton>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme)).IsChecked = true;
     }
 }

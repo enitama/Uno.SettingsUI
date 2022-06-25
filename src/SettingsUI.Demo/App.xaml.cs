@@ -28,7 +28,7 @@ public partial class App : Application
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
         m_window = new MainWindow();
-        ThemeHelper.Initialize(m_window, true);
+        ThemeHelper.Initialize(m_window, BackdropType.Mica);
         if (!ApplicationHelper.IsPackaged)
         {
             notificationManager.Init(notificationManager, OnNotificationInvoked);

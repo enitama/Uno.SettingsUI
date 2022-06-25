@@ -1,71 +1,36 @@
 ﻿using WinRT; // required to support Window.As<ICompositionSupportsSystemBackdrop>()
 
 namespace SettingsUI.Helpers;
-public enum BackdropType
-{
-    Mica,
-    DesktopAcrylic,
-    DefaultColor,
-}
 public class SystemBackdropsHelper
 {
-    private Window _window;
-    private WindowsSystemDispatcherQueueHelper m_wsdqHelper;
-    public BackdropType CurrentBackdrop;
-    public Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
-    public Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
-    public Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
-    internal static SystemBackdropsHelper Instance;
-    public bool IsInitialized = false;
-    public static SystemBackdropsHelper CreateInstance()
+    private Window window;
+    WindowsSystemDispatcherQueueHelper m_wsdqHelper;
+    BackdropType m_currentBackdrop;
+    Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
+    Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
+    Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
+    public SystemBackdropsHelper(Window window)
     {
-        return new SystemBackdropsHelper();
-    }
-
-    /// <summary>
-    /// Returns the previously created instance. a new object will be create if it is not created.
-    /// </summary>
-    /// <returns></returns>
-    public static SystemBackdropsHelper GetCurrent()
-    {
-        if (Instance == null)
-        {
-            Instance = new SystemBackdropsHelper();
-        }
-
-        return Instance;
-    }
-
-    public void Initialize(Window CurrentWindow)
-    {
-        _window = CurrentWindow;
+        this.window = window;
+        ((FrameworkElement) this.window.Content).RequestedTheme = ThemeHelper.RootTheme;
 
         m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
         m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-        IsInitialized = true;
+
+        SetBackdrop(BackdropType.Mica);
     }
 
-    public void Initialize(Window CurrentWindow, BackdropType CurrentType)
-    {
-        Initialize(CurrentWindow);
-        SetBackdrop(CurrentType);
-    }
-
-    /// <summary>
-    /// Reset to default color. If the requested type is supported, we'll update to that.
-    /// Note: This sample completely removes any previous controller to reset to the default
-    ///       state. This is done so this sample can show what is expected to be the most
-    ///       common pattern of an app simply choosing one controller type which it sets at
-    ///       startup. If an app wants to toggle between Mica and Acrylic it could simply
-    ///       call RemoveSystemBackdropTarget() on the old controller and then setup the new
-    ///       controller, reusing any existing m_configurationSource and Activated/Closed
-    ///       event handlers. 
-    /// </summary>
-    /// <param name="type"></param>
     public void SetBackdrop(BackdropType type)
     {
-        ThemeHelper.SystemBackdropsType = type;
-        CurrentBackdrop = BackdropType.DefaultColor;
+        // Reset to default color. If the requested type is supported, we'll update to that.
+        // Note: This sample completely removes any previous controller to reset to the default
+        //       state. This is done so this sample can show what is expected to be the most
+        //       common pattern of an app simply choosing one controller type which it sets at
+        //       startup. If an app wants to toggle between Mica and Acrylic it could simply
+        //       call RemoveSystemBackdropTarget() on the old controller and then setup the new
+        //       controller, reusing any existing m_configurationSource and Activated/Closed
+        //       event handlers.
+        m_currentBackdrop = BackdropType.DefaultColor;
         if (m_micaController != null)
         {
             m_micaController.Dispose();
@@ -76,15 +41,16 @@ public class SystemBackdropsHelper
             m_acrylicController.Dispose();
             m_acrylicController = null;
         }
-        _window.Activated -= Window_Activated;
-        _window.Closed -= Window_Closed;
+        this.window.Activated -= Window_Activated;
+        this.window.Closed -= Window_Closed;
+        ((FrameworkElement) this.window.Content).ActualThemeChanged -= Window_ThemeChanged;
         m_configurationSource = null;
 
         if (type == BackdropType.Mica)
         {
             if (TrySetMicaBackdrop())
             {
-                CurrentBackdrop = type;
+                m_currentBackdrop = type;
             }
             else
             {
@@ -96,7 +62,7 @@ public class SystemBackdropsHelper
         {
             if (TrySetAcrylicBackdrop())
             {
-                CurrentBackdrop = type;
+                m_currentBackdrop = type;
             }
             else
             {
@@ -104,31 +70,25 @@ public class SystemBackdropsHelper
             }
         }
     }
-
-    public bool TrySetMicaBackdrop()
+    bool TrySetMicaBackdrop()
     {
         if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
         {
             // Hooking up the policy object
             m_configurationSource = new Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration();
-            _window.Activated += Window_Activated;
-            _window.Closed += Window_Closed;
+            this.window.Activated += Window_Activated;
+            this.window.Closed += Window_Closed;
+            ((FrameworkElement) this.window.Content).ActualThemeChanged += Window_ThemeChanged;
 
             // Initial configuration state.
             m_configurationSource.IsInputActive = true;
-
-            switch (((FrameworkElement) _window.Content).ActualTheme)
-            {
-                case ElementTheme.Dark: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Dark; break;
-                case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
-                case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
-            }
+            SetConfigurationSourceTheme();
 
             m_micaController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
 
             // Enable the system backdrop.
             // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-            m_micaController.AddSystemBackdropTarget(_window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+            m_micaController.AddSystemBackdropTarget(this.window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
             m_micaController.SetSystemBackdropConfiguration(m_configurationSource);
             return true; // succeeded
         }
@@ -136,30 +96,25 @@ public class SystemBackdropsHelper
         return false; // Mica is not supported on this system
     }
 
-    public bool TrySetAcrylicBackdrop()
+    bool TrySetAcrylicBackdrop()
     {
         if (Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController.IsSupported())
         {
             // Hooking up the policy object
             m_configurationSource = new Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration();
-            _window.Activated += Window_Activated;
-            _window.Closed += Window_Closed;
+            this.window.Activated += Window_Activated;
+            this.window.Closed += Window_Closed;
+            ((FrameworkElement) this.window.Content).ActualThemeChanged += Window_ThemeChanged;
 
             // Initial configuration state.
             m_configurationSource.IsInputActive = true;
-
-            switch (((FrameworkElement) _window.Content).ActualTheme)
-            {
-                case ElementTheme.Dark: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Dark; break;
-                case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
-                case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
-            }
+            SetConfigurationSourceTheme();
 
             m_acrylicController = new Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController();
 
             // Enable the system backdrop.
             // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-            m_acrylicController.AddSystemBackdropTarget(_window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+            m_acrylicController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
             m_acrylicController.SetSystemBackdropConfiguration(m_configurationSource);
             return true; // succeeded
         }
@@ -186,7 +141,43 @@ public class SystemBackdropsHelper
             m_acrylicController.Dispose();
             m_acrylicController = null;
         }
-        _window.Activated -= Window_Activated;
+        this.window.Activated -= Window_Activated;
         m_configurationSource = null;
+    }
+
+    private void Window_ThemeChanged(FrameworkElement sender, object args)
+    {
+        if (m_configurationSource != null)
+        {
+            SetConfigurationSourceTheme();
+            ThemeHelper.UpdateSystemCaptionButtonColors();
+        }
+    }
+
+    private void SetConfigurationSourceTheme()
+    {
+        switch (((FrameworkElement) this.window.Content).ActualTheme)
+        {
+            case ElementTheme.Dark: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Dark; break;
+            case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
+            case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
+        }
+    }
+
+    public void ChangeBackdrop()
+    {
+        BackdropType newType;
+        switch (m_currentBackdrop)
+        {
+            case BackdropType.Mica: newType = BackdropType.DesktopAcrylic; break;
+            case BackdropType.DesktopAcrylic: newType = BackdropType.DefaultColor; break;
+            default:
+            case BackdropType.DefaultColor: newType = BackdropType.Mica; break;
+        }
+        SetBackdrop(newType);
+    }
+    public void ChangeBackdrop(BackdropType backdropType)
+    {
+        SetBackdrop(backdropType);
     }
 }
