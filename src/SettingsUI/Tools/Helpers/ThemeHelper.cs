@@ -5,7 +5,7 @@ public static class ThemeHelper
     private const string SelectedAppThemeKey = "SelectedAppTheme";
     private static Window CurrentApplicationWindow;
     private static SystemBackdropsHelper systemBackdropsHelper;
-    private static Dictionary<Window, SystemBackdropsHelper> systemBackdropsHelperDic = null;
+    private static Dictionary<Window, SystemBackdropsHelper> systemBackdropsHelperDic = new Dictionary<Window, SystemBackdropsHelper>();
 
     /// <summary>
     /// Gets the current actual theme of the app based on the requested theme of the
@@ -85,14 +85,15 @@ public static class ThemeHelper
         }
     }
 
-    public static void ChangeSystemBackdropType(BackdropType backdropType)
+    /// <summary>
+    /// Change SystemBackdrop Type for Windows
+    /// </summary>
+    /// <param name="backdropType"></param>
+    public static void SetSystemBackdropType(BackdropType backdropType)
     {
-        if (systemBackdropsHelperDic != null)
+        foreach (var helper in systemBackdropsHelperDic.Values)
         {
-            foreach (var helper in systemBackdropsHelperDic.Values)
-            {
-                helper.ChangeSystemBackdropType(backdropType);
-            }
+            helper.ChangeSystemBackdropType(backdropType);
         }
 
         if (systemBackdropsHelper != null)
@@ -102,21 +103,26 @@ public static class ThemeHelper
     }
 
     /// <summary>
-    /// If you want to get SystemBackdropType for WindowHelper.ActiveWindows, You must specify the type of Window
+    /// Get SystemBackdrop Type for WindowHelper.ActiveWindows
     /// </summary>
-    /// <param name="window"></param>
+    /// <param name="activeWindow"></param>
     /// <returns></returns>
-    public static BackdropType GetSystemBackdropType(Window window = null)
+    public static BackdropType GetSystemBackdropType(Window activeWindow)
     {
-        if (systemBackdropsHelperDic != null)
+        var currentWindow = systemBackdropsHelperDic.FirstOrDefault(x => x.Key == activeWindow);
+        if (currentWindow.Value != null)
         {
-            var currentWindow = systemBackdropsHelperDic.FirstOrDefault(x=>x.Key == window);
-            if (currentWindow.Value != null)
-            {
-                return currentWindow.Value.GetSystemBackdropType();
-            }
+            return currentWindow.Value.GetSystemBackdropType();
         }
+        return BackdropType.DefaultColor;
+    }
 
+    /// <summary>
+    /// Get SystemBackdrop Type for Current Window
+    /// </summary>
+    /// <returns></returns>
+    public static BackdropType GetSystemBackdropType()
+    {
         if (systemBackdropsHelper != null)
         {
             return systemBackdropsHelper.GetSystemBackdropType();
@@ -125,7 +131,7 @@ public static class ThemeHelper
     }
 
     /// <summary>
-    /// If you are using WindowHelper.CreateWindow, you can set window = null
+    /// Initialize ThemeHelper
     /// </summary>
     /// <param name="window"></param>
     public static void Initialize(Window window)
@@ -135,7 +141,7 @@ public static class ThemeHelper
     }
 
     /// <summary>
-    /// If you are using WindowHelper.CreateWindow, you can set window = null
+    /// Initialize ThemeHelper with SystemBackdrop
     /// </summary>
     /// <param name="window"></param>
     /// <param name="backdropType"></param>
@@ -203,6 +209,10 @@ public static class ThemeHelper
             titleBar.ButtonInactiveForegroundColor = Colors.Black;
         }
     }
+
+    /// <summary>
+    /// Update System Caption Buttons Background and Foreground for Dark/Light Theme.
+    /// </summary>
     public static void UpdateSystemCaptionButtonColors()
     {
         foreach (Window window in WindowHelper.ActiveWindows)
@@ -218,6 +228,10 @@ public static class ThemeHelper
         }
     }
 
+    /// <summary>
+    /// Change RootTheme
+    /// </summary>
+    /// <param name="elementTheme"></param>
     public static void ChangeTheme(ElementTheme elementTheme)
     {
         RootTheme = elementTheme;
@@ -236,6 +250,10 @@ public static class ThemeHelper
         }
     }
 
+    /// <summary>
+    /// Use This Method in Loaded event of a Page, if you want to Set RadioButton default value.
+    /// </summary>
+    /// <param name="ThemePanel">The panel (Grid/StackPanel) that contains the RadioButton</param>
     public static void SetThemeRadioButtonChecked(Panel ThemePanel)
     {
         var currentTheme = RootTheme.ToString();
