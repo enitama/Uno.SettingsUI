@@ -173,11 +173,6 @@ public class SystemBackdropsHelper
         SetBackdrop(newType);
     }
 
-    public void ChangeSystemBackdropType(BackdropType backdropType)
-    {
-        SetBackdrop(backdropType);
-    }
-
     public BackdropType GetSystemBackdropType()
     {
         return m_currentBackdrop;

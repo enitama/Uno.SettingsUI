@@ -93,12 +93,12 @@ public static class ThemeHelper
     {
         foreach (var helper in systemBackdropsHelperDic.Values)
         {
-            helper.ChangeSystemBackdropType(backdropType);
+            helper.SetBackdrop(backdropType);
         }
 
         if (systemBackdropsHelper != null)
         {
-            systemBackdropsHelper.ChangeSystemBackdropType(backdropType);
+            systemBackdropsHelper.SetBackdrop(backdropType);
         }
     }
 
@@ -154,14 +154,14 @@ public static class ThemeHelper
         {
             var _backdropsHelper = new SystemBackdropsHelper(_window);
             systemBackdropsHelperDic.Add(_window, _backdropsHelper);
-            _backdropsHelper.ChangeSystemBackdropType(backdropType);
+            _backdropsHelper.SetBackdrop(backdropType);
         }
 
         if (CurrentApplicationWindow != null)
         {
             var backdropsHelper = new SystemBackdropsHelper(CurrentApplicationWindow);
             systemBackdropsHelper = backdropsHelper;
-            backdropsHelper.ChangeSystemBackdropType(backdropType);
+            backdropsHelper.SetBackdrop(backdropType);
         }
     }
 

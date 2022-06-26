@@ -21,7 +21,7 @@ public sealed partial class SystemBackdropsPage : Page
             default:
             case BackdropType.DefaultColor: newType = BackdropType.Mica; break;
         }
-        ThemeHelper.ChangeSystemBackdropType(newType);
+        ThemeHelper.SetSystemBackdropType(newType);
     }
 
     private void btnAcrylic_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -29,7 +29,7 @@ public sealed partial class SystemBackdropsPage : Page
         var window = WindowHelper.CreateWindow();
         window.Content = new Grid { RequestedTheme = ThemeHelper.RootTheme };
         SystemBackdropsHelper backdropsHelper = new SystemBackdropsHelper(window);
-        backdropsHelper.ChangeSystemBackdropType(BackdropType.DesktopAcrylic);
+        backdropsHelper.SetBackdrop(BackdropType.DesktopAcrylic);
 
         window.Activate();
 
@@ -40,7 +40,7 @@ public sealed partial class SystemBackdropsPage : Page
         var window = WindowHelper.CreateWindow();
         window.Content = new Grid { RequestedTheme = ThemeHelper.RootTheme };
         SystemBackdropsHelper backdropsHelper = new SystemBackdropsHelper(window);
-        backdropsHelper.ChangeSystemBackdropType(BackdropType.Mica);
+        backdropsHelper.SetBackdrop(BackdropType.Mica);
 
         window.Activate();
     }
