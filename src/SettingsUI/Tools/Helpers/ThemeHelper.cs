@@ -4,6 +4,8 @@ public static class ThemeHelper
 {
     private const string SelectedAppThemeKey = "SelectedAppTheme";
     private static Window CurrentApplicationWindow;
+    private static SystemBackdropsHelper systemBackdropsHelper;
+    private static Dictionary<Window, SystemBackdropsHelper> systemBackdropsHelperDic = null;
 
     /// <summary>
     /// Gets the current actual theme of the app based on the requested theme of the
@@ -83,6 +85,45 @@ public static class ThemeHelper
         }
     }
 
+    public static void ChangeSystemBackdropType(BackdropType backdropType)
+    {
+        if (systemBackdropsHelperDic != null)
+        {
+            foreach (var helper in systemBackdropsHelperDic.Values)
+            {
+                helper.ChangeSystemBackdropType(backdropType);
+            }
+        }
+
+        if (systemBackdropsHelper != null)
+        {
+            systemBackdropsHelper.ChangeSystemBackdropType(backdropType);
+        }
+    }
+
+    /// <summary>
+    /// If you want to get SystemBackdropType for WindowHelper.ActiveWindows, You must specify the type of Window
+    /// </summary>
+    /// <param name="window"></param>
+    /// <returns></returns>
+    public static BackdropType GetSystemBackdropType(Window window = null)
+    {
+        if (systemBackdropsHelperDic != null)
+        {
+            var currentWindow = systemBackdropsHelperDic.FirstOrDefault(x=>x.Key == window);
+            if (currentWindow.Value != null)
+            {
+                return currentWindow.Value.GetSystemBackdropType();
+            }
+        }
+
+        if (systemBackdropsHelper != null)
+        {
+            return systemBackdropsHelper.GetSystemBackdropType();
+        }
+        return BackdropType.DefaultColor;
+    }
+
     /// <summary>
     /// If you are using WindowHelper.CreateWindow, you can set window = null
     /// </summary>
@@ -106,13 +147,15 @@ public static class ThemeHelper
         foreach (Window _window in WindowHelper.ActiveWindows)
         {
             var _backdropsHelper = new SystemBackdropsHelper(_window);
-            _backdropsHelper.ChangeBackdrop(backdropType);
+            systemBackdropsHelperDic.Add(_window, _backdropsHelper);
+            _backdropsHelper.ChangeSystemBackdropType(backdropType);
         }
 
         if (CurrentApplicationWindow != null)
         {
             var backdropsHelper = new SystemBackdropsHelper(CurrentApplicationWindow);
-            backdropsHelper.ChangeBackdrop(backdropType);
+            systemBackdropsHelper = backdropsHelper;
+            backdropsHelper.ChangeSystemBackdropType(backdropType);
         }
     }
 
@@ -149,7 +192,7 @@ public static class ThemeHelper
         var titleBar = appWindow.TitleBar;
         titleBar.ButtonBackgroundColor = Colors.Transparent;
         titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-        if (IsDarkTheme())
+        if (ThemeHelper.IsDarkTheme())
         {
             titleBar.ButtonForegroundColor = Colors.White;
             titleBar.ButtonInactiveForegroundColor = Colors.White;
@@ -175,6 +218,11 @@ public static class ThemeHelper
         }
     }
 
+    public static void ChangeTheme(ElementTheme elementTheme)
+    {
+        RootTheme = elementTheme;
+    }
+
     /// <summary>
     /// Use This Method in RadioButtonChecked event
     /// </summary>
@@ -186,7 +234,6 @@ public static class ThemeHelper
         {
             RootTheme = GeneralHelper.GetEnum<ElementTheme>(selectedTheme);
         }
-        UpdateSystemCaptionButtonColors();
     }
 
     public static void SetThemeRadioButtonChecked(Panel ThemePanel)

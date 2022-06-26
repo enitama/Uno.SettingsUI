@@ -4,11 +4,11 @@ namespace SettingsUI.Helpers;
 public class SystemBackdropsHelper
 {
     private Window window;
-    WindowsSystemDispatcherQueueHelper m_wsdqHelper;
-    BackdropType m_currentBackdrop;
-    Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
-    Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
-    Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
+    private WindowsSystemDispatcherQueueHelper m_wsdqHelper;
+    private BackdropType m_currentBackdrop;
+    private Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
+    private Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
+    private Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
     public SystemBackdropsHelper(Window window)
     {
         this.window = window;
@@ -20,16 +20,13 @@ public class SystemBackdropsHelper
         SetBackdrop(BackdropType.Mica);
     }
 
+    /// <summary>
+    /// Reset to default color. If the requested type is supported, we'll update to that.
+    /// Note: This completely removes any previous controller to reset to the default state.
+    /// </summary>
+    /// <param name="type"></param>
     public void SetBackdrop(BackdropType type)
     {
-        // Reset to default color. If the requested type is supported, we'll update to that.
-        // Note: This sample completely removes any previous controller to reset to the default
-        //       state. This is done so this sample can show what is expected to be the most
-        //       common pattern of an app simply choosing one controller type which it sets at
-        //       startup. If an app wants to toggle between Mica and Acrylic it could simply
-        //       call RemoveSystemBackdropTarget() on the old controller and then setup the new
-        //       controller, reusing any existing m_configurationSource and Activated/Closed
-        //       event handlers.
         m_currentBackdrop = BackdropType.DefaultColor;
         if (m_micaController != null)
         {
@@ -70,7 +67,7 @@ public class SystemBackdropsHelper
             }
         }
     }
-    bool TrySetMicaBackdrop()
+    public bool TrySetMicaBackdrop()
     {
         if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
         {
@@ -96,7 +93,7 @@ public class SystemBackdropsHelper
         return false; // Mica is not supported on this system
     }
 
-    bool TrySetAcrylicBackdrop()
+    public bool TrySetAcrylicBackdrop()
     {
         if (Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController.IsSupported())
         {
@@ -150,11 +147,10 @@ public class SystemBackdropsHelper
         if (m_configurationSource != null)
         {
             SetConfigurationSourceTheme();
-            ThemeHelper.UpdateSystemCaptionButtonColors();
         }
     }
 
-    private void SetConfigurationSourceTheme()
+    public void SetConfigurationSourceTheme()
     {
         switch (((FrameworkElement) this.window.Content).ActualTheme)
         {
@@ -164,7 +160,7 @@ public class SystemBackdropsHelper
         }
     }
 
-    public void ChangeBackdrop()
+    public void ChangeSystemBackdropType()
     {
         BackdropType newType;
         switch (m_currentBackdrop)
@@ -176,8 +172,14 @@ public class SystemBackdropsHelper
         }
         SetBackdrop(newType);
     }
-    public void ChangeBackdrop(BackdropType backdropType)
+
+    public void ChangeSystemBackdropType(BackdropType backdropType)
     {
         SetBackdrop(backdropType);
+    }
+
+    public BackdropType GetSystemBackdropType()
+    {
+        return m_currentBackdrop;
     }
 }
