@@ -14,7 +14,7 @@
 	<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
 	<PackageTags>winui winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion</PackageTags>
 	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
-	<Version>2.1.3</Version>
+	<Version>2.1.4</Version>
 	<Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
 	<PackageIcon>icon.png</PackageIcon>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -70,9 +70,6 @@
     <Page Update="Themes\Styles\Controls\SettingExpander.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Themes\Styles\Button.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <Generator>MSBuild:Compile</Generator>
@@ -91,7 +88,16 @@
     </Page>
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="Themes\XamlCombine.exe Themes\Generic.txt Generic.xaml" />
-  </Target>
+  <ItemGroup>
+    <PackageReference Include="XAMLTools.MSBuild" Version="1.0.0-alpha0121">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <XAMLCombineItems Include="Themes\Styles\**\*.xaml">
+      <TargetFile>Themes\Generic.xaml</TargetFile>
+    </XAMLCombineItems>
+  </ItemGroup>
 </Project>
