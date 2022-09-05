@@ -1,6 +1,4 @@
-﻿using SettingsUI.Tools;
-
-namespace SettingsUI.Extensions;
+﻿namespace SettingsUI.Extensions;
 
 public static class DynamicLanguageEx
 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SettingsUI.Demo.Pages;
 using SettingsUI.Helpers;
 
 namespace SettingsUI.Demo;
@@ -13,5 +14,6 @@ public sealed partial class MainWindow : Window
         this.InitializeComponent();
         Instance = this;
         TitleBarHelper.Initialize(this, TitleTextBlock, AppTitleBar, LeftPaddingColumn, IconColumn, TitleColumn, LeftDragColumn, SearchColumn, RightDragColumn, RightPaddingColumn);
+        DynamicLanguageHelper.Localizer.InitializeWindow(Root, Content);
     }
 }

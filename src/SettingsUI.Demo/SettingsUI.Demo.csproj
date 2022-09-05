@@ -11,10 +11,12 @@
     <UseWinUI>true</UseWinUI>
     <NoWarn>WMC1506</NoWarn>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\AusterNY.jpg" />
     <None Remove="Pages\AboutPage.xaml" />
+    <None Remove="Pages\DynamicLanguagePage.xaml" />
     <None Remove="Pages\Features\ApplicationDataContainerPage.xaml" />
     <None Remove="Pages\Features\AppNotificationPage.xaml" />
     <None Remove="Pages\Features\CheckUpdatePage.xaml" />
@@ -52,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Features\DynamicLanguagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Features\PrintPage.xaml">
@@ -147,4 +154,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+    <!-- Copy the String folder to output directory -->
+  <Target Name="CopyStringResources" AfterTargets="Build">
+    <ItemGroup>
+      <StringResources Include="$(ProjectDir)Strings\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(StringResources)" DestinationFiles="$(OutDir)Strings\%(RecursiveDir)%(Filename)%(Extension)" />
+  </Target>
 </Project>
