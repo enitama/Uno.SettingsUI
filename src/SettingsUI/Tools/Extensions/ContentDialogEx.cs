@@ -1,6 +1,6 @@
 ﻿namespace SettingsUI.Extensions;
 
-public static class ContentDialogExtension
+public static class ContentDialogEx
 {
     private static TaskCompletionSource<ContentDialog> _contentDialogShowRequest;
 

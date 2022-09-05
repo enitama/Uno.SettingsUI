@@ -5,7 +5,7 @@
 /// <summary>
 /// Provides attached dependency properties for the <see cref="DependencyObject"/> type.
 /// </summary>
-public static class DependencyObjectExtensions
+public static class DependencyObjectEx
 {
     /// <summary>
     /// Find the first descendant of type <see cref="FrameworkElement"/> with a given name, using a depth-first search.
