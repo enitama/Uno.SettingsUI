@@ -16,7 +16,8 @@ public sealed partial class SystemBackdropsPage : Page
         BackdropType newType;
         switch (ThemeHelper.GetSystemBackdropType())
         {
-            case BackdropType.Mica: newType = BackdropType.DesktopAcrylic; break;
+            case BackdropType.Mica: newType = BackdropType.MicaAlt; break;
+            case BackdropType.MicaAlt: newType = BackdropType.DesktopAcrylic; break;
             case BackdropType.DesktopAcrylic: newType = BackdropType.DefaultColor; break;
             default:
             case BackdropType.DefaultColor: newType = BackdropType.Mica; break;
@@ -41,6 +42,16 @@ public sealed partial class SystemBackdropsPage : Page
         window.Content = new Grid { RequestedTheme = ThemeHelper.RootTheme };
         SystemBackdropsHelper backdropsHelper = new SystemBackdropsHelper(window);
         backdropsHelper.SetBackdrop(BackdropType.Mica);
+
+        window.Activate();
+    }
+
+    private void btnMicaAlt_Click(object sender, RoutedEventArgs e)
+    {
+        var window = WindowHelper.CreateWindow();
+        window.Content = new Grid { RequestedTheme = ThemeHelper.RootTheme };
+        SystemBackdropsHelper backdropsHelper = new SystemBackdropsHelper(window);
+        backdropsHelper.SetBackdrop(BackdropType.MicaAlt);
 
         window.Activate();
     }

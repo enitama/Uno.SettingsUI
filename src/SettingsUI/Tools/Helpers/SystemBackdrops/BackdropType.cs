@@ -2,6 +2,7 @@
 public enum BackdropType
 {
     Mica,
+    MicaAlt,
     DesktopAcrylic,
     DefaultColor,
 }
