@@ -55,6 +55,18 @@ public class SystemBackdropsHelper
                 type = BackdropType.DesktopAcrylic;
             }
         }
+        if (type == BackdropType.MicaAlt)
+        {
+            if (TrySetMicaAltBackdrop())
+            {
+                m_currentBackdrop = type;
+            }
+            else
+            {
+                // Mica isn't supported. Try Acrylic.
+                type = BackdropType.DesktopAcrylic;
+            }
+        }
         if (type == BackdropType.DesktopAcrylic)
         {
             if (TrySetAcrylicBackdrop())
@@ -67,7 +79,7 @@ public class SystemBackdropsHelper
             }
         }
     }
-    public bool TrySetMicaBackdrop()
+    private bool TrySetMicaBackdrop(bool isMicaAlt)
     {
         if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
         {
@@ -83,6 +95,15 @@ public class SystemBackdropsHelper
 
             m_micaController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
 
+            if (isMicaAlt)
+            {
+                m_micaController.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt;
+            }
+            else
+            {
+                m_micaController.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
+            }
+
             // Enable the system backdrop.
             // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
             m_micaController.AddSystemBackdropTarget(this.window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
@@ -91,6 +112,14 @@ public class SystemBackdropsHelper
         }
 
         return false; // Mica is not supported on this system
+    }
+    public bool TrySetMicaAltBackdrop()
+    {
+        return TrySetMicaBackdrop(true);
+    }
+    public bool TrySetMicaBackdrop()
+    {
+        return TrySetMicaBackdrop(false);
     }
 
     public bool TrySetAcrylicBackdrop()
@@ -165,7 +194,8 @@ public class SystemBackdropsHelper
         BackdropType newType;
         switch (m_currentBackdrop)
         {
-            case BackdropType.Mica: newType = BackdropType.DesktopAcrylic; break;
+            case BackdropType.Mica: newType = BackdropType.MicaAlt; break;
+            case BackdropType.MicaAlt: newType = BackdropType.DesktopAcrylic; break;
             case BackdropType.DesktopAcrylic: newType = BackdropType.DefaultColor; break;
             default:
             case BackdropType.DefaultColor: newType = BackdropType.Mica; break;

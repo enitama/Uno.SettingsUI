@@ -14,6 +14,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
                     <Button x:Name="btnChangeBackdrop" Content="Change Backdrop" Click="ChangeBackdropButton_Click"/>
                     <Button Content="Open Mica Window" Name="btnMica" Click="btnMica_Click"/>
+                    <Button Content="Open MicaAlt Window" Name="btnMicaAlt" Click="btnMicaAlt_Click"/>
                     <Button Content="Open Acrylic Window" Name="btnAcrylic" Click="btnAcrylic_Click"/>
                 </StackPanel>
             </StackPanel>
