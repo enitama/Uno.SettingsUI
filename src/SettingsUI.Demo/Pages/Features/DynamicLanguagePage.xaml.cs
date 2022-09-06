@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using SettingsUI.Tools;
 
 namespace SettingsUI.Demo.Pages;
 public sealed partial class DynamicLanguagePage : Page
@@ -12,16 +13,16 @@ public sealed partial class DynamicLanguagePage : Page
 
     private void DynamicLanguagePage_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        DynamicLanguageHelper.Localizer.RunLocalizationOnRegisteredRootElements();
+        Localizer.Get().RunLocalization(Root);
     }
 
     private void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        DynamicLanguageHelper.Localizer.TrySetCurrentLanguage("en-US");
+        Localizer.Get().TrySetCurrentLanguage("en-US");
     }
 
     private void Button_Click_1(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        DynamicLanguageHelper.Localizer.TrySetCurrentLanguage("fa-IR");
+        Localizer.Get().TrySetCurrentLanguage("fa-IR");
     }
 }

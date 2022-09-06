@@ -5,6 +5,8 @@ using Microsoft.Windows.AppNotifications;
 using SettingsUI.Demo.AppNotification;
 using SettingsUI.Helpers;
 using SettingsUI.Demo.Pages;
+using SettingsUI.Tools;
+using System.IO;
 
 namespace SettingsUI.Demo;
 
@@ -23,6 +25,17 @@ public partial class App : Application
             c_notificationHandlers.Add(ToastWithPayload.Instance.ScenarioId, ToastWithPayload.Instance.NotificationReceived);
             notificationManager = new NotificationManager(c_notificationHandlers);
         }
+
+        string resourcesFolderPath;
+        if (ApplicationHelper.IsPackaged)
+        {
+            resourcesFolderPath = @"C:\\Projects\\Strings";
+        }
+        else
+        {
+            resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
+        }
+        _ = Localizer.Create(resourcesFolderPath);
     }
 
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -34,6 +47,8 @@ public partial class App : Application
             notificationManager.Init(notificationManager, OnNotificationInvoked);
         }
         m_window.Activate();
+
+        Localizer.Get().RunLocalizationOnRegisteredRootElements();
     }
     private void OnNotificationInvoked(string message)
     {

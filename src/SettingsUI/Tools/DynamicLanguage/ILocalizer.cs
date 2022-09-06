@@ -8,8 +8,6 @@ public interface ILocalizer
 
     IEnumerable<string> GetAvailableLanguages();
 
-    void Initalize(string resourcesFolderPath, string resourcesFileName, string defaultLanguage);
-
     string GetCurrentLanguage();
 
     bool TrySetCurrentLanguage(string language);
