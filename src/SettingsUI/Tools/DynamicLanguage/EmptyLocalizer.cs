@@ -13,6 +13,10 @@ public class EmptyLocalizer : ILocalizer
 
     public string? GetLocalizedString(string key, string? language = null) => null;
 
+    public void InitializeWindow(UIElement Content)
+    {
+    }
+
     public void RegisterRootElement(FrameworkElement rootElement)
     {
     }

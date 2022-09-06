@@ -21,4 +21,6 @@ public interface ILocalizer
     string? GetLocalizedString(string key, string? language = null);
 
     bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func);
+
+    void InitializeWindow(UIElement Content);
 }

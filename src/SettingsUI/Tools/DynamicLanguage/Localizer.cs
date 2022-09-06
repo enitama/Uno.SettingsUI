@@ -47,9 +47,8 @@ public partial class Localizer : DependencyObject, ILocalizer
     /// </summary>
     /// <param name="Root">Grid/StackPanel or any FrameworkElement that hosts elements</param>
     /// <param name="Content">Windows `Content` Properties</param>
-    public void InitializeWindow(FrameworkElement Root, UIElement Content)
+    public void InitializeWindow(UIElement Content)
     {
-        Instance.RunLocalization(Root);
         if (Content is FrameworkElement content)
         {
             Instance.RegisterRootElement(content);
