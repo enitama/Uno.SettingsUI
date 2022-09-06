@@ -25,9 +25,9 @@
 
 # SettingsUI
  
-SettingsUI Helps you create your own application settings page (like Windows 11 Settings) With many useful helper classes
+### Experience WinUI 3 quickly and easily with the help of SettingsUI, Everything you need to develop an application is gathered in one place.
 
-> **_NOTE:_** SettingsUI is based on `WindowsAppSDK` version `1.1.3` stable and `Microsoft.Windows.SDK.BuildTools` version `10.0.22621.1`
+> **_NOTE:_** SettingsUI is based on `WindowsAppSDK` version `1.1.4` stable / `WindowsAppSDK` version `1.2-experimental1` and `Microsoft.Windows.SDK.BuildTools` version `10.0.22621.1`
 
 ## Install
 ```
@@ -44,6 +44,17 @@ See the Demo app to see how to use it
 ## Documentation
 
 See Here for Online [Documentation](https://ghost1372.github.io/settingsui/)
+
+## Available Features
+
+- Dynamic Localization without need to restart Application
+- SystemBackdrop Helper class with the Support of `Mica, MicaAlt and Acrylic`
+- Multiple Custom Controls such as `Windows 11` Settings Page Controls
+- Extensions Methods
+- A lot of useful Helper Classes for working with Window, Application, Taskbar, Resources, Print and more
+- NavigationView Services To implement quick and easy Navigation with AutoSuggestBox and Back Button
+- Custom Styles for Some Controls such as TextBlock and Button.
+- Easy and Quick implementation of `Command` and `INotifyPropertyChanged` with `Observable` and `RelayCommand` classes.
 
 
 ![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/0.png)
