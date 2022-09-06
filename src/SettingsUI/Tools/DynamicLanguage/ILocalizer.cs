@@ -4,11 +4,15 @@ namespace SettingsUI.Tools;
 
 public interface ILocalizer
 {
-    StringResourceListDictionary? GetLanguageResources(string language);
+    void InitializeWindow(FrameworkElement Root, UIElement Content);
 
     IEnumerable<string> GetAvailableLanguages();
 
     string GetCurrentLanguage();
+
+    string? GetLocalizedString(string key, string? language = null);
+
+    StringResourceListDictionary? GetLanguageResources(string language);
 
     bool TrySetCurrentLanguage(string language);
 
@@ -18,9 +22,5 @@ public interface ILocalizer
 
     void RunLocalization(FrameworkElement rootElement, string? language = null);
 
-    string? GetLocalizedString(string key, string? language = null);
-
     bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func);
-
-    void InitializeWindow(UIElement Content);
 }

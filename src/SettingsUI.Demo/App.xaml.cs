@@ -47,8 +47,6 @@ public partial class App : Application
             notificationManager.Init(notificationManager, OnNotificationInvoked);
         }
         m_window.Activate();
-
-        Localizer.Get().RunLocalizationOnRegisteredRootElements();
     }
     private void OnNotificationInvoked(string message)
     {

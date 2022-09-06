@@ -16,6 +16,6 @@ public sealed partial class MainWindow : Window
         Instance = this;
         TitleBarHelper.Initialize(this, TitleTextBlock, AppTitleBar, LeftPaddingColumn, IconColumn, TitleColumn, LeftDragColumn, SearchColumn, RightDragColumn, RightPaddingColumn);
 
-        Localizer.Get().InitializeWindow(Content);
+        Localizer.Get().InitializeWindow(Root, Content);
     }
 }
