@@ -27,7 +27,7 @@
  
 ### Experience WinUI 3 quickly and easily with the help of SettingsUI, Everything you need to develop an application is gathered in one place.
 
-> **_NOTE:_** SettingsUI is based on `WindowsAppSDK` version `1.1.5` stable / `WindowsAppSDK` version `1.2-preview1` and `Microsoft.Windows.SDK.BuildTools` version `10.0.22621.1`
+> **_NOTE:_** SettingsUI is based on `WindowsAppSDK` version `1.2.221109.1` stable and `Microsoft.Windows.SDK.BuildTools` version `10.0.22621.755`
 
 ## Install
 ```
