@@ -1,6 +1,4 @@
-﻿// LICENSE https://github.com/AndrewKeepCoding/AK.Toolkit
-
-namespace SettingsUI.Tools;
+﻿namespace SettingsUI.Tools;
 
 public partial class Localizer
 {

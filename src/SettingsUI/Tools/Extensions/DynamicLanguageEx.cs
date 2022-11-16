@@ -2,36 +2,18 @@
 
 public static class DynamicLanguageEx
 {
-    /// <summary>
-    /// You need to Initialize Window with 2 parameters
-    /// </summary>
-    /// <param name="Localizer"></param>
-    /// <param name="Root">Grid/StackPanel or any FrameworkElement that hosts elements</param>
-    /// <param name="Content">Windows `Content` Properties</param>
-    public static void InitializeWindowEx(this Localizer Localizer, FrameworkElement Root, UIElement Content)
-    {
-        Localizer.RunLocalization(Root);
-        if (Content is FrameworkElement content)
-        {
-            Localizer.RegisterRootElement(content);
-        }
-    }
-
-    public static IEnumerable<UIElement> GetChildren(this UIElement parent, params Func<UIElement, bool>[] filters)
+    internal static IEnumerable<UIElement> GetChildren(this UIElement parent)
     {
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
         {
             if (VisualTreeHelper.GetChild(parent, i) is UIElement child)
             {
-                if (filters.All(filter => filter(child) is true))
-                {
-                    yield return child;
-                }
+                yield return child;
             }
         }
     }
 
-    public static IEnumerable<Type> GetHierarchyFromUIElement(this Type element)
+    internal static IEnumerable<Type> GetHierarchyFromUIElement(this Type element)
     {
         if (element.GetTypeInfo().IsSubclassOf(typeof(UIElement)) is not true)
         {

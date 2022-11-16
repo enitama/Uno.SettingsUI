@@ -18,11 +18,11 @@ public sealed partial class DynamicLanguagePage : Page
 
     private void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        Localizer.Get().TrySetCurrentLanguage("en-US");
+        Localizer.Get().SetLanguage("en-US");
     }
 
     private void Button_Click_1(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        Localizer.Get().TrySetCurrentLanguage("fa-IR");
+        Localizer.Get().SetLanguage("fa-IR");
     }
 }

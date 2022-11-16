@@ -25,17 +25,13 @@ public partial class App : Application
             c_notificationHandlers.Add(ToastWithPayload.Instance.ScenarioId, ToastWithPayload.Instance.NotificationReceived);
             notificationManager = new NotificationManager(c_notificationHandlers);
         }
-
-        string resourcesFolderPath;
-        if (ApplicationHelper.IsPackaged)
-        {
-            resourcesFolderPath = @"C:\\Projects\\Strings";
-        }
-        else
-        {
-            resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
-        }
-        _ = Localizer.Create(resourcesFolderPath);
+        ILocalizer localizer = new LocalizerBuilder()
+            // For a packaged app:
+            //.AddResourcesStringsFolder(new LocalizerResourcesStringsFolder(@"C:/Projects/Strings"))
+            // For a non-packaged app:
+            .AddDefaultResourcesStringsFolder()
+            .Build();
+        Localizer.Set(localizer);
     }
 
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
