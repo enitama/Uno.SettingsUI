@@ -53,7 +53,7 @@ public static class ResourceHelper
 
     public static string GetString(string key, string filename)
     {
-        return new ResourceLoader("resources.pri", filename).GetString(key);
+        return new ResourceLoader(ResourceLoader.GetDefaultResourceFilePath(), filename).GetString(key);
     }
 
     public static string GetStringWithLanguage(string key, string language = "en-US")
@@ -65,6 +65,6 @@ public static class ResourceHelper
     public static string GetStringWithLanguage(string key, string filename, string language = "en-US")
     {
         Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
-        return new ResourceLoader("resources.pri", filename).GetString(key);
+        return new ResourceLoader(ResourceLoader.GetDefaultResourceFilePath(), filename).GetString(key);
     }
 }
