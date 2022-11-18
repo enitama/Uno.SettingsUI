@@ -11,7 +11,7 @@ public interface ILocalizer
 
     void SetLanguage(string language);
 
-    void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = true);
+    void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = false);
 
     void RunLocalizationOnRegisteredRootElements();
 

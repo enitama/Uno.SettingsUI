@@ -18,6 +18,10 @@
                 <Button Click="Button_Click" loc:Localizer.Uid="english" HorizontalAlignment="Center"/>
                 <Button Click="Button_Click_1" loc:Localizer.Uid="persian" HorizontalAlignment="Center"/>
                 <TextBlock loc:Localizer.Uid="langDetail"/>
+
+                <Button Click="Button_Click_2" Content="Get Localization in Code" HorizontalAlignment="Center"/>
+                <TextBlock Name="txt"/>
+
             </StackPanel>
         </controls:SettingsPageControl.ModuleContent>
     </controls:SettingsPageControl>

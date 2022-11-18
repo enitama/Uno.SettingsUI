@@ -168,6 +168,11 @@ public partial class Localizer
                     _ = children.Add(element);
                 }
 
+                if (navigationView.AutoSuggestBox is UIElement autoSuggestBox)
+                {
+                    _ = children.Add(autoSuggestBox);
+                }
+
                 if (navigationView.Header is UIElement header)
                 {
                     _ = children.Add(header);

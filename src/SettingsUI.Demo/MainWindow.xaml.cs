@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using SettingsUI.Demo.Pages;
 using SettingsUI.Helpers;
 using SettingsUI.Tools;
 
