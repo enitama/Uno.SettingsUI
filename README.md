@@ -1,5 +1,5 @@
 ﻿<p align="center">
-    <img alt="dotnet" src="https://img.shields.io/badge/.net-%3E%3D5.0-brightgreen"/>
+    <img alt="dotnet" src="https://img.shields.io/badge/.net-%3E=6.0-brightgreen"/>
     <img alt="os-require" src="https://img.shields.io/badge/OS-%3E%3D%20Windows%2010%20Build%201809-orange"/>
     <img alt="IDE-version" src="https://img.shields.io/badge/IDE-vs2022-red"/>
     <img alt="csharp-require" src="https://img.shields.io/badge/CSharp-Latest-yellow"/>
