@@ -5,19 +5,19 @@
     <RootNamespace>SettingsUI</RootNamespace>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
-	<LangVersion>latest</LangVersion>
+	  <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>CA1416;CS8632;CA1806;CA2208;IDE0044</NoWarn>
-	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-	<Description>Windows 11 settings page in WinUI 3 apps With many useful helper classes</Description>
-	<PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
-	<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
-	<PackageTags>winui winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion</PackageTags>
-	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
-	<Version>2.2.1</Version>
-	<Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
-	<PackageIcon>icon.png</PackageIcon>
-	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <Description>Windows 11 settings page in WinUI 3 apps With many useful helper classes</Description>
+	  <PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
+    <PackageTags>winui winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion contextmenu shell</PackageTags>
+    <PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
+	  <Version>2.2.2</Version>
+	  <Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
+	  <PackageIcon>icon.png</PackageIcon>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221116.1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />

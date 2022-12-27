@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsUI", "SettingsUI\SettingsUI.csproj", "{CCBFD9A2-25AC-46C2-9354-84DF78743F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsUI", "SettingsUI\SettingsUI.csproj", "{CCBFD9A2-25AC-46C2-9354-84DF78743F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsUI.Demo", "SettingsUI.Demo\SettingsUI.Demo.csproj", "{C9441BE6-5522-4F20-9533-18534D09F485}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsUI.Demo", "SettingsUI.Demo\SettingsUI.Demo.csproj", "{C9441BE6-5522-4F20-9533-18534D09F485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsUI.ContextMenu", "SettingsUI.ContextMenu\SettingsUI.ContextMenu.csproj", "{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,22 @@ Global
 		{C9441BE6-5522-4F20-9533-18534D09F485}.Release|x86.ActiveCfg = Release|x86
 		{C9441BE6-5522-4F20-9533-18534D09F485}.Release|x86.Build.0 = Release|x86
 		{C9441BE6-5522-4F20-9533-18534D09F485}.Release|x86.Deploy.0 = Release|x86
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|arm64.Build.0 = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|x64.Build.0 = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Debug|x86.Build.0 = Debug|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|arm64.ActiveCfg = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|arm64.Build.0 = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|x64.ActiveCfg = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|x64.Build.0 = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|x86.ActiveCfg = Release|Any CPU
+		{8B86B6B8-C72C-49FF-B67B-7E76B5E86418}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

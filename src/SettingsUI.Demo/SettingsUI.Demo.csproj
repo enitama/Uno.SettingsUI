@@ -11,7 +11,6 @@
     <UseWinUI>true</UseWinUI>
     <NoWarn>WMC1506</NoWarn>
     <EnableMsixTooling>true</EnableMsixTooling>
-    <WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\AusterNY.jpg" />
