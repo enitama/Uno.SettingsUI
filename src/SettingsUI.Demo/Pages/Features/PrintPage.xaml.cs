@@ -8,7 +8,9 @@ using System.Collections.Generic;
 namespace SettingsUI.Demo.Pages;
 public sealed partial class PrintPage : Page
 {
+#if WINDOWS10_0_18362_0_OR_GREATER
     private PrintHelper _printHelper;
+#endif
     public PrintPage()
     {
         this.InitializeComponent();
@@ -43,6 +45,8 @@ public sealed partial class PrintPage : Page
    
     private async void btnDirectPrint_Click(object sender, RoutedEventArgs e)
     {
+#if WINDOWS10_0_18362_0_OR_GREATER
+
         if (PrintManager.IsSupported())
         {
             _printHelper = new PrintHelper(DirectPrintContainer);
@@ -65,7 +69,10 @@ public sealed partial class PrintPage : Page
         {
             PrintingIsNotSupported();
         }
+#endif
     }
+
+#if WINDOWS10_0_18362_0_OR_GREATER
     private void ReleasePrintHelper()
     {
         _printHelper.Dispose();
@@ -105,4 +112,5 @@ public sealed partial class PrintPage : Page
     {
         ReleasePrintHelper();
     }
+#endif
 }

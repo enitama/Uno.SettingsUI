@@ -8,6 +8,8 @@ public class EmptyLocalizer : ILocalizer
 
     public static readonly ILocalizer Instance = new EmptyLocalizer();
 
+    public event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
+
     public IEnumerable<string> GetAvailableLanguages() => Enumerable.Empty<string>();
 
     public string GetCurrentLanguage() => string.Empty;
@@ -36,5 +38,5 @@ public class EmptyLocalizer : ILocalizer
         return false;
     }
 
-    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func) => false;
+    public bool TryRegisterUIElementChildrenGetters(Type type, Func<DependencyObject, IEnumerable<DependencyObject>> func) => false;
 }

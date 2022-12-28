@@ -27,7 +27,7 @@
  
 ### Experience WinUI 3 quickly and easily with the help of SettingsUI, Everything you need to develop an application is gathered in one place.
 
-> **_NOTE:_** SettingsUI is based on `WindowsAppSDK` version `1.2.221116.1` stable and `Microsoft.Windows.SDK.BuildTools` version `10.0.22621.755`
+> **_NOTE:_** SettingsUI is based on `WindowsAppSDK` version `1.2.221209.1` stable and `Microsoft.Windows.SDK.BuildTools` version `10.0.22621.755`
 
 ## Install
 ```
@@ -41,12 +41,71 @@ After installing, add the following resource to app.xaml
 ```
 See the Demo app to see how to use it
 
+## More Packages
+
+### ContextMenu
+```
+Install-Package SettingsUI.ContextMenu
+```
+
+After installing, add the following codes to `Package.appxmanifest`
+
+```xml
+<Extensions>
+    <desktop4:Extension Category="windows.fileExplorerContextMenus">
+        <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="Directory"  >
+                <desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
+            </desktop5:ItemType>
+            <desktop5:ItemType Type="*"  >
+                <desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
+            </desktop5:ItemType>
+            <desktop5:ItemType Type="Directory\Background">
+                <desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
+            </desktop5:ItemType>
+        </desktop4:FileExplorerContextMenus>
+    </desktop4:Extension>
+    <com:Extension Category="windows.comServer">
+        <com:ComServer>
+            <com:SurrogateServer  DisplayName="Custome Context Menu">
+                <com:Class Id="46F650E5-9959-48D6-AC13-A9637C5B3787" Path="ContextMenuCustomHost.dll" ThreadingModel="STA"/>
+            </com:SurrogateServer>
+        </com:ComServer>
+    </com:Extension>
+    <uap3:Extension Category="windows.appExecutionAlias">
+        <uap3:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="App5.exe"/>
+        </uap3:AppExecutionAlias>
+    </uap3:Extension>
+</Extensions>
+```
+
+`change App5.exe to your project name.`
+
+read the docs to see how to use it
+
+### SettingsControls
+```
+Install-Package SettingsUI.SettingsControls
+```
+After installing, add the following resource to app.xaml
+
+```xml
+<ResourceDictionary Source="ms-appx:///SettingsUI.SettingsControls/Themes/Generic.xaml"/>
+```
+See the Demo app to see how to use it
+
 ## Documentation
 
 See Here for Online [Documentation](https://ghost1372.github.io/settingsui/)
 
 ## Available Features
 
+we added a new SettingsControls (from CommunityToolkit Labs) in a new nuget Package called, SettingsUI.SettingsControls, for more information see docs.
+
+for adding a new ContextMenu for Windows 11/10 you can use our new nuget package called, SettingsUI.ContextMenu, for more information see docs.
+
+- Add new Context Menu for Windows 11/10
 - Dynamic Localization without need to restart Application
 - SystemBackdrop Helper class with the Support of `Mica, MicaAlt and Acrylic`
 - Multiple Custom Controls such as `Windows 11` Settings Page Controls

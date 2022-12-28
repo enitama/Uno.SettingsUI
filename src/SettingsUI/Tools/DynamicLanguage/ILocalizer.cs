@@ -3,6 +3,9 @@
 public interface ILocalizer
 {
     void InitializeWindow(FrameworkElement Root, UIElement Content);
+
+    event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
+
     IEnumerable<string> GetAvailableLanguages();
 
     string GetCurrentLanguage();
@@ -19,5 +22,5 @@ public interface ILocalizer
 
     bool TryGetLanguageDictionary(string language, out LanguageDictionary? languageDictionary);
 
-    bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func);
+    bool TryRegisterUIElementChildrenGetters(Type type, Func<DependencyObject, IEnumerable<DependencyObject>> func);
 }

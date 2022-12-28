@@ -1,4 +1,6 @@
-﻿namespace SettingsUI.Tools;
+﻿using Microsoft.UI.Xaml.Documents;
+
+namespace SettingsUI.Tools;
 
 public partial class Localizer : DependencyObject, ILocalizer
 {
@@ -7,6 +9,8 @@ public partial class Localizer : DependencyObject, ILocalizer
     internal Localizer()
     {
     }
+
+    public event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
 
     internal static ILocalizer Instance { get; set; } = EmptyLocalizer.Instance;
 
@@ -36,6 +40,7 @@ public partial class Localizer : DependencyObject, ILocalizer
             RegisterRootElement(content);
         }
     }
+
     public IEnumerable<string> GetLocalizedStrings(string key)
     {
         if (LanguageDictionaries.TryGetDictionary(
@@ -57,6 +62,9 @@ public partial class Localizer : DependencyObject, ILocalizer
         {
             CurrentLanguage = language;
             RunLocalizationOnRegisteredRootElements();
+
+            LanguageChanged?.Invoke(this, new LanguageChangedEventArgs(CurrentLanguage));
+
             return;
         }
 
@@ -65,30 +73,16 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = false)
     {
+        rootElement.Loaded -= RootElement_Loaded;
+        rootElement.Unloaded -= RootElement_Unloaded;
         rootElement.Loaded += RootElement_Loaded;
         rootElement.Unloaded += RootElement_Unloaded;
+
+        _ = this.rootElements.Add(rootElement);
+
         if (runLocalization is true)
         {
             RunLocalization(rootElement);
-        }
-    }
-
-    private void RootElement_Loaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is FrameworkElement element)
-        {
-            _ = this.rootElements.Add(element);
-            RunLocalization(element);
-        }
-    }
-
-    private void RootElement_Unloaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is FrameworkElement element)
-        {
-            element.Loaded -= RootElement_Loaded;
-            element.Unloaded -= RootElement_Unloaded;
-            _ = this.rootElements.Remove(element);
         }
     }
 
@@ -116,7 +110,7 @@ public partial class Localizer : DependencyObject, ILocalizer
         return LanguageDictionaries.TryGetDictionary(language, out languageDictionary);
     }
 
-    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func)
+    public bool TryRegisterUIElementChildrenGetters(Type type, Func<DependencyObject, IEnumerable<DependencyObject>> func)
     {
         return this.childrenGetters.TryAdd(type, func);
     }
@@ -127,7 +121,7 @@ public partial class Localizer : DependencyObject, ILocalizer
         RegisterDefaultUIElementChildrenGetters();
     }
 
-    private static DependencyProperty? GetDependencyProperty(UIElement element, string dependencyPropertyName)
+    private static DependencyProperty? GetDependencyProperty(DependencyObject element, string dependencyPropertyName)
     {
         Type type = element.GetType();
 
@@ -149,7 +143,23 @@ public partial class Localizer : DependencyObject, ILocalizer
         return null;
     }
 
-    private void Localize(UIElement element, LanguageDictionary languageDictionary)
+    private void RootElement_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement rootElement)
+        {
+            RunLocalization(rootElement);
+        }
+    }
+
+    private void RootElement_Unloaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement rootElement)
+        {
+            _ = this.rootElements.Remove(rootElement);
+        }
+    }
+
+    private void Localize(DependencyObject element, LanguageDictionary languageDictionary)
     {
         if (GetUid(element) is string uid)
         {
@@ -161,18 +171,39 @@ public partial class Localizer : DependencyObject, ILocalizer
                 {
                     element.SetValue(dependencyProperty, resource.Value);
                 }
+                else
+                {
+                    _ = TryLocalizeELementsWithoutDependencyProperty(element, resource.Value);
+                }
             }
         }
 
         if (this.childrenGetters.TryGetValue(
             element.GetType(),
-            out Func<UIElement, IEnumerable<UIElement>>? childrenGetter) is true &&
+            out Func<DependencyObject, IEnumerable<DependencyObject>>? childrenGetter) is true &&
             childrenGetter is not null)
         {
-            foreach (UIElement child in childrenGetter(element).Union(element.GetChildren()))
+            foreach (DependencyObject child in childrenGetter(element)
+                .Union((element as UIElement)?.GetChildren() ?? Enumerable.Empty<DependencyObject>()))
             {
                 Localize(child, languageDictionary);
             }
         }
+    }
+
+    private bool TryLocalizeELementsWithoutDependencyProperty(DependencyObject element, string value)
+    {
+        if (element is Run run)
+        {
+            run.Text = value;
+            return true;
+        }
+        else if (element is Hyperlink hyperlink && hyperlink.Inlines.Count is 0)
+        {
+            hyperlink.Inlines.Add(new Run() { Text = value });
+            return true;
+        }
+
+        return false;
     }
 }
