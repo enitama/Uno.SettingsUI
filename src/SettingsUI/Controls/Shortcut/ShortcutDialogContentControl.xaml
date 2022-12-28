@@ -93,11 +93,7 @@
                     </Grid>
                 </Border>
             </Grid>
-            <toolkitcontrols:MarkdownTextBlock
-                x:Uid="InvalidShortcutWarningLabel"
-                Background="Transparent"
-                FontSize="12"
-                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            <TextBlock Text="Only shortcuts that start with **Windows key**, **Ctrl**, **Alt** or **Shift** are valid." FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
         </StackPanel>
     </Grid>
 </UserControl>
