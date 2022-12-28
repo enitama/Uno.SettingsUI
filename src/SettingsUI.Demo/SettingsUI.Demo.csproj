@@ -11,6 +11,7 @@
     <UseWinUI>true</UseWinUI>
     <NoWarn>WMC1506</NoWarn>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\AusterNY.jpg" />
@@ -24,6 +25,7 @@
     <None Remove="Pages\Features\InlineAutoCompleteTextBoxPage.xaml" />
     <None Remove="Pages\Features\PresenterPage.xaml" />
     <None Remove="Pages\Features\PrintPage.xaml" />
+    <None Remove="Pages\Features\SettingsControls.xaml" />
     <None Remove="Pages\Features\SystemBackdropsPage.xaml" />
     <None Remove="Pages\Features\ThemePage.xaml" />
     <None Remove="ShellPage.xaml" />
@@ -52,7 +54,13 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SettingsUI.SettingsControl\SettingsUI.SettingsControls.csproj" />
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Features\SettingsControls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Features\DynamicLanguagePage.xaml">

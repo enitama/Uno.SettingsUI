@@ -15,7 +15,7 @@
     <PackageTags>winui winui3 win11 xaml settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion contextmenu shell</PackageTags>
     <PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
 	  <Version>2.2.2</Version>
-	  <Copyright>Copyright (c) 2021-2022 Mahdi Hosseini</Copyright>
+	  <Copyright>Copyright (c) 2021-2023 Mahdi Hosseini</Copyright>
 	  <PackageIcon>icon.png</PackageIcon>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>

@@ -2,8 +2,11 @@
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Windows.Foundation.Metadata;
+
 namespace SettingsUI.Controls;
 
+[Deprecated("SettingsUI.Controls.SettingsExpander is Deprecated, Please Install SettingsUI.SettingsControls Package and Use SettingsExpander", DeprecationType.Deprecate,2)]
 public partial class SettingExpander : Expander
 {
     public SettingExpander()
