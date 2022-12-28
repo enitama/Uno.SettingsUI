@@ -15,7 +15,7 @@ public partial class WrapPanel : Panel
     /// </summary>
     public double HorizontalSpacing
     {
-        get { return (double)GetValue(HorizontalSpacingProperty); }
+        get { return (double) GetValue(HorizontalSpacingProperty); }
         set { SetValue(HorizontalSpacingProperty, value); }
     }
 
@@ -35,7 +35,7 @@ public partial class WrapPanel : Panel
     /// </summary>
     public double VerticalSpacing
     {
-        get { return (double)GetValue(VerticalSpacingProperty); }
+        get { return (double) GetValue(VerticalSpacingProperty); }
         set { SetValue(VerticalSpacingProperty, value); }
     }
 
@@ -56,7 +56,7 @@ public partial class WrapPanel : Panel
     /// </summary>
     public Orientation Orientation
     {
-        get { return (Orientation)GetValue(OrientationProperty); }
+        get { return (Orientation) GetValue(OrientationProperty); }
         set { SetValue(OrientationProperty, value); }
     }
 
@@ -79,7 +79,7 @@ public partial class WrapPanel : Panel
     /// </returns>
     public Thickness Padding
     {
-        get { return (Thickness)GetValue(PaddingProperty); }
+        get { return (Thickness) GetValue(PaddingProperty); }
         set { SetValue(PaddingProperty, value); }
     }
 
@@ -99,7 +99,7 @@ public partial class WrapPanel : Panel
     /// </summary>
     public StretchChild StretchChild
     {
-        get { return (StretchChild)GetValue(StretchChildProperty); }
+        get { return (StretchChild) GetValue(StretchChildProperty); }
         set { SetValue(StretchChildProperty, value); }
     }
 
@@ -123,7 +123,7 @@ public partial class WrapPanel : Panel
         }
     }
 
-    private readonly List<Row> _rows = new();
+    private readonly List<Row> _rows = new List<Row>();
 
     /// <inheritdoc />
     protected override Size MeasureOverride(Size availableSize)

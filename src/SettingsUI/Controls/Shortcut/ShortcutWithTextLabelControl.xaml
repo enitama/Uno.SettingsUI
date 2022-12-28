@@ -9,30 +9,40 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ItemsControl AutomationProperties.AccessibilityView="Raw"
-                          ItemsSource="{x:Bind Keys}"
-                          VerticalAlignment="Center"
-                          IsTabStop="False">
+        <ItemsControl
+            VerticalAlignment="Center"
+            AutomationProperties.AccessibilityView="Raw"
+            IsTabStop="False"
+            ItemsSource="{x:Bind Keys}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" Spacing="4" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="4" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <controls:KeyVisual IsTabStop="False"
-                                            AutomationProperties.AccessibilityView="Raw"
-                                            VisualType="SmallOutline"
-                                            VerticalAlignment="Center"
-                                            Content="{Binding}" />
+                    <controls:KeyVisual
+                        VerticalAlignment="Center"
+                        AutomationProperties.AccessibilityView="Raw"
+                        Content="{Binding}"
+                        IsTabStop="False"
+                        VisualType="SmallOutline" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBlock Text="{x:Bind Text}" Margin="8,0,0,0" Grid.Column="1" VerticalAlignment="Center" />
+        <toolkitcontrols:MarkdownTextBlock
+            Grid.Column="1"
+            Margin="8,0,0,0"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Text="{x:Bind Text}" />
     </Grid>
 </UserControl>

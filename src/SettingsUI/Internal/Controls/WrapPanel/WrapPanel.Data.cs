@@ -38,8 +38,7 @@ public partial class WrapPanel
         }
 
         public UvMeasure Add(double u, double v)
-            => new()
-            { U = U + u, V = V + v };
+            => new UvMeasure { U = U + u, V = V + v };
 
         public UvMeasure Add(UvMeasure measure)
             => Add(measure.U, measure.V);

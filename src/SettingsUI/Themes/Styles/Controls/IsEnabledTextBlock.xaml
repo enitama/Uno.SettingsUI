@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="using:SettingsUI.Controls">
 
+
     <Style TargetType="controls:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}" />
         <Setter Property="IsTabStop" Value="False" />
@@ -9,9 +10,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:IsEnabledTextBlock">
                     <Grid>
+                        <TextBlock
+                            x:Name="Label"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Text="{TemplateBinding Text}"
+                            TextWrapping="WrapWholeWords" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
                                         <Setter Target="Label.Foreground" Value="{ThemeResource TextFillColorDisabledBrush}" />
@@ -19,20 +28,15 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <TextBlock x:Name="Label"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   FontWeight="{TemplateBinding FontWeight}"
-                                   FontFamily="{TemplateBinding FontFamily}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   TextWrapping="WrapWholeWords"
-                                   Text="{TemplateBinding Text}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="controls:IsEnabledTextBlock" x:Key="SecondaryIsEnabledTextBlockStyle">
+    <Style
+        x:Key="SecondaryIsEnabledTextBlockStyle"
+        TargetType="controls:IsEnabledTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}"/>
+        <Setter Property="FontSize" Value="{StaticResource SecondaryTextFontSize}" />
     </Style>
 </ResourceDictionary>
