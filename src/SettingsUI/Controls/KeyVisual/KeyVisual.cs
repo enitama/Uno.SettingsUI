@@ -2,7 +2,13 @@
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace SettingsUI.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
+using System;
+using Windows.System;
+
+namespace WinUICommunity.SettingsUI.Controls;
 
 [TemplatePart(Name = KeyPresenter, Type = typeof(ContentPresenter))]
 [TemplateVisualState(Name = "Normal", GroupName = "CommonStates")]

@@ -1,88 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RootNamespace>SettingsUI</RootNamespace>
+    <TargetFrameworks>net6.0-windows10.0.17763.0;net6.0-windows10.0.19041.0;net7.0-windows10.0.17763.0;net7.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <RootNamespace>WinUICommunity.SettingsUI</RootNamespace>
     <UseWinUI>true</UseWinUI>
-	  <LangVersion>latest</LangVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <NoWarn>CA1416;CS8632;CA1806;CA2208;IDE0044</NoWarn>
-	  <Description>Windows 11 settings page in WinUI 3 apps With many useful helper classes</Description>
+    <Version>1.0.0</Version>
+    <Copyright>Copyright (c) 2021-2023 Mahdi Hosseini</Copyright>
+    <Description>Windows 11 settings page in WinUI 3 apps With many useful controls and styles</Description>
+    <NoWarn>CS8632</NoWarn>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageId>WinUICommunity.SettingsUI</PackageId>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/WinUICommunity/SettingsUI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/WinUICommunity/SettingsUI</RepositoryUrl>
+    <PackageTags>winui winui3 win11 xaml SettingsUI settings theme styles projectreunion winappsdk windowsappsdk wasdk reunion SettingsControls settingsexpander settingscard</PackageTags>
+    <PackageReleaseNotes>https://github.com/WinUICommunity/SettingsUI/releases</PackageReleaseNotes>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <None Remove="Controls\InlineAutoCompleteTextBox\InlineAutoCompleteTextBox.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
-	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
-  </ItemGroup>
-  
   <ItemGroup>
     <None Include="Assets\icon.png" Pack="true" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Page Update="Themes\Styles\Controls\InlineAutoCompleteTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Themes\Styles\Controls\IsEnabledTextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Controls\KeyVisual.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Controls\OOBEPageControl\OOBEPageControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Controls\SettingsGroup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Controls\SettingsPageControl\SettingsPageControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Controls\Setting.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Controls\Shortcut\ShortcutDialogContentControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Controls\Shortcut\ShortcutWithTextLabelControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Controls\SettingExpander.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Button.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Colors.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\Common.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\Styles\TextBlock.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="XAMLTools.MSBuild" Version="1.0.0-alpha0140">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <XAMLCombineItems Include="Themes\Styles\**\*.xaml">
+      <TargetFile>Themes\Generic.xaml</TargetFile>
+      <Visible>True</Visible>
+    </XAMLCombineItems>
+    <XAMLCombineItems Include="Labs\**\*.xaml">
       <TargetFile>Themes\Generic.xaml</TargetFile>
       <Visible>True</Visible>
     </XAMLCombineItems>

@@ -1,7 +1,10 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-namespace SettingsUI.Internal.Converters;
+using Microsoft.UI.Xaml.Markup;
+using System;
+
+namespace WinUICommunity.SettingsUI.Internal.Converters;
 
 /// <summary>
 /// Static class used to provide internal tools

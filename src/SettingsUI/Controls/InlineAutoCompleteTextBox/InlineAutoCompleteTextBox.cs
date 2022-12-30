@@ -1,6 +1,16 @@
 ﻿// LICENSE https://github.com/AndrewKeepCoding/AK.Toolkit
 
-namespace SettingsUI.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using System.Collections.Generic;
+using System.Linq;
+using Windows.System;
+using Windows.UI;
+
+namespace WinUICommunity.SettingsUI.Controls;
 /// <summary>
 /// A TextBox control that shows a suggestion "inside it self".
 /// Suggestions need to be provided by the SuggestionsSource property.

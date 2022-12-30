@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:controls="using:SettingsUI.Controls"
+                    xmlns:controls="using:WinUICommunity.SettingsUI.Controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>

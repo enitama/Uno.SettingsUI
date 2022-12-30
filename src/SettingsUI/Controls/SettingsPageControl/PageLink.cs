@@ -2,7 +2,9 @@
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace SettingsUI.Controls;
+using System;
+
+namespace WinUICommunity.SettingsUI.Controls;
 
 public class PageLink
 {

@@ -1,7 +1,9 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-namespace SettingsUI.Internal.Converters;
+using Microsoft.UI.Xaml;
+
+namespace WinUICommunity.SettingsUI.Internal.Converters;
 
 /// <summary>
 /// This class converts a double value into a Visibility enumeration.

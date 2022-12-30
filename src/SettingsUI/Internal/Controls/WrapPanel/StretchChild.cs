@@ -1,7 +1,7 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-namespace SettingsUI.Internal.Controls;
+namespace WinUICommunity.SettingsUI.Internal.Controls;
 
 /// <summary>
 /// Options for how to calculate the layout of <see cref="Microsoft.UI.Xaml.Controls.WrapGrid"/> items.

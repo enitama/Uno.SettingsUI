@@ -1,8 +1,11 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
+using Microsoft.UI.Xaml.Controls;
+using System;
+using System.Collections.Generic;
 using Windows.Foundation;
 
-namespace SettingsUI.Internal.Controls;
+namespace WinUICommunity.SettingsUI.Internal.Controls;
 
 /// <summary>
 /// WrapPanel is a panel that position child control vertically or horizontally based on the orientation and when max width/ max height is received a new row(in case of horizontal) or column (in case of vertical) is created to fit new controls.
