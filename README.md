@@ -43,7 +43,7 @@ After installing, add the following resource to app.xaml
 <ResourceDictionary Source="ms-appx:///SettingsUI/Themes/Generic.xaml"/>
 ```
 
-See the Demo app to see how to use it
+See the [Demo](https://github.com/winUICommunity/DemoApp) app to see how to use it
 
 ## Documentation
 
