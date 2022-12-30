@@ -9,7 +9,6 @@ using Windows.Foundation.Metadata;
 
 namespace WinUICommunity.SettingsUI.Controls;
 
-[Deprecated("WinUICommunity.Controls.SettingsExpander is Deprecated, Please Install WinUICommunity.SettingsControls Package and Use SettingsExpander", DeprecationType.Deprecate,2)]
 public partial class SettingExpander : Expander
 {
     public SettingExpander()
