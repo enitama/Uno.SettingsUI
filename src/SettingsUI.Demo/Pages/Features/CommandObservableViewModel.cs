@@ -1,4 +1,4 @@
-﻿using SettingsUI.Tools;
+﻿using WinUICommunity.Common.Tools;
 using System.Windows.Input;
 
 namespace SettingsUI.Demo.Pages.Features

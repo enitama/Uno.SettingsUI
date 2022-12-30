@@ -2,9 +2,9 @@
     x:Class="SettingsUI.Demo.Pages.DynamicLanguagePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:loc="using:SettingsUI.Tools"
+    xmlns:loc="using:WinUICommunity.Common.Tools"
     Name="Root"
-    xmlns:controls="using:SettingsUI.Controls">
+    xmlns:controls="using:WinUICommunity.SettingsUI.Controls">
 
     <controls:SettingsPageControl
         IsTabStop="False"

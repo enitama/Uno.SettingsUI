@@ -1,6 +1,6 @@
 ﻿using Microsoft.Windows.AppNotifications;
 using SettingsUI.Demo.Pages;
-using SettingsUI.Helpers;
+using WinUICommunity.Common.Helpers;
 
 namespace SettingsUI.Demo.AppNotification;
 public class ToastWithAvatar : IScenario

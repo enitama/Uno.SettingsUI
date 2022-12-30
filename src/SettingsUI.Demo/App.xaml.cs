@@ -3,9 +3,9 @@ using System;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppNotifications;
 using SettingsUI.Demo.AppNotification;
-using SettingsUI.Helpers;
+using WinUICommunity.Common.Helpers;
 using SettingsUI.Demo.Pages;
-using SettingsUI.Tools;
+using WinUICommunity.Common.Tools;
 using System.IO;
 
 namespace SettingsUI.Demo;

@@ -8,7 +8,7 @@
     xmlns:local="using:SettingsUI.Demo.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:labs="using:SettingsUI.SettingsControls"
+    xmlns:labs="using:WinUICommunity.SettingsUI.SettingsControls"
     mc:Ignorable="d">
     <Page.Resources>
         <!--  These styles can be referenced to create a consistent SettingsPage layout  -->

@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using SettingsUI.Helpers;
-using SettingsUI.Tools;
+using WinUICommunity.Common.Helpers;
+using WinUICommunity.Common.Tools;
 
 namespace SettingsUI.Demo;
 

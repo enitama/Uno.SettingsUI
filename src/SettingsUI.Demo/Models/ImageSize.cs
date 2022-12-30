@@ -1,4 +1,4 @@
-﻿using SettingsUI.Tools;
+﻿using WinUICommunity.Common.Tools;
 
 namespace SettingsUI.Demo.Models
 {

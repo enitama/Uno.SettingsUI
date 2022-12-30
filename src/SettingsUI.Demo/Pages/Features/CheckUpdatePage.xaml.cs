@@ -1,5 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using SettingsUI.Helpers;
+using WinUICommunity.Common.Helpers;
 using System;
 
 namespace SettingsUI.Demo.Pages

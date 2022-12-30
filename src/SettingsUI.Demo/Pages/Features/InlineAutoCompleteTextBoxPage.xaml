@@ -2,7 +2,7 @@
     x:Class="SettingsUI.Demo.Pages.InlineAutoCompleteTextBoxPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:SettingsUI.Controls">
+    xmlns:controls="using:WinUICommunity.SettingsUI.Controls">
     <controls:SettingsPageControl
         IsTabStop="False"
         ModuleDescription="InlineAutoCompleteTextBox."

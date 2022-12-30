@@ -52,7 +52,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SettingsUI.SettingsControl\SettingsUI.SettingsControls.csproj" />
+    <PackageReference Include="WinUICommunity.Common" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SettingsUI\SettingsUI.csproj" />
   </ItemGroup>
   <ItemGroup>

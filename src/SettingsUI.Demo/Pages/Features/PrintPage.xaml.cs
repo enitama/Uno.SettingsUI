@@ -1,8 +1,8 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Graphics.Printing;
-using SettingsUI.Helpers;
-using SettingsUI.Extensions;
+using WinUICommunity.Common.Helpers;
+using WinUICommunity.Common.Extensions;
 using System.Collections.Generic;
 
 namespace SettingsUI.Demo.Pages;

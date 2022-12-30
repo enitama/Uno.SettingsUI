@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using SettingsUI.Demo.Pages;
-using SettingsUI.ViewModel;
+using WinUICommunity.Common.ViewModel;
 
 namespace SettingsUI.Demo;
 
