@@ -3,14 +3,17 @@
     <img alt="os-require" src="https://img.shields.io/badge/OS-%3E%3D%20Windows%2010%20Build%201809-orange"/>
     <img alt="IDE-version" src="https://img.shields.io/badge/IDE-vs2022-red"/>
     <img alt="csharp-require" src="https://img.shields.io/badge/CSharp-Latest-yellow"/>
-    <a href="https://www.nuget.org/packages/SettingsUI">
-        <img alt="nuget-version" src="https://img.shields.io/nuget/v/SettingsUI.svg"></img>
+    <a href="https://github.com/WinUICommunity">
+        <img alt="projects" src="https://img.shields.io/badge/WinUICommunity-Projects-green"></img>
     </a> 
-    <a href="https://www.nuget.org/packages/SettingsUI">
-        <img alt="Nuget" src="https://img.shields.io/nuget/dt/SettingsUI?color=brightgreen&label=Installs"></img>
+    <a href="https://www.nuget.org/packages/WinUICommunity.SettingsUI">
+        <img alt="nuget-version" src="https://img.shields.io/nuget/v/WinUICommunity.SettingsUI.svg"></img>
     </a> 
-    <a href="https://ghost1372.github.io/settingsui/">
-        <img alt="Nuget" src="https://img.shields.io/badge/Document-Here-critical"></img>
+    <a href="https://www.nuget.org/packages/WinUICommunity.SettingsUI">
+        <img alt="Installed" src="https://img.shields.io/nuget/dt/WinUICommunity.SettingsUI?color=brightgreen&label=Installs"></img>
+    </a> 
+    <a href="https://ghost1372.github.io/winUICommunity/">
+        <img alt="Docs" src="https://img.shields.io/badge/Document-Here-critical"></img>
     </a> 
 </p>
 
@@ -31,7 +34,7 @@
 
 ## Install
 ```
-Install-Package SettingsUI
+Install-Package WinUICommunity.SettingsUI
 ```
 
 After installing, add the following resource to app.xaml
@@ -39,82 +42,17 @@ After installing, add the following resource to app.xaml
 ```xml
 <ResourceDictionary Source="ms-appx:///SettingsUI/Themes/Generic.xaml"/>
 ```
-See the Demo app to see how to use it
 
-## More Packages
-
-### ContextMenu
-```
-Install-Package SettingsUI.ContextMenu
-```
-
-After installing, add the following codes to `Package.appxmanifest`
-
-```xml
-<Extensions>
-    <desktop4:Extension Category="windows.fileExplorerContextMenus">
-        <desktop4:FileExplorerContextMenus>
-            <desktop5:ItemType Type="Directory"  >
-                <desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
-            </desktop5:ItemType>
-            <desktop5:ItemType Type="*"  >
-                <desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
-            </desktop5:ItemType>
-            <desktop5:ItemType Type="Directory\Background">
-                <desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
-            </desktop5:ItemType>
-        </desktop4:FileExplorerContextMenus>
-    </desktop4:Extension>
-    <com:Extension Category="windows.comServer">
-        <com:ComServer>
-            <com:SurrogateServer  DisplayName="Custome Context Menu">
-                <com:Class Id="46F650E5-9959-48D6-AC13-A9637C5B3787" Path="ContextMenuCustomHost.dll" ThreadingModel="STA"/>
-            </com:SurrogateServer>
-        </com:ComServer>
-    </com:Extension>
-    <uap3:Extension Category="windows.appExecutionAlias">
-        <uap3:AppExecutionAlias>
-            <desktop:ExecutionAlias Alias="App5.exe"/>
-        </uap3:AppExecutionAlias>
-    </uap3:Extension>
-</Extensions>
-```
-
-`change App5.exe to your project name.`
-
-read the docs to see how to use it
-
-### SettingsControls
-```
-Install-Package SettingsUI.SettingsControls
-```
-After installing, add the following resource to app.xaml
-
-```xml
-<ResourceDictionary Source="ms-appx:///SettingsUI.SettingsControls/Themes/Generic.xaml"/>
-```
 See the Demo app to see how to use it
 
 ## Documentation
 
-See Here for Online [Documentation](https://ghost1372.github.io/settingsui/)
+See Here for Online [Documentation](https://ghost1372.github.io/winUICommunity/)
 
 ## Available Features
 
-we added a new SettingsControls (from CommunityToolkit Labs) in a new nuget Package called, SettingsUI.SettingsControls, for more information see docs.
-
-for adding a new ContextMenu for Windows 11/10 you can use our new nuget package called, SettingsUI.ContextMenu, for more information see docs.
-
-- Add new Context Menu for Windows 11/10
-- Dynamic Localization without need to restart Application
-- SystemBackdrop Helper class with the Support of `Mica, MicaAlt and Acrylic`
 - Multiple Custom Controls such as `Windows 11` Settings Page Controls
-- Extensions Methods
-- A lot of useful Helper Classes for working with Window, Application, Taskbar, Resources, Print and more
-- NavigationView Services To implement quick and easy Navigation with AutoSuggestBox and Back Button
 - Custom Styles for Some Controls such as TextBlock and Button.
-- Easy and Quick implementation of `Command` and `INotifyPropertyChanged` with `Observable` and `RelayCommand` classes.
-
 
 ![SettingsUI](https://raw.githubusercontent.com/ghost1372/Resources/main/SettingsUI/0.png)
 
