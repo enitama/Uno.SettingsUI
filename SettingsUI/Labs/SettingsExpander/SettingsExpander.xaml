@@ -52,7 +52,6 @@
             <Setter Property="BorderThickness" Value="{ThemeResource SettingsCardBorderThickness}" />
             <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
             <Setter Property="MinHeight" Value="{ThemeResource SettingsCardMinHeight}" />
-            <Setter Property="MaxWidth" Value="{ThemeResource SettingsCardMaxWidth}" />
             <Setter Property="MinWidth" Value="{ThemeResource SettingsCardMinWidth}" />
             <Setter Property="IsTabStop" Value="False" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
