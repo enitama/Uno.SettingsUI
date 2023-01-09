@@ -5,7 +5,7 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <RootNamespace>WinUICommunity.SettingsUI</RootNamespace>
     <UseWinUI>true</UseWinUI>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <Copyright>Copyright (c) 2021-2023 Mahdi Hosseini</Copyright>
     <Description>Windows 11 settings page in WinUI 3 apps With many useful controls and styles</Description>
     <NoWarn>CS8632</NoWarn>

@@ -12,6 +12,33 @@
             <SolidColorBrush
                 x:Key="SolidBackgroundBrush"
                 Color="Black" />
+
+            <StaticResource x:Key="SettingsCardBackground"
+                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPointerOver"
+                            ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPressed"
+                            ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundDisabled"
+                            ResourceKey="ControlFillColorDisabledBrush" />
+
+            <StaticResource x:Key="SettingsCardForeground"
+                            ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="SettingsCardForegroundPointerOver"
+                            ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="SettingsCardForegroundPressed"
+                            ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="SettingsCardForegroundDisabled"
+                            ResourceKey="TextFillColorDisabledBrush" />
+
+            <StaticResource x:Key="SettingsCardBorderBrush"
+                            ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPointerOver"
+                            ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPressed"
+                            ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushDisabled"
+                            ResourceKey="ControlStrokeColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
@@ -26,6 +53,33 @@
                 x:Key="SolidBackgroundBrush"
                 Color="White" />
             <Thickness x:Key="CardBorderThickness">1</Thickness>
+
+            <StaticResource x:Key="SettingsCardBackground"
+                            ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPointerOver"
+                            ResourceKey="ControlFillColorSecondaryBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPressed"
+                            ResourceKey="ControlFillColorTertiaryBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundDisabled"
+                            ResourceKey="ControlFillColorDisabledBrush" />
+
+            <StaticResource x:Key="SettingsCardForeground"
+                            ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="SettingsCardForegroundPointerOver"
+                            ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="SettingsCardForegroundPressed"
+                            ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="SettingsCardForegroundDisabled"
+                            ResourceKey="TextFillColorDisabledBrush" />
+
+            <StaticResource x:Key="SettingsCardBorderBrush"
+                            ResourceKey="CardStrokeColorDefaultBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPointerOver"
+                            ResourceKey="ControlElevationBorderBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPressed"
+                            ResourceKey="ControlStrokeColorDefaultBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushDisabled"
+                            ResourceKey="ControlStrokeColorDefaultBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="HighContrast">
@@ -40,6 +94,33 @@
                 Color="Black" />
             <Color x:Key="InfoBarInformationalSeverityIconBackground">#FF5fb2f2</Color>
             <Thickness x:Key="CardBorderThickness">2</Thickness>
+
+            <StaticResource x:Key="SettingsCardBackground"
+                            ResourceKey="SystemColorButtonFaceColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPointerOver"
+                            ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPressed"
+                            ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundDisabled"
+                            ResourceKey="SystemControlBackgroundBaseLowBrush" />
+
+            <StaticResource x:Key="SettingsCardForeground"
+                            ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="SettingsCardForegroundPointerOver"
+                            ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="SettingsCardForegroundPressed"
+                            ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="SettingsCardForegroundDisabled"
+                            ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+
+            <StaticResource x:Key="SettingsCardBorderBrush"
+                            ResourceKey="SystemColorButtonTextColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPointerOver"
+                            ResourceKey="SystemColorHighlightColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPressed"
+                            ResourceKey="SystemColorHighlightTextColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushDisabled"
+                            ResourceKey="SystemControlDisabledTransparentBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
