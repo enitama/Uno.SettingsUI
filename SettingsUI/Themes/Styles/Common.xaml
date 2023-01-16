@@ -2,6 +2,13 @@
                     xmlns:controls="using:WinUICommunity.SettingsUI.Controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <TransitionCollection x:Key="SettingsCardsAnimations">
+        <EntranceThemeTransition FromVerticalOffset="50"/>
+        <!-- Animates cards when loaded-->
+        <RepositionThemeTransition  IsStaggeringEnabled="False" />
+        <!-- Smoothly animates individual cards upon whenever Expanders are expanded/collapsed -->
+    </TransitionCollection>
+    
     <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>
     
     <Style x:Key="ListViewItemSettingStyle" TargetType="ListViewItem">

@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     x:Name="ShortcutContentControl">
     <UserControl.Resources>
-        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible" />
     </UserControl.Resources>
     <Grid
         MinWidth="498"
@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock
-            x:Uid="Activation_Shortcut_Description"
+            Text="Press a combination of keys to change this shortcut"
             Grid.Row="0" />
 
         <ItemsControl
@@ -84,7 +84,7 @@
 
                         <TextBlock
                             x:Name="InvalidShortcutWarningLabel"
-                            x:Uid="InvalidShortcut"
+                            Text="Invalid shortcut"
                             Grid.Column="1"
                             Margin="0,-1,0,0"
                             VerticalAlignment="Center"
@@ -93,7 +93,6 @@
                     </Grid>
                 </Border>
             </Grid>
-            <TextBlock Text="Only shortcuts that start with **Windows key**, **Ctrl**, **Alt** or **Shift** are valid." FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
         </StackPanel>
     </Grid>
 </UserControl>
