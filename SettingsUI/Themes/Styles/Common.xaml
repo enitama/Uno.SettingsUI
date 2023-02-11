@@ -43,5 +43,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Grid" x:Key="GridCardPanel">
+        <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
+        <Setter Property="BorderThickness" Value="1,1,0,0"/>
+        <Setter Property="CornerRadius" Value="8"/>
+    </Style>
     
 </ResourceDictionary>
