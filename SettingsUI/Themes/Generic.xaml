@@ -2174,12 +2174,25 @@ Themes\Styles\TextBlock.xaml
       <win:Setter Property="Template">
         <win:Setter.Value>
           <win:ControlTemplate TargetType="labs:SettingsExpander">
-            <win:Expander MaxWidth="{TemplateBinding MaxWidth}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" win:AutomationProperties.HelpText="{TemplateBinding AutomationProperties.HelpText}" win:AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}" IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource SettingsExpanderExpanderStyle}">
+            <win:Expander MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" win:AutomationProperties.HelpText="{TemplateBinding AutomationProperties.HelpText}" win:AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}" IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource SettingsExpanderExpanderStyle}">
               <win:Expander.Header>
                 <labs:SettingsCard Padding="{StaticResource SettingsExpanderHeaderPadding}" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Content="{TemplateBinding Content}" Description="{TemplateBinding Description}" Header="{TemplateBinding Header}" HeaderIcon="{TemplateBinding HeaderIcon}" IsClickEnabled="False" />
               </win:Expander.Header>
               <win:Expander.Content>
-                <win:ItemsPresenter win:Footer="{TemplateBinding ItemsFooter}" win:Header="{TemplateBinding ItemsHeader}" TabFocusNavigation="Local" />
+                <win:Grid>
+                  <win:Grid.RowDefinitions>
+                    <win:RowDefinition Height="Auto" />
+                    <win:RowDefinition Height="*" />
+                    <win:RowDefinition Height="Auto" />
+                  </win:Grid.RowDefinitions>
+                  <win:ContentPresenter Content="{TemplateBinding ItemsHeader}" />
+                  <win:ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Row="1" ItemTemplate="{Binding ItemTemplate, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" TabFocusNavigation="Local">
+                    <win:ItemsRepeater.Layout>
+                      <win:UniformGridLayout ItemsStretch="Fill" MaximumRowsOrColumns="1" Orientation="Horizontal" />
+                    </win:ItemsRepeater.Layout>
+                  </win:ItemsRepeater>
+                  <win:ContentPresenter Grid.Row="2" Content="{TemplateBinding ItemsFooter}" />
+                </win:Grid>
               </win:Expander.Content>
             </win:Expander>
           </win:ControlTemplate>
