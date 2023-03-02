@@ -17,7 +17,7 @@ public static partial class StyleExtensions
 
     public static ResourceDictionary GetResources(Style obj)
     {
-        return (ResourceDictionary)obj.GetValue(ResourcesProperty);
+        return (ResourceDictionary) obj.GetValue(ResourcesProperty);
     }
 
     public static void SetResources(Style obj, ResourceDictionary value)

@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 
 namespace WinUICommunity.SettingsUI.SettingsControls;
+
 /// <summary>
 /// AutomationPeer for SettingsExpander
 /// </summary>
@@ -37,9 +38,6 @@ public class SettingsExpanderAutomationPeer : FrameworkElementAutomationPeer
     protected override string GetClassNameCore()
     {
         string classNameCore = Owner.GetType().Name;
-#if DEBUG_AUTOMATION
-            System.Diagnostics.Debug.WriteLine("SettingsCardAutomationPeer.GetClassNameCore returns " + classNameCore);
-#endif
         return classNameCore;
     }
 
@@ -50,16 +48,14 @@ public class SettingsExpanderAutomationPeer : FrameworkElementAutomationPeer
     /// <param name="newValue">New Expanded state</param>
     public void RaiseExpandedChangedEvent(bool newValue)
     {
-        ExpandCollapseState newState = newValue == true ?
+        ExpandCollapseState newState = (newValue == true) ?
           ExpandCollapseState.Expanded :
           ExpandCollapseState.Collapsed;
 
-        ExpandCollapseState oldState = newState == ExpandCollapseState.Expanded ?
+        ExpandCollapseState oldState = (newState == ExpandCollapseState.Expanded) ?
           ExpandCollapseState.Collapsed :
           ExpandCollapseState.Expanded;
 
-#if !HAS_UNO
         RaisePropertyChangedEvent(ExpandCollapsePatternIdentifiers.ExpandCollapseStateProperty, oldState, newState);
-#endif
     }
 }

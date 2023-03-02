@@ -106,6 +106,7 @@ Themes\Styles\TextBlock.xaml
   <win:Thickness x:Key="SettingsExpanderItemPadding">58,8,44,8</win:Thickness>
   <win:Thickness x:Key="SettingsExpanderItemBorderThickness">0,1,0,0</win:Thickness>
   <win:Thickness x:Key="ClickableSettingsExpanderItemPadding">58,8,16,8</win:Thickness>
+  <x:Double x:Key="SettingsExpanderContentMinHeight">16</x:Double>
   <win:SolidColorBrush x:Key="SubtleButtonBackground" Color="{ThemeResource SubtleFillColorTransparent}" />
   <win:SolidColorBrush x:Key="SubtleButtonBackgroundPointerOver" Color="{ThemeResource SubtleFillColorSecondary}" />
   <win:SolidColorBrush x:Key="SubtleButtonBackgroundPressed" Color="{ThemeResource SubtleFillColorTertiary}" />
@@ -262,7 +263,7 @@ Themes\Styles\TextBlock.xaml
       <win:Setter Property="Template">
         <win:Setter.Value>
           <win:ControlTemplate TargetType="ToggleSwitch">
-            <win:Grid VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <win:Grid VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}">
               <win:VisualStateManager.VisualStateGroups>
                 <win:VisualStateGroup x:Name="CommonStates">
                   <win:VisualState x:Name="Normal">
@@ -552,7 +553,7 @@ Themes\Styles\TextBlock.xaml
                   <win:ColumnDefinition Width="12" MaxWidth="12" />
                   <win:ColumnDefinition Width="Auto" />
                 </win:Grid.ColumnDefinitions>
-                <win:Grid x:Name="SwitchAreaGrid" Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="0,5" Background="{ThemeResource ToggleSwitchContainerBackground}" Control.IsTemplateFocusTarget="True" CornerRadius="{TemplateBinding CornerRadius}" />
+                <win:Grid x:Name="SwitchAreaGrid" Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="0,5" Background="{ThemeResource ToggleSwitchContainerBackground}" CornerRadius="{TemplateBinding CornerRadius}" />
                 <win:ContentPresenter x:Name="OffContentPresenter" Grid.RowSpan="3" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" win:AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding OffContent}" ContentTemplate="{TemplateBinding OffContentTemplate}" Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" />
                 <win:ContentPresenter x:Name="OnContentPresenter" Grid.RowSpan="3" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" win:AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding OnContent}" ContentTemplate="{TemplateBinding OnContentTemplate}" Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0" />
                 <win:Rectangle x:Name="OuterBorder" Grid.Row="1" Grid.Column="2" Width="40" Height="20" Fill="{ThemeResource ToggleSwitchFillOff}" RadiusX="10" RadiusY="10" Stroke="{ThemeResource ToggleSwitchStrokeOff}" StrokeThickness="{ThemeResource ToggleSwitchOuterBorderStrokeThickness}" />
@@ -1928,20 +1929,9 @@ Themes\Styles\TextBlock.xaml
                   </win:VisualState>
                 </win:VisualStateGroup>
                 <win:VisualStateGroup x:Name="ContentAlignmentStates">
+                  <!--  Default  -->
                   <win:VisualState x:Name="Right" />
-                  <win:VisualState x:Name="Left">
-                    <win:VisualState.StateTriggers>
-                      <labs:IsEqualStateTrigger Value="{Binding ContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" To="Left" />
-                    </win:VisualState.StateTriggers>
-                    <win:VisualState.Setters>
-                      <win:Setter Target="PART_HeaderIconPresenterHolder.Visibility" Value="Collapsed" />
-                      <win:Setter Target="PART_DescriptionPresenter.Visibility" Value="Collapsed" />
-                      <win:Setter Target="PART_HeaderPresenter.Visibility" Value="Collapsed" />
-                      <win:Setter Target="PART_ContentPresenter.(Grid.Row)" Value="1" />
-                      <win:Setter Target="PART_ContentPresenter.(Grid.Column)" Value="1" />
-                      <win:Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Left" />
-                    </win:VisualState.Setters>
-                  </win:VisualState>
+                  <!--  Whenever the control width is less than SettingsCardWrapThreshold, the Content is below the Header/Description  -->
                   <win:VisualState x:Name="RightWrapped">
                     <win:VisualState.StateTriggers>
                       <labs:ControlSizeTrigger MinWidth="{ThemeResource SettingsCardWrapNoIconThreshold}" MaxWidth="{ThemeResource SettingsCardWrapThreshold}" TargetElement="{Binding ElementName=PART_RootGrid}" />
@@ -1955,6 +1945,7 @@ Themes\Styles\TextBlock.xaml
                       <win:Setter Target="HeaderPanel.Margin" Value="0" />
                     </win:VisualState.Setters>
                   </win:VisualState>
+                  <!--  For even smaller widths: the HeaderIcon is collapsed.  -->
                   <win:VisualState x:Name="RightWrappedNoIcon">
                     <win:VisualState.StateTriggers>
                       <labs:ControlSizeTrigger MaxWidth="{ThemeResource SettingsCardWrapNoIconThreshold}" TargetElement="{Binding ElementName=PART_RootGrid}" />
@@ -1969,6 +1960,21 @@ Themes\Styles\TextBlock.xaml
                       <win:Setter Target="HeaderPanel.Margin" Value="0" />
                     </win:VisualState.Setters>
                   </win:VisualState>
+                  <!--  Header/Description/Icon collapsed, content is to the left. Great for e.g. Checkboxes  -->
+                  <win:VisualState x:Name="Left">
+                    <win:VisualState.StateTriggers>
+                      <labs:IsEqualStateTrigger Value="{Binding ContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" To="Left" />
+                    </win:VisualState.StateTriggers>
+                    <win:VisualState.Setters>
+                      <win:Setter Target="PART_HeaderIconPresenterHolder.Visibility" Value="Collapsed" />
+                      <win:Setter Target="PART_DescriptionPresenter.Visibility" Value="Collapsed" />
+                      <win:Setter Target="PART_HeaderPresenter.Visibility" Value="Collapsed" />
+                      <win:Setter Target="PART_ContentPresenter.(Grid.Row)" Value="1" />
+                      <win:Setter Target="PART_ContentPresenter.(Grid.Column)" Value="1" />
+                      <win:Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Left" />
+                    </win:VisualState.Setters>
+                  </win:VisualState>
+                  <!--  Similiar to Left, but the HeaderIcon/Header/Description is visible  -->
                   <win:VisualState x:Name="Vertical">
                     <win:VisualState.StateTriggers>
                       <labs:IsEqualStateTrigger Value="{Binding ContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" To="Vertical" />
@@ -1979,6 +1985,18 @@ Themes\Styles\TextBlock.xaml
                       <win:Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Stretch" />
                       <win:Setter Target="PART_ContentPresenter.HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" />
                       <win:Setter Target="PART_ContentPresenter.Margin" Value="{ThemeResource SettingsCardVerticalHeaderContentSpacing}" />
+                    </win:VisualState.Setters>
+                  </win:VisualState>
+                </win:VisualStateGroup>
+                <!--  Collapsing the Content presenter whenever it's empty  -->
+                <win:VisualStateGroup x:Name="ContentVisibilityStates">
+                  <win:VisualState x:Name="Visible" />
+                  <win:VisualState x:Name="Collapsed">
+                    <win:VisualState.StateTriggers>
+                      <labs:IsNullOrEmptyStateTrigger Value="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </win:VisualState.StateTriggers>
+                    <win:VisualState.Setters>
+                      <win:Setter Target="PART_ContentPresenter.Visibility" Value="Collapsed" />
                     </win:VisualState.Setters>
                   </win:VisualState>
                 </win:VisualStateGroup>
@@ -2136,7 +2154,7 @@ Themes\Styles\TextBlock.xaml
             <win:ToggleButton x:Name="ExpanderHeader" MinHeight="{TemplateBinding MinHeight}" Padding="{StaticResource ExpanderHeaderPadding}" HorizontalAlignment="Stretch" HorizontalContentAlignment="{StaticResource ExpanderHeaderHorizontalContentAlignment}" VerticalContentAlignment="{StaticResource ExpanderHeaderVerticalContentAlignment}" win:AutomationProperties.AutomationId="ExpanderToggleButton" win:AutomationProperties.Name="{TemplateBinding AutomationProperties.Name}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}" BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" CornerRadius="{TemplateBinding CornerRadius}" IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" IsEnabled="{TemplateBinding IsEnabled}" IsTabStop="True" Style="{StaticResource SettingsExpanderHeaderDownStyle}" />
             <!--  The clip is a composition clip applied in code  -->
             <win:Border x:Name="ExpanderContentClip" Grid.Row="1">
-              <win:Border x:Name="ExpanderContent" MinHeight="{TemplateBinding MinHeight}" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{StaticResource ExpanderContentDownBorderThickness}" CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}" Visibility="Collapsed">
+              <win:Border x:Name="ExpanderContent" MinHeight="{ThemeResource SettingsExpanderContentMinHeight}" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{StaticResource ExpanderContentDownBorderThickness}" CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}" Visibility="Collapsed">
                 <win:ContentPresenter Margin="0,-2,0,0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
                 <win:Border.RenderTransform>
                   <win:CompositeTransform />
@@ -2188,7 +2206,7 @@ Themes\Styles\TextBlock.xaml
                   <win:ContentPresenter Content="{TemplateBinding ItemsHeader}" />
                   <win:ItemsRepeater x:Name="PART_ItemsRepeater" Grid.Row="1" ItemTemplate="{Binding ItemTemplate, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" TabFocusNavigation="Local">
                     <win:ItemsRepeater.Layout>
-                      <win:UniformGridLayout ItemsStretch="Fill" MaximumRowsOrColumns="1" Orientation="Horizontal" />
+                      <win:StackLayout Orientation="Vertical" />
                     </win:ItemsRepeater.Layout>
                   </win:ItemsRepeater>
                   <win:ContentPresenter Grid.Row="2" Content="{TemplateBinding ItemsFooter}" />

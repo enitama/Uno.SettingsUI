@@ -37,9 +37,6 @@ public class SettingsCardAutomationPeer : FrameworkElementAutomationPeer
     protected override string GetClassNameCore()
     {
         string classNameCore = Owner.GetType().Name;
-#if DEBUG_AUTOMATION
-            System.Diagnostics.Debug.WriteLine("SettingsCardAutomationPeer.GetClassNameCore returns " + classNameCore);
-#endif
         return classNameCore;
     }
 }
