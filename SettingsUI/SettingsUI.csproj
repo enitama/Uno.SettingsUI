@@ -5,7 +5,7 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <RootNamespace>WinUICommunity.SettingsUI</RootNamespace>
     <UseWinUI>true</UseWinUI>
-    <Version>3.2.1</Version>
+    <Version>3.2.2</Version>
     <Copyright>Copyright (c) 2021-2023 Mahdi Hosseini</Copyright>
     <Description>Windows 11 settings page in WinUI 3 apps With many useful controls and styles</Description>
     <NoWarn>CS8632</NoWarn>
@@ -25,7 +25,7 @@
     <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
   </ItemGroup>
   <ItemGroup>
