@@ -73,6 +73,8 @@ public partial class SettingsCard : ButtonBase
 
         PointerEntered += Control_PointerEntered;
         PointerExited += Control_PointerExited;
+        PointerCaptureLost += Control_PointerCaptureLost;
+        PointerCanceled += Control_PointerCanceled;
         PreviewKeyDown += Control_PreviewKeyDown;
         PreviewKeyUp += Control_PreviewKeyUp;
     }
@@ -81,6 +83,8 @@ public partial class SettingsCard : ButtonBase
     {
         PointerEntered -= Control_PointerEntered;
         PointerExited -= Control_PointerExited;
+        PointerCaptureLost -= Control_PointerCaptureLost;
+        PointerCanceled -= Control_PointerCanceled;
         PreviewKeyDown -= Control_PreviewKeyDown;
         PreviewKeyUp -= Control_PreviewKeyUp;
     }
@@ -101,16 +105,30 @@ public partial class SettingsCard : ButtonBase
         }
     }
 
-    public void Control_PointerExited(object sender, PointerRoutedEventArgs e)
-    {
-        base.OnPointerExited(e);
-        VisualStateManager.GoToState(this, NormalState, true);
-    }
     public void Control_PointerEntered(object sender, PointerRoutedEventArgs e)
     {
         base.OnPointerEntered(e);
         VisualStateManager.GoToState(this, PointerOverState, true);
     }
+
+    public void Control_PointerExited(object sender, PointerRoutedEventArgs e)
+    {
+        base.OnPointerExited(e);
+        VisualStateManager.GoToState(this, NormalState, true);
+    }
+
+    private void Control_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
+    {
+        base.OnPointerCaptureLost(e);
+        VisualStateManager.GoToState(this, NormalState, true);
+    }
+
+    private void Control_PointerCanceled(object sender, PointerRoutedEventArgs e)
+    {
+        base.OnPointerCanceled(e);
+        VisualStateManager.GoToState(this, NormalState, true);
+    }
+
     protected override void OnPointerPressed(PointerRoutedEventArgs e)
     {
         //  e.Handled = true;
@@ -120,6 +138,7 @@ public partial class SettingsCard : ButtonBase
             VisualStateManager.GoToState(this, PressedState, true);
         }
     }
+
     protected override void OnPointerReleased(PointerRoutedEventArgs e)
     {
         if (IsClickEnabled)
