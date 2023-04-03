@@ -1,0 +1,76 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
+  <PropertyGroup>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net6.0-windows10.0.18362</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);netstandard2.1</TargetFrameworks>
+    <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+
+  <Target Condition="'$(TargetFramework)'!='net6.0-windows10.0.18362'" Name="UnoRectangleNamespaceWorkaround" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <InputFile>..\SettingsUI\Themes\Generic.xaml</InputFile>
+      <OutputFile>Themes\Generic.xaml</OutputFile>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).Replace('win:Rectangle','shapes:Rectangle').Replace('xmlns:x=', 'xmlns:shapes=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; xmlns:x='))" Overwrite="true" Encoding="Unicode" />
+    <ItemGroup>
+      <Page Include="Themes\Generic.xaml" />
+    </ItemGroup>
+  </Target>
+  <Target Condition="'$(TargetFramework)'!='net6.0-windows10.0.18362'" Name="UnoRectangleNamespaceWorkaroundCleanup" AfterTargets="Compile">
+    <Delete Files="Themes\Generic.xaml" />
+  </Target>
+ 
+  <Choose>
+    <When Condition="'$(TargetFramework)'=='net6.0-windows10.0.18362'">
+      <ItemGroup>
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
+        <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.28" />
+        <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.28" />
+      </ItemGroup>
+      <ItemGroup>
+        <UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+      </ItemGroup>
+      <ItemGroup>
+        <Page Include="..\SettingsUI\Themes\Generic.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml">
+          <Link>Themes\Generic.xaml</Link>
+        </Page>
+      </ItemGroup>
+      <ItemGroup>
+        <!--
+				If you encounter this error message:
+
+					error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
+					Please update to a newer .NET SDK in order to reference this assembly.
+
+				This means that the two packages below must be aligned with the "build" version number of
+				the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
+				must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
+				-->
+        <!-- <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.28" />
+				<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.28" /> -->
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="Uno.WinUI" Version="4.8.15" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+
+  <ItemGroup>
+    <Page Include="..\SettingsUI\Controls\**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml">
+      <Link>Controls\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Page>
+    <Compile Include="..\SettingsUI\Controls\**\*.cs">
+      <Link>Controls\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\SettingsUI\Internal\**\*.cs">
+      <Link>Internal\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\SettingsUI\Labs\**\*.cs">
+      <Link>Labs\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
