@@ -6,7 +6,24 @@
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
     <LangVersion>10.0</LangVersion>
     <Nullable>annotations</Nullable>
+    <VersionPrefix>3.0.0</VersionPrefix>
+    <Version>$(VersionPrefix)-pre</Version>
+    <Copyright>The code in the package is Copyright (c) 2021-2023 Mahdi Hosseini</Copyright>
+    <Description>Unofficial Uno Platform compatible fork of WinUICommunity.SettingsUI</Description>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageId>Unofficial.WinUICommunity.SettingsUI.Uno</PackageId>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/enitama/Uno.SettingsUI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/enitama/Uno.SettingsUI</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\SettingsUI\Assets\icon.png" Pack="true" PackagePath="">
+      <Link>Assets\icon.png</Link>
+    </None>
+    <None Include="..\LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <Target Condition="'$(TargetFramework)'!='net6.0-windows10.0.18362'" Name="UnoRectangleNamespaceWorkaround" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
