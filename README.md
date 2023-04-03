@@ -1,6 +1,6 @@
 ﻿# Uno Platform port of SettingsUI
 
-This is an unofficial fork of [WinUICommunity.SettingsUI](https://github.com/WinUICommunity/SettingsUI) for usage with Uno Platform.
+This is a fork of [WinUICommunity.SettingsUI](https://github.com/WinUICommunity/SettingsUI) for usage with Uno Platform.
 
 This package has been tested with WinUI 3 and Wasm targets and the following controls only:
 
@@ -8,6 +8,10 @@ This package has been tested with WinUI 3 and Wasm targets and the following con
 - `SettingsGroup`
 - `SettingExpander`
 - `Setting`
+
+This fork is maintained on a hobby basis only, as it is used as a dependency for a hobby project.
+
+This repo is therefore likely to fall behind upstream. Help is appreciated!
 
 ## Install
 
